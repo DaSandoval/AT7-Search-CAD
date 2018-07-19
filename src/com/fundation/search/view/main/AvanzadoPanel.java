@@ -1,11 +1,29 @@
+/*
+ * @(#)View.java
+ *
+ * Copyright (c) 2018 Jala Foundation.
+ * 2643 Av Melchor Perez de Olguin, Colquiri Sud, Cochabamba, Bolivia.
+ * All rights reserved.
+ *
+ * This software is the confidential and proprietary information of
+ * Jala Foundation, ("Confidential Information").  You shall not
+ * disclose such Confidential Information and shall use it only in
+ * accordance with the terms of the license agreement you entered into
+ * with Jala Foundation.
+ */
 package com.fundation.search.view.main;
 
 import javax.swing.*;
 import javax.swing.event.*;
-
 import com.fundation.search.controller.Controller;
 
 
+/**
+ * This class AvanzadoPanel can be FileResult.
+ *
+ * @author Cesar Calvi - AT-[07].
+ * @version 1.0.
+ */
 public class AvanzadoPanel extends JPanel {
 
     private JCheckBox chFechas;

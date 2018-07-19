@@ -14,7 +14,12 @@
 
 import com.fundation.search.view.main.FilesIU;
 
-
+/**
+ * This class main can be FileResult.
+ *
+ * @author Cesar Calvi - AT-[07].
+ * @version 1.0.
+ */
 public class main{
 
     public static void main(String[] args){
