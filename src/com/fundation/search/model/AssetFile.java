@@ -20,10 +20,10 @@ package com.fundation.search.model;
 
 public class AssetFile {
     private String path;
-    private boolean hidden;
     private String fileName;
     private long size;
     private String extent;
+    private boolean hidden;
 
     /**
      * Constructor of the class.

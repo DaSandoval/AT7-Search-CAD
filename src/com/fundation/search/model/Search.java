@@ -42,7 +42,7 @@ public class Search {
         if (!path.isEmpty()) {
             for (int i = 0; i < listFolder.length; i++) {
                 if (listFolder[i].isFile()) {
-                    if (!listFolder[i].isHidden() != fileHidden) {
+                    if (listFolder[i].isHidden() != fileHidden) {
                         break;
                     }
                     if (fileName.isEmpty() && !listFolder[i].getName().contains(fileName)) {
@@ -72,5 +72,4 @@ public class Search {
     public List<AssetFile> getResult() {
         return assetFile;
     }
-
 }
