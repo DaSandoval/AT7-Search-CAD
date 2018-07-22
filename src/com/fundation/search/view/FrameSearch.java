@@ -11,27 +11,23 @@
  * accordance with the terms of the license agreement you entered into
  * with Jala Foundation.
  */
-package com.fundation.search.view.main;
+package com.fundation.search.view;
 
 import com.fundation.search.controller.Controller;
-import com.fundation.search.view.util.Constantes;
 
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
-
-import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.WindowConstants;
+import javax.swing.JFrame;
+import javax.swing.JCheckBox;
+import javax.swing.ImageIcon;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.WindowConstants;
+import java.awt.Dimension;
+import java.awt.Component;
+import java.awt.Toolkit;
 
 /**
  * This class FrameSearch can be FileResult.
@@ -45,6 +41,11 @@ public class FrameSearch extends JFrame {
     private boolean isAdvancedEnabled;
     private JCheckBox chAdvanced;
     private AdvancedPanelSearch pnAdvanced;
+
+    public PanelSearch getPnSearch() {
+        return pnSearch;
+    }
+
     private PanelSearch pnSearch;
     private JScrollPane scLocation;
     private JTable tbLocation;
@@ -56,12 +57,16 @@ public class FrameSearch extends JFrame {
         settings();
     }
 
+    public JTabbedPane getTpPanel() {
+        return tpPanel;
+    }
+
     /**
      * Method Components.
      */
     private void initComponents() {
         isAdvancedEnabled = false;
-        controller = new Controller();
+        //controller = new Controller();
         tpPanel = new JTabbedPane();
         chAdvanced = new JCheckBox();
         pnSearch = new PanelSearch(controller);
@@ -110,23 +115,18 @@ public class FrameSearch extends JFrame {
         getContentPane().add(chAdvanced);
         tmLocation.addColumn("Icon");
         tmLocation.addColumn("Name");
-        tmLocation.addColumn("Zize");
+        tmLocation.addColumn("Extent");
+        tmLocation.addColumn("Size");
+        tmLocation.addColumn("Path");
+        tmLocation.addColumn("Hidden");
         tbLocation.setModel(tmLocation);
         scLocation.setViewportView(tbLocation);
         getContentPane().add(scLocation);
         scLocation.setBounds(10, 210, 770, 240);
-        getFilesInDirectory();
         getContentPane().add(tpPanel);
         tpPanel.setBounds(10, 10, 770, 170);
     }
 
-    /**
-     * Method for get the folder.
-     */
-    private void getFilesInDirectory() {
-        addRowTable(new ImageIcon(Constantes.getFolderIcon()), "Folder", "--");
-        addRowTable(new ImageIcon(Constantes.getFileIcon()), "Files", "10 KBytes");
-    }
 
     /**
      * Method of Table date.
@@ -135,12 +135,16 @@ public class FrameSearch extends JFrame {
      * @param name value of the name.
      * @param size value of the size.
      */
-    public void addRowTable(ImageIcon img, String name, String size) {
+    public void addRowTable(ImageIcon img, String name, String extent, long size,
+                            String path, String hidden) {
         tmLocation.addRow(
                 new Object[]{
                         img,
                         name,
-                        size
+                        extent,
+                        String.valueOf(size),
+                        path,
+                        hidden
                 });
         updateRowHeights();
     }
@@ -174,6 +178,17 @@ public class FrameSearch extends JFrame {
             tpPanel.setEnabledAt(1, chAdvanced.isSelected());
             if (chAdvanced.isSelected() == false) {
                 tpPanel.setSelectedIndex(0);
+            }
+        }
+    }
+
+    /**
+     * Method od clean table.
+     */
+    public void cleanTable (){
+        if (tmLocation.getRowCount() > 0) {
+            for (int i = tmLocation.getRowCount() - 1; i > -1; i--) {
+                tmLocation.removeRow(i);
             }
         }
     }
