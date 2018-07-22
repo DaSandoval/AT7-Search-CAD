@@ -11,27 +11,20 @@
  * accordance with the terms of the license agreement you entered into
  * with Jala Foundation.
  */
-package com.fundation.search.view.main;
+package com.fundation.search.view;
 
 
 import com.fundation.search.controller.Controller;
 
-import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.File;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileSystemView;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.util.ArrayList;
 
 
 /**
@@ -67,7 +60,7 @@ public class PanelSearch extends JPanel {
     public PanelSearch() {
         initComponents();
         settings();
-        controller = new Controller();
+        //controller = new Controller();
     }
 
     /**
@@ -78,7 +71,11 @@ public class PanelSearch extends JPanel {
     public PanelSearch(Controller cn) {
         initComponents();
         settings();
-        controller = cn;
+        //controller = cn;
+    }
+
+    public boolean isSearchTxEnabled() {
+        return isSearchTxEnabled;
     }
 
     /**
@@ -225,6 +222,34 @@ public class PanelSearch extends JPanel {
             File selectedFile = jfc.getSelectedFile();
             txLocation.setText(selectedFile.getAbsolutePath());
         }
+    }
+
+    public ArrayList<String> getExtencion(){
+        ArrayList<String> result = new ArrayList<>();
+        if (chSearchText.isSelected()==true){
+            if (txSearchText.getText()!= ""){
+                result.add(txSearchText.getText());
+            }
+            if (chASCII.isSelected() == true){
+                result.add("bmp");
+            }if (chComplete.isSelected() == true){
+                result.add("pdf");
+            }if (chMYmi.isSelected() == true){
+                result.add("doc");
+            }if (chUTF.isSelected() == true){
+                result.add("exe");
+            }if (chRegex.isSelected() == true){
+                result.add("gif");
+            }if (chNoExists.isSelected() == true){
+                result.add("log");
+            }if (chUnicode.isSelected() == true){
+                result.add("ppt");
+            }if (chHexa.isSelected() == true){
+                result.add("rar");
+            }
+
+        }
+        return result;
     }
 
     /**

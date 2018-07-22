@@ -21,7 +21,7 @@ package com.fundation.search.view.util;
  */
 public abstract class Constantes{
 	
-	private static final String RESOURCE_FOLDER = "resources/";
+	private static final String RESOURCE_FOLDER = "src/com/fundation/search/view/resources/";
 	private static final String RESOURCE_FOLDER_IMG = "img/";
 	private static final String FOLDER_ICON = "folder.png";
 	private static final String FILE_ICON = "file.png";
