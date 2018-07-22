@@ -14,14 +14,20 @@
 package com.fundation.search.view;
 
 import com.fundation.search.controller.Controller;
-import com.fundation.search.view.util.Constantes;
 
-import javax.swing.*;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JFrame;
+import javax.swing.JCheckBox;
+import javax.swing.ImageIcon;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-
+import javax.swing.WindowConstants;
+import java.awt.Dimension;
+import java.awt.Component;
+import java.awt.Toolkit;
 
 /**
  * This class FrameSearch can be FileResult.

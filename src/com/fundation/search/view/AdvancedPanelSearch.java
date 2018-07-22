@@ -15,9 +15,16 @@ package com.fundation.search.view;
 
 import com.fundation.search.controller.Controller;
 
-import javax.swing.*;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.JPanel;
+import javax.swing.DefaultComboBoxModel;
+
 
 
 /**
@@ -75,7 +82,6 @@ public class AdvancedPanelSearch extends JPanel {
     public AdvancedPanelSearch() {
         initComponents();
         settings();
-        //controller = new Controller();
     }
 
     /**
@@ -93,7 +99,6 @@ public class AdvancedPanelSearch extends JPanel {
      * Method of the option position.
      */
     public void settings() {
-        this.setBorder(BorderFactory.createEtchedBorder());
         this.setLayout(null);
 
         chFechas.setText("Date range");

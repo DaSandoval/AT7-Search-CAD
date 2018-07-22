@@ -20,7 +20,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileSystemView;
-import java.awt.*;
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -71,7 +71,6 @@ public class PanelSearch extends JPanel {
     public PanelSearch(Controller cn) {
         initComponents();
         settings();
-        //controller = cn;
     }
 
     public boolean isSearchTxEnabled() {
