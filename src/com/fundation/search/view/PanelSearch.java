@@ -224,6 +224,10 @@ public class PanelSearch extends JPanel {
         }
     }
 
+    /**
+     * Method to see the options that have been
+     * @return list of extencion.
+     */
     public ArrayList<String> getExtencion(){
         ArrayList<String> result = new ArrayList<>();
         if (chSearchText.isSelected()==true){

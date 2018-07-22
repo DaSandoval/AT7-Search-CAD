@@ -67,6 +67,13 @@ public class Search {
         //return assetFile;
     }
 
+    /**
+     * Method Method fileName.
+     *
+     * @param path     address.
+     * @param fileName      Name of file.
+     * @param fileHidden    file Hidden.
+     */
     public void searchPathNotExtencion(String path, String fileName, boolean fileHidden) {
         File folder = new File(path);
         File[] listFolder = folder.listFiles();

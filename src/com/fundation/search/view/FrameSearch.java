@@ -176,6 +176,9 @@ public class FrameSearch extends JFrame {
         }
     }
 
+    /**
+     * Method od clean table.
+     */
     public void cleanTable (){
         if (tmLocation.getRowCount() > 0) {
             for (int i = tmLocation.getRowCount() - 1; i > -1; i--) {
