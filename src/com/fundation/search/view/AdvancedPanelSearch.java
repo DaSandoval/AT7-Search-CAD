@@ -11,16 +11,11 @@
  * accordance with the terms of the license agreement you entered into
  * with Jala Foundation.
  */
-package com.fundation.search.view.main;
+package com.fundation.search.view;
 
 import com.fundation.search.controller.Controller;
 
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 

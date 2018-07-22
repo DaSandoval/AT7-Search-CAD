@@ -11,26 +11,16 @@
  * accordance with the terms of the license agreement you entered into
  * with Jala Foundation.
  */
-package com.fundation.search.view.main;
+package com.fundation.search.view;
 
 import com.fundation.search.controller.Controller;
 import com.fundation.search.view.util.Constantes;
 
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
-
-import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 
 
 /**
@@ -179,20 +169,143 @@ public class FrameSearch extends JFrame {
     }
 
     /**
-     * Method of the get Advanced
+     * Method of the get.
+     *
+     * @return value true.
+     */
+    public Controller getController() {
+        return controller;
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
+    /**
+     * Method of the get.
      *
      * @return value true.
      */
     public boolean getAdvancedEnabled() {
         return isAdvancedEnabled;
     }
-
     /**
-     * Method of the set Advanced.
+     * Method of the set.
      *
-     * @param advancedEnabled
+     * @return value.
      */
     public void setAdvancedEnabled(boolean advancedEnabled) {
         isAdvancedEnabled = advancedEnabled;
+    }
+    /**
+     * Method of the get.
+     *
+     * @return value.
+     */
+    public JCheckBox getChAdvanced() {
+        return chAdvanced;
+    }
+    /**
+     * Method of the set.
+     *
+     * @return value.
+     */
+    public void setChAdvanced(JCheckBox chAdvanced) {
+        this.chAdvanced = chAdvanced;
+    }
+    /**
+     * Method of the get.
+     *
+     * @return value .
+     */
+    public AdvancedPanelSearch getPnAdvanced() {
+        return pnAdvanced;
+    }
+    /**
+     * Method of the set.
+     *
+     * @return value.
+     */
+    public void setPnAdvanced(AdvancedPanelSearch pnAdvanced) {
+        this.pnAdvanced = pnAdvanced;
+    }
+    /**
+     * Method of the get.
+     *
+     * @return value.
+     */
+    public PanelSearch getPnSearch() {
+        return pnSearch;
+    }
+    /**
+     * Method of the set.
+     *
+     * @return value.
+     */
+    public void setPnSearch(PanelSearch pnSearch) {
+        this.pnSearch = pnSearch;
+    }
+    /**
+     * Method of the get.
+     *
+     * @return value.
+     */
+    public JScrollPane getScLocation() {
+        return scLocation;
+    }
+    /**
+     * Method of the set.
+     *
+     * @return value.
+     */
+    public void setScLocation(JScrollPane scLocation) {
+        this.scLocation = scLocation;
+    }
+    /**
+     * Method of the get.
+     *
+     * @return value.
+     */
+    public JTable getTbLocation() {
+        return tbLocation;
+    }
+    /**
+     * Method of the set.
+     *
+     * @return value.
+     */
+    public void setTbLocation(JTable tbLocation) {
+        this.tbLocation = tbLocation;
+    }
+    /**
+     * Method of the get.
+     *
+     * @return value.
+     */
+    public JTabbedPane getTpPanel() {
+        return tpPanel;
+    }
+    /**
+     * Method of the set.
+     *
+     * @return value.
+     */
+    public void setTpPanel(JTabbedPane tpPanel) {
+        this.tpPanel = tpPanel;
+    }
+    /**
+     * Method of the get.
+     *
+     * @return value.
+     */
+    public DefaultTableModel getTmLocation() {
+        return tmLocation;
+    }
+    /**
+     * Method of the set.
+     *
+     * @return value.
+     */
+    public void setTmLocation(DefaultTableModel tmLocation) {
+        this.tmLocation = tmLocation;
     }
 }
