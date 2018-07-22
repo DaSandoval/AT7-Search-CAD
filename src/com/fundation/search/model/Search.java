@@ -14,6 +14,7 @@
 package com.fundation.search.model;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * This class Search.
@@ -23,6 +24,11 @@ import java.io.File;
  */
 public class Search {
     /**
+     * List that content a object od the class AssetFile.
+     */
+    private List<AssetFile> assetFile;
+
+    /**
      * Method for search to path, fileName.
      *
      * @param path       address.
@@ -30,27 +36,41 @@ public class Search {
      * @param extension  the file.
      * @param fileHidden name file hidden.
      */
-    public void searchPath(String path, String fileName, String extension, String fileHidden) {
+    public void searchPath(String path, String fileName, String extension, boolean fileHidden) {
         File folder = new File(path);
         File[] listFolder = folder.listFiles();
         if (!path.isEmpty()) {
             for (int i = 0; i < listFolder.length; i++) {
                 if (listFolder[i].isFile()) {
-                    if (!fileHidden.isEmpty() && listFolder[i].isHidden() && fileName.isEmpty() && extension.isEmpty()) {
-                        System.out.println(listFolder[i].getName());
-                    } else {
-                        if (!fileName.isEmpty() && listFolder[i].getName().contains(fileName) && !extension.isEmpty() && listFolder[i].getName().endsWith(extension) && fileHidden.isEmpty()) {
-                            System.out.println(listFolder[i].getName());
-                        } else if (fileName.isEmpty() && !extension.isEmpty() && listFolder[i].getName().endsWith(extension) && fileHidden.isEmpty()) {
-                            System.out.println(listFolder[i].getName());
-                        } else if (extension.isEmpty() && !fileName.isEmpty() && listFolder[i].getName().contains(fileName) && fileHidden.isEmpty()) {
-                            System.out.println(listFolder[i].getName());
-                        }
+                    if (!listFolder[i].isHidden() != fileHidden) {
+                        break;
                     }
+                    if (fileName.isEmpty() && !listFolder[i].getName().contains(fileName)) {
+                        break;
+                    }
+                    if (extension.isEmpty() && listFolder[i].getName().endsWith(extension)) {
+                        break;
+                    }
+                    AssetFile asstFile = new AssetFile();
+                    asstFile.setPath(listFolder[i].getAbsolutePath());
+                    asstFile.setFileName(listFolder[i].getName());
+                    asstFile.setSize(Long.valueOf(fileName.length()));
+                    asstFile.setHidden(listFolder[i].isHidden());
+                    assetFile.add(asstFile);
+                } else if (listFolder[i].isDirectory()) {
+                    searchPath(listFolder[i].getAbsolutePath(), fileName, extension, false);
                 }
             }
-        } else {
-            System.out.println("No path");
         }
     }
+
+    /**
+     * Generation a list of file or directori.
+     *
+     * @return a List of AssetFile.
+     */
+    public List<AssetFile> getResult() {
+        return assetFile;
+    }
+
 }
