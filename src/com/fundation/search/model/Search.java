@@ -68,7 +68,7 @@ public class Search {
     }
 
     /**
-     * Method Method fileName.
+     * Method Method fileName and not estencion.
      *
      * @param path     address.
      * @param fileName      Name of file.
