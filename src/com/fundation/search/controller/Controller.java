@@ -49,7 +49,7 @@ public class Controller {
     }
 
     /**
-     * Method to see the values ​​of the view and add the spaces in the table.
+     * Method to see the values ​​of the view and add the spaces.
      */
     private void getAtribut() {
         frameSearch.cleanTable();
