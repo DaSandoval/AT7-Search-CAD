@@ -40,6 +40,7 @@ public class PanelSearch extends JPanel {
     private JLabel lbLocation;
     private JTextField txSearch;
     private JTextField txLocation;
+    private JCheckBox chFileHidden;
     private JTextField txSearchText;
     private JCheckBox chSearchText;
     private JCheckBox chASCII;
@@ -88,6 +89,8 @@ public class PanelSearch extends JPanel {
         lbSearch.setBounds(12, 16, 53, 14);
         this.add(lbSearch);
 
+
+
         lbLocation.setHorizontalAlignment(SwingConstants.RIGHT);
         lbLocation.setText("Search in:");
         lbLocation.setBounds(12, 42, 70, 14);
@@ -99,61 +102,66 @@ public class PanelSearch extends JPanel {
         txLocation.setBounds(90, 39, 210, 20);
         this.add(txLocation);
 
+        chFileHidden.setText("File Hidden");
+        chFileHidden.setEnabled(true);
+        chFileHidden.setBounds(310, 12, 100, 23);
+        this.add(chFileHidden);
+
         chSearchText.setText("Search Extend");
-        chSearchText.setBounds(310, 12, 130, 23);
+        chSearchText.setBounds(410, 12, 130, 23);
         this.add(chSearchText);
 
         txSearchText.setEnabled(false);
         txSearchText.setBackground(new Color(255, 255, 255));
         txSearchText.setText("");
-        txSearchText.setBounds(440, 12, 210, 20);
+        txSearchText.setBounds(550, 12, 170, 20);
         this.add(txSearchText);
 
-        chComplete.setText("Pdf");
+        chComplete.setText(".pdf");
         chComplete.setEnabled(false);
-        chComplete.setBounds(310, 38, 130, 23);
+        chComplete.setBounds(410, 38, 130, 23);
         this.add(chComplete);
 
-        chMYmi.setText("Doc");
+        chMYmi.setText(".doc");
         chMYmi.setEnabled(false);
-        chMYmi.setBounds(440, 38, 130, 23);
+        chMYmi.setBounds(540, 38, 130, 23);
         this.add(chMYmi);
 
-        chUTF.setText("Exe");
+        chUTF.setText(".exe");
         chUTF.setEnabled(false);
-        chUTF.setBounds(570, 38, 130, 23);
+        chUTF.setBounds(670, 38, 130, 23);
         this.add(chUTF);
 
-        chASCII.setText("Bmp");
+        chASCII.setText(".gif");
         chASCII.setEnabled(false);
-        chASCII.setBounds(310, 65, 130, 23);
+        chASCII.setBounds(410, 65, 130, 23);
         this.add(chASCII);
 
-        chRegex.setText("Gif");
+        chRegex.setText(".ppt");
         chRegex.setEnabled(false);
-        chRegex.setBounds(440, 65, 130, 23);
+        chRegex.setBounds(540, 65, 130, 23);
         this.add(chRegex);
 
-        chNoExists.setText("Log");
+        chNoExists.setText(".log");
         chNoExists.setEnabled(false);
-        chNoExists.setBounds(570, 65, 130, 23);
+        chNoExists.setBounds(670, 65, 130, 23);
         this.add(chNoExists);
 
-        chUnicode.setText("Ppt");
+        chUnicode.setText(".jpg");
         chUnicode.setEnabled(false);
-        chUnicode.setBounds(310, 92, 130, 23);
+        chUnicode.setBounds(410, 92, 130, 23);
         this.add(chUnicode);
 
-        chHexa.setText("Rar");
+        chHexa.setText(".rar");
         chHexa.setEnabled(false);
-        chHexa.setBounds(440, 92, 130, 23);
+        chHexa.setBounds(540, 92, 130, 23);
         this.add(chHexa);
 
         btSearch.setText("Search");
         btSearch.setBounds(90, 65, 80, 48);
         this.add(btSearch);
 
-        btSelect.setText("Selecc File");
+        btSelect.setText("Select File");
         btSelect.setBounds(180, 65, 120, 48);
         this.add(btSelect);
 
@@ -168,6 +176,12 @@ public class PanelSearch extends JPanel {
                 btSelectMouseClicked(evt);
             }
         });
+
+      /*  btSearch.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                btSearchMouseClicked(evt);
+            }
+        });*/
     }
 
     /**
@@ -191,9 +205,14 @@ public class PanelSearch extends JPanel {
         chHexa = new JCheckBox();
         btSearch = new JButton();
         btSelect = new JButton();
+        chFileHidden= new JCheckBox();
         this.isSearchTxEnabled = false;
     }
-
+    /**
+     * Method for event.
+     *
+     * @return a void.
+     */
     private void chSearchTextStateChanged(ChangeEvent evt) {
         if (this.isSearchTxEnabled != chSearchText.isSelected()) {
             this.isSearchTxEnabled = chSearchText.isSelected();
@@ -208,7 +227,11 @@ public class PanelSearch extends JPanel {
             chUTF.setEnabled(isSearchTxEnabled);
         }
     }
-
+    /**
+     * Method for event.
+     *
+     * @return a void.
+     */
     private void btSelectMouseClicked(MouseEvent evt) {
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -220,7 +243,7 @@ public class PanelSearch extends JPanel {
     }
 
     /**
-     * Method of the get value.
+     * Method of the set value.
      *
      * @return a value.
      */
@@ -231,7 +254,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setBtSearch(JButton btSearch) {
         this.btSearch = btSearch;
@@ -249,7 +272,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setBtSelect(JButton btSelect) {
         this.btSelect = btSelect;
@@ -267,7 +290,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setLbSearch(JLabel lbSearch) {
         this.lbSearch = lbSearch;
@@ -285,7 +308,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setLbLocation(JLabel lbLocation) {
         this.lbLocation = lbLocation;
@@ -303,7 +326,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setTxSearch(JTextField txSearch) {
         this.txSearch = txSearch;
@@ -321,7 +344,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setTxLocation(JTextField txLocation) {
         this.txLocation = txLocation;
@@ -339,7 +362,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setTxSearchText(JTextField txSearchText) {
         this.txSearchText = txSearchText;
@@ -357,7 +380,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setChSearchText(JCheckBox chSearchText) {
         this.chSearchText = chSearchText;
@@ -375,7 +398,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setChASCII(JCheckBox chASCII) {
         this.chASCII = chASCII;
@@ -393,7 +416,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setChComplete(JCheckBox chComplete) {
         this.chComplete = chComplete;
@@ -411,7 +434,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setChUTF(JCheckBox chUTF) {
         this.chUTF = chUTF;
@@ -429,7 +452,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setChUnicode(JCheckBox chUnicode) {
         this.chUnicode = chUnicode;
@@ -447,7 +470,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setChRegex(JCheckBox chRegex) {
         this.chRegex = chRegex;
@@ -465,7 +488,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setChHexa(JCheckBox chHexa) {
         this.chHexa = chHexa;
@@ -483,7 +506,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setChMYmi(JCheckBox chMYmi) {
         this.chMYmi = chMYmi;
@@ -501,7 +524,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setChNoExists(JCheckBox chNoExists) {
         this.chNoExists = chNoExists;
@@ -519,7 +542,7 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setController(Controller controller) {
         this.controller = controller;
@@ -537,9 +560,25 @@ public class PanelSearch extends JPanel {
     /**
      * Method of the set value.
      *
-     * @return a value.
+     * @return a value change.
      */
     public void setSearchTxEnabled(boolean searchTxEnabled) {
         isSearchTxEnabled = searchTxEnabled;
+    }
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChFileHidden() {
+        return chFileHidden;
+    }
+    /**
+     * Method of the set value.
+     *
+     * @return a value change.
+     */
+    public void setChFileHidden(JCheckBox chFileHidden) {
+        this.chFileHidden = chFileHidden;
     }
 }
