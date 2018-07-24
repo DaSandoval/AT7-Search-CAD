@@ -82,7 +82,6 @@ public class AdvancedPanelSearch extends JPanel {
     public AdvancedPanelSearch() {
         initComponents();
         settings();
-        controller = new Controller();
     }
 
     /**
