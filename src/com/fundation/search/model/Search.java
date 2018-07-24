@@ -14,6 +14,7 @@
 package com.fundation.search.model;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,9 +24,7 @@ import java.util.List;
  * @version 1.0.
  */
 public class Search {
-    /**
-     * List that content a object od the class AssetFile.
-     */
+
     private List<AssetFile> assetFile;
 
     /**
@@ -39,36 +38,76 @@ public class Search {
     public void searchPath(String path, String fileName, String extension, boolean fileHidden) {
         File folder = new File(path);
         File[] listFolder = folder.listFiles();
-        if (!path.isEmpty()) {
-            for (int i = 0; i < listFolder.length; i++) {
-                if (listFolder[i].isFile()) {
-                    if (listFolder[i].isHidden() != fileHidden) {
-                        break;
-                    }
-                    if (fileName.isEmpty() && !listFolder[i].getName().contains(fileName)) {
-                        break;
-                    }
-                    if (extension.isEmpty() && listFolder[i].getName().endsWith(extension)) {
-                        break;
-                    }
-                    AssetFile asstFile = new AssetFile();
-                    asstFile.setPath(listFolder[i].getAbsolutePath());
-                    asstFile.setFileName(listFolder[i].getName());
-                    asstFile.setSize(Long.valueOf(fileName.length()));
-                    asstFile.setHidden(listFolder[i].isHidden());
-                    assetFile.add(asstFile);
-                } else if (listFolder[i].isDirectory()) {
-                    searchPath(listFolder[i].getAbsolutePath(), fileName, extension, false);
+        assetFile = new ArrayList<AssetFile>();
+        for (File aListFolder : listFolder) {
+            if (aListFolder.isFile()) {
+                if (aListFolder.isHidden() != fileHidden) {
+                    continue;
                 }
+                if (fileName.isEmpty() && !aListFolder.getName().contains(fileName)) {
+                    continue;
+                }
+                if (extension.isEmpty() && aListFolder.getName().endsWith(extension)) {
+
+                    continue;
+                }
+                if(aListFolder.getName().contains(fileName) & aListFolder.getName().endsWith(extension)){
+                    AssetFile asstFile = new AssetFile();
+                    asstFile.setExtent(extension);
+                    if(fileHidden == true){
+                        asstFile.setHidden(true);
+                    } else{
+                        asstFile.setHidden(false);
+                    }
+                    asstFile.setSize(aListFolder.length());
+                    asstFile.setPath(aListFolder.getAbsolutePath());
+                    asstFile.setFileName(aListFolder.getName());
+                    assetFile.add(asstFile);
+                }
+            } else if (aListFolder.isDirectory()) {
+                searchPath(aListFolder.getAbsolutePath(), fileName, extension, fileHidden);
             }
         }
     }
 
     /**
-     * Generation a list of file or directori.
+     * Method Method fileName and not estencion.
      *
-     * @return a List of AssetFile.
+     * @param path     address.
+     * @param fileName      Name of file.
+     * @param fileHidden    file Hidden.
      */
+    public void searchPathNotExtencion(String path, String fileName, boolean fileHidden) {
+        File folder = new File(path);
+        File[] listFolder = folder.listFiles();
+        assetFile = new ArrayList<AssetFile>();
+        for (File aListFolder : listFolder) {
+            if (aListFolder.isFile()) {
+                if (fileHidden != aListFolder.isHidden()) {
+                    continue;
+                }
+                if (fileName.isEmpty() && !aListFolder.getName().contains(fileName)) {
+                    continue;
+                }
+                if (aListFolder.getName().contains(fileName)) {
+                    AssetFile asstFile = new AssetFile();
+                    asstFile.setExtent(aListFolder.getName().substring(aListFolder.getName().indexOf(".")));
+                    if(fileHidden == true){
+                        asstFile.setHidden(true);
+                    } else{
+                        asstFile.setHidden(false);
+                    }
+                    asstFile.setSize(aListFolder.length());
+                    asstFile.setPath(aListFolder.getAbsolutePath());
+                    asstFile.setFileName(aListFolder.getName());
+                    assetFile.add(asstFile);
+                }
+            } else if (aListFolder.isDirectory()) {
+                searchPathNotExtencion(aListFolder.getAbsolutePath(), fileName,fileHidden);
+            }
+        }
+    }
+
     public List<AssetFile> getResult() {
         return assetFile;
     }

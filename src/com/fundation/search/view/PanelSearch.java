@@ -69,7 +69,7 @@ public class PanelSearch extends JPanel {
     public PanelSearch() {
         initComponents();
         settings();
-        controller = new Controller();
+        //controller = new Controller();
     }
 
     /**

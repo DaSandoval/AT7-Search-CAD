@@ -14,7 +14,6 @@
 package com.fundation.search.view;
 
 import com.fundation.search.controller.Controller;
-import com.fundation.search.view.util.Constantes;
 
 
 import java.awt.Component;
@@ -62,7 +61,6 @@ public class FrameSearch extends JFrame {
      */
     private void initComponents() {
         isAdvancedEnabled = false;
-        controller = new Controller();
         tpPanel = new JTabbedPane();
         chAdvanced = new JCheckBox();
         pnSearch = new PanelSearch(controller);
@@ -111,22 +109,16 @@ public class FrameSearch extends JFrame {
         getContentPane().add(chAdvanced);
         tmLocation.addColumn("Icon");
         tmLocation.addColumn("Name");
-        tmLocation.addColumn("Zize");
+        tmLocation.addColumn("Extent");
+        tmLocation.addColumn("Size");
+        tmLocation.addColumn("Path");
+        tmLocation.addColumn("Hidden");
         tbLocation.setModel(tmLocation);
         scLocation.setViewportView(tbLocation);
         getContentPane().add(scLocation);
         scLocation.setBounds(10, 210, 770, 240);
-        getFilesInDirectory();
         getContentPane().add(tpPanel);
         tpPanel.setBounds(10, 10, 770, 170);
-    }
-
-    /**
-     * Method for get the folder.
-     */
-    private void getFilesInDirectory() {
-        addRowTable(new ImageIcon(Constantes.getFolderIcon()), "Folder", "--");
-        addRowTable(new ImageIcon(Constantes.getFileIcon()), "Files", "10 KBytes");
     }
 
     /**
@@ -136,12 +128,16 @@ public class FrameSearch extends JFrame {
      * @param name value of the name.
      * @param size value of the size.
      */
-    public void addRowTable(ImageIcon img, String name, String size) {
+    public void addRowTable(ImageIcon img, String name, String extent, double size,
+                            String path, boolean hidden) {
         tmLocation.addRow(
                 new Object[]{
                         img,
                         name,
-                        size
+                        extent,
+                        String.valueOf(size),
+                        path,
+                        hidden
                 });
         updateRowHeights();
     }
@@ -175,6 +171,13 @@ public class FrameSearch extends JFrame {
             tpPanel.setEnabledAt(1, chAdvanced.isSelected());
             if (chAdvanced.isSelected() == false) {
                 tpPanel.setSelectedIndex(0);
+            }
+        }
+    }
+    public void cleanTable (){
+        if (tmLocation.getRowCount() > 0) {
+            for (int i = tmLocation.getRowCount() - 1; i > -1; i--) {
+                tmLocation.removeRow(i);
             }
         }
     }
