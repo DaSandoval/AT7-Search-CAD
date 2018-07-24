@@ -74,7 +74,8 @@ public class AdvancedPanelSearch extends JPanel {
     private boolean isSizeEnabled;
     private boolean isAttributesEnabled;
     private boolean isDuplicatesEnabled;
-    private Controller controller;
+    private JComboBox<String> jcbSize;
+
 
     /**
      * method of advanced of search constructs.
@@ -92,7 +93,6 @@ public class AdvancedPanelSearch extends JPanel {
     public AdvancedPanelSearch(Controller cn) {
         initComponents();
         settings();
-        controller = cn;
     }
 
     /**
@@ -150,14 +150,21 @@ public class AdvancedPanelSearch extends JPanel {
         this.add(cbTerm);
 
         chsSize.setText("Size:");
-        chsSize.setBounds(8, 100, 123, 23);
+        chsSize.setBounds(8, 100, 70, 23);
         this.add(chsSize);
+
+        jcbSize.setEnabled(false);
+        jcbSize.setBounds(80, 100, 56, 20);
+        this.add(jcbSize);
+        jcbSize.addItem("=");
+        jcbSize.addItem(">");
+        jcbSize.addItem("<");
 
         txSize.setEnabled(false);
         txSize.setBounds(137, 101, 79, 20);
         this.add(txSize);
 
-        cbSize.setModel(new DefaultComboBoxModel<>(new String[]{"Kbytes"}));
+        cbSize.setModel(new DefaultComboBoxModel<>(new String[]{"bytes","Kbytes","Mbytes"}));
         cbSize.setEnabled(false);
         cbSize.setBounds(222, 101, 100, 20);
         this.add(cbSize);
@@ -280,6 +287,7 @@ public class AdvancedPanelSearch extends JPanel {
         chDupName = new JCheckBox();
         chDupSize = new JCheckBox();
         chDupContent = new JCheckBox();
+        jcbSize = new JComboBox<>();
 
         this.isFechasEnabled = false;
         this.isTermEnabled = false;
@@ -328,6 +336,7 @@ public class AdvancedPanelSearch extends JPanel {
             this.isSizeEnabled = chsSize.isSelected();
             txSize.setEnabled(isSizeEnabled);
             cbSize.setEnabled(isSizeEnabled);
+            jcbSize.setEnabled(isSizeEnabled);
         }
     }
 
