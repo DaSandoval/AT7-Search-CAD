@@ -109,7 +109,7 @@ public class FrameSearch extends JFrame {
         getContentPane().add(chAdvanced);
         tmLocation.addColumn("Icon");
         tmLocation.addColumn("Name");
-        tmLocation.addColumn("Extent");
+        tmLocation.addColumn("Extension");
         tmLocation.addColumn("Size");
         tmLocation.addColumn("Path");
         tmLocation.addColumn("Hidden");
@@ -156,7 +156,7 @@ public class FrameSearch extends JFrame {
                 tbLocation.setRowHeight(row, rowHeight);
             }
         } catch (ClassCastException e) {
-            System.out.println("Error de Altura de Fila");
+            System.out.println("Row Height Error");
         }
     }
 
