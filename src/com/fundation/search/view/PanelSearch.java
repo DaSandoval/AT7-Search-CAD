@@ -50,6 +50,11 @@ public class PanelSearch extends JPanel {
     private JTextField txSearch;
     private JTextField txLocation;
     private JCheckBox chFileHidden;
+    private JCheckBox chContent;
+    private JCheckBox chOwner;
+    private JCheckBox chFolder;
+    private JCheckBox chReadOnly;
+    private JCheckBox chKeySensitive;
     private JTextField txSearchText;
     private JCheckBox chSearchText;
     private JCheckBox chASCII;
@@ -112,57 +117,78 @@ public class PanelSearch extends JPanel {
 
         chFileHidden.setText("File Hidden");
         chFileHidden.setEnabled(true);
-        chFileHidden.setBounds(310, 12, 100, 23);
+        chFileHidden.setBounds(310, 12, 90, 23);
         this.add(chFileHidden);
 
+        chContent.setText("FContent");
+        chContent.setEnabled(true);
+        chContent.setBounds(310, 42, 90, 23);
+        this.add(chContent);
+        chFolder.setText("Folder");
+        chFolder.setEnabled(true);
+        chFolder.setBounds(310, 72, 100, 23);
+        this.add(chFolder);
+        chOwner.setText("Owner");
+        chOwner.setEnabled(true);
+        chOwner.setBounds(310, 102, 100, 23);
+        this.add(chOwner);
+        chKeySensitive.setText("Key Sensitive");
+        chKeySensitive.setEnabled(true);
+        chKeySensitive.setBounds(400, 12, 110, 23);
+        this.add(chKeySensitive);
+        chReadOnly.setText("Read Only");
+        chReadOnly.setEnabled(true);
+        chReadOnly.setBounds(400, 42, 100, 23);
+        this.add(chReadOnly);
+
         chSearchText.setText("Search Extend");
-        chSearchText.setBounds(410, 12, 130, 23);
+        chSearchText.setBounds(515, 12, 130, 23);
         this.add(chSearchText);
 
         txSearchText.setEnabled(false);
         txSearchText.setBackground(new Color(255, 255, 255));
         txSearchText.setText("");
-        txSearchText.setBounds(550, 12, 170, 20);
+        txSearchText.setBounds(650, 12, 80, 20);
         this.add(txSearchText);
 
         chComplete.setText(".pdf");
         chComplete.setEnabled(false);
-        chComplete.setBounds(410, 38, 130, 23);
+        chComplete.setBounds(530, 38, 60, 23);
         this.add(chComplete);
 
         chMYmi.setText(".doc");
         chMYmi.setEnabled(false);
-        chMYmi.setBounds(540, 38, 130, 23);
+        chMYmi.setBounds(600, 38, 60, 23);
         this.add(chMYmi);
 
         chUTF.setText(".exe");
         chUTF.setEnabled(false);
-        chUTF.setBounds(670, 38, 130, 23);
+        chUTF.setBounds(670, 38, 60, 23);
         this.add(chUTF);
 
         chASCII.setText(".gif");
         chASCII.setEnabled(false);
-        chASCII.setBounds(410, 65, 130, 23);
+        chASCII.setBounds(530, 65, 60, 23);
         this.add(chASCII);
 
         chRegex.setText(".ppt");
         chRegex.setEnabled(false);
-        chRegex.setBounds(540, 65, 130, 23);
+        chRegex.setBounds(600, 65, 60, 23);
         this.add(chRegex);
 
         chNoExists.setText(".log");
         chNoExists.setEnabled(false);
-        chNoExists.setBounds(670, 65, 130, 23);
+        chNoExists.setBounds(670, 65, 60, 23);
         this.add(chNoExists);
 
         chUnicode.setText(".jpg");
         chUnicode.setEnabled(false);
-        chUnicode.setBounds(410, 92, 130, 23);
+        chUnicode.setBounds(530, 92, 60, 23);
         this.add(chUnicode);
 
         chHexa.setText(".rar");
         chHexa.setEnabled(false);
-        chHexa.setBounds(540, 92, 130, 23);
+        chHexa.setBounds(600, 92, 60, 23);
         this.add(chHexa);
 
         btSearch.setText("Search");
@@ -214,6 +240,11 @@ public class PanelSearch extends JPanel {
         btSearch = new JButton();
         btSelect = new JButton();
         chFileHidden = new JCheckBox();
+        chContent = new JCheckBox();
+        chFolder = new JCheckBox();
+        chOwner = new JCheckBox();
+        chReadOnly = new JCheckBox();
+        chKeySensitive = new JCheckBox();
         this.isSearchTxEnabled = false;
     }
 
@@ -577,7 +608,7 @@ public class PanelSearch extends JPanel {
     }
 
     /**
-     * Method of the set value.
+     * Method of the get value.
      *
      * @return a value.
      */
@@ -592,6 +623,96 @@ public class PanelSearch extends JPanel {
      */
     public void setChFileHidden(JCheckBox chFileHidden) {
         this.chFileHidden = chFileHidden;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChContent() {
+        return chContent;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value change.
+     */
+    public void setChContent(JCheckBox chContent) {
+        this.chContent = chContent;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChOwner() {
+        return chOwner;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value change.
+     */
+    public void setChOwner(JCheckBox chOwner) {
+        this.chOwner = chOwner;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChFolder() {
+        return chFolder;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value change.
+     */
+    public void setChFolder(JCheckBox chFolder) {
+        this.chFolder = chFolder;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChReadOnly() {
+        return chReadOnly;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value change.
+     */
+    public void setChReadOnly(JCheckBox chReadOnly) {
+        this.chReadOnly = chReadOnly;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChKeySensitive() {
+        return chKeySensitive;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value change.
+     */
+    public void setChKeySensitive(JCheckBox chKeySensitive) {
+        this.chKeySensitive = chKeySensitive;
     }
 
     /**
