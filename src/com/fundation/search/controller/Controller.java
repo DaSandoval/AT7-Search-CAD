@@ -15,11 +15,14 @@ package com.fundation.search.controller;
 
 import com.fundation.search.model.AssetFile;
 import com.fundation.search.model.Search;
+import com.fundation.search.utils.Converter;
+import com.fundation.search.utils.Validator;
 import com.fundation.search.view.FrameSearch;
 import com.fundation.search.view.util.Constantes;
 
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class Search.
@@ -30,6 +33,9 @@ import java.util.ArrayList;
 public class Controller {
 
     private FrameSearch frameSearch;
+    private Converter converter;
+    private Validator validator;
+    private Criteria criteria;
 
 
     /**
@@ -37,7 +43,12 @@ public class Controller {
      * @param frameSearch
      */
     public Controller(FrameSearch frameSearch) {
+
         this.frameSearch = frameSearch;
+        validator = new Validator();
+        criteria = new Criteria();
+
+
     }
 
 
@@ -45,7 +56,9 @@ public class Controller {
      * Method that reads event from the search button.
      */
     public void star() {
-        frameSearch.getPnSearch().getBtSearch().addActionListener(a -> getAtribut());
+
+       // frameSearch.getPnSearch().getBtSearch().addActionListener(a -> getAtribut());
+        frameSearch.getPnSearch().getBtSearch().addActionListener(a -> getCriteria());
     }
 
     /**
@@ -57,6 +70,7 @@ public class Controller {
         String name = frameSearch.getPnSearch().getTxSearch().getText();
         String path = frameSearch.getPnSearch().getTxLocation().getText();
         Search search = new Search();
+
         ArrayList<String> resul = frameSearch.getPnSearch().getExtencion();
         ArrayList<AssetFile> fileList = new ArrayList<>();
         if (resul.size()>0) {
@@ -81,4 +95,44 @@ public class Controller {
 
         }
     }
+    private void getCriteria() {
+        frameSearch.cleanTable();
+        String name = frameSearch.getPnSearch().getTxSearch().getText();
+        String path = frameSearch.getPnSearch().getTxLocation().getText();
+        boolean hidden = frameSearch.getPnSearch().getChFileHidden().isSelected();
+
+        Search search = new Search();
+        ArrayList<String> resul = frameSearch.getPnSearch().getExtencion();
+        List<AssetFile> fileList = new ArrayList<>();
+        if(!path.isEmpty() && validator.isValidPath(path)){
+            if (resul.size()>0) {
+                for (String file : resul) {
+                    search.searchPath(path, name, file, hidden);
+                    fileList.addAll(search.getResult());
+                }
+            }
+            else {
+                criteria.setPath(frameSearch.getPnSearch().getTxSearch().getText());
+                criteria.setFileName(frameSearch.getPnSearch().getTxSearch().getText());
+                criteria.setHidden(frameSearch.getPnSearch().getChFileHidden().isSelected());
+                search.searchPathNotExtencion(path, name, hidden);
+                fileList = search.getResult();
+            }
+
+        }else {
+            System.out.println("No exist path");
+        }
+
+        for (AssetFile file : fileList) {
+            frameSearch.addRowTable(
+                    new ImageIcon(Constantes.getFileIcon()),
+                    file.getFileName(),
+                    file.getExtent(),
+                    (Double.parseDouble(String.valueOf(file.getSize())) / 1000000),
+                    file.getPath(),
+                    file.getHidden()
+            );
+        }
+    }
+
 }

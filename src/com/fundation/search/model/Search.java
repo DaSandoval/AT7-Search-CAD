@@ -13,6 +13,8 @@
  */
 package com.fundation.search.model;
 
+import com.fundation.search.controller.Criteria;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,12 @@ import java.util.List;
  */
 public class Search {
 
+    Criteria criteria;
     private List<AssetFile> assetFile;
+
+    public Search(){
+      //  Criteria
+    }
 
     /**
      * Method for search to path, fileName.
@@ -78,6 +85,42 @@ public class Search {
      * @param fileHidden    file Hidden.
      */
     public void searchPathNotExtencion(String path, String fileName, boolean fileHidden) {
+        File folder = new File(path);
+        File[] listFolder = folder.listFiles();
+        assetFile = new ArrayList<AssetFile>();
+        for (File aListFolder : listFolder) {
+            if (aListFolder.isFile()) {
+                if (fileHidden != aListFolder.isHidden()) {
+                    continue;
+                }
+                if (fileName.isEmpty() && !aListFolder.getName().contains(fileName)) {
+                    continue;
+                }
+                if (aListFolder.getName().contains(fileName)) {
+                    AssetFile asstFile = new AssetFile();
+                    asstFile.setExtent(aListFolder.getName().substring(aListFolder.getName().indexOf(".")));
+                    if(fileHidden == true){
+                        asstFile.setHidden(true);
+                    } else{
+                        asstFile.setHidden(false);
+                    }
+                    asstFile.setSize(aListFolder.length());
+                    asstFile.setPath(aListFolder.getAbsolutePath());
+                    asstFile.setFileName(aListFolder.getName());
+                    assetFile.add(asstFile);
+                }
+            } else if (aListFolder.isDirectory()) {
+                searchPathNotExtencion(aListFolder.getAbsolutePath(), fileName,fileHidden);
+            }
+        }
+    }
+
+    /**
+     * test
+     * @return
+     */
+
+    public void searchPathNotExtencionTest(String path, String fileName, boolean fileHidden) {
         File folder = new File(path);
         File[] listFolder = folder.listFiles();
         assetFile = new ArrayList<AssetFile>();
