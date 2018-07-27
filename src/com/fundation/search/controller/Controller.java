@@ -13,6 +13,7 @@
  */
 package com.fundation.search.controller;
 
+import com.fundation.search.model.Asset;
 import com.fundation.search.model.AssetFile;
 import com.fundation.search.model.Search;
 import com.fundation.search.view.FrameSearch;
@@ -53,7 +54,6 @@ public class Controller {
      */
     private void getAtribut() {
         frameSearch.cleanTable();
-
         String name = frameSearch.getPnSearch().getTxSearch().getText();
         String path = frameSearch.getPnSearch().getTxLocation().getText();
         Search search = new Search();
@@ -69,7 +69,7 @@ public class Controller {
             fileList = (ArrayList<AssetFile>) search.getResult();
         }
 
-        for (AssetFile file : fileList) {
+        for (Asset file : fileList) {
             frameSearch.addRowTable(
                     new ImageIcon(Constantes.getFileIcon()),
                     file.getFileName(),

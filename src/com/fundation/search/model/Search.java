@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class Search {
 
-    private List<AssetFile> assetFile;
+    private List<AssetFile> asset;
 
     /**
      * Method for search to path, fileName.
@@ -38,7 +38,7 @@ public class Search {
     public void searchPath(String path, String fileName, String extension, boolean fileHidden) {
         File folder = new File(path);
         File[] listFolder = folder.listFiles();
-        assetFile = new ArrayList<AssetFile>();
+        asset = new ArrayList<AssetFile>();
         for (File aListFolder : listFolder) {
             if (aListFolder.isFile()) {
                 if (aListFolder.isHidden() != fileHidden) {
@@ -54,15 +54,11 @@ public class Search {
                 if(aListFolder.getName().contains(fileName) & aListFolder.getName().endsWith(extension)){
                     AssetFile asstFile = new AssetFile();
                     asstFile.setExtent(extension);
-                    if(fileHidden == true){
-                        asstFile.setHidden(true);
-                    } else{
-                        asstFile.setHidden(false);
-                    }
+                    asstFile.setHidden(fileHidden);
                     asstFile.setSize(aListFolder.length());
                     asstFile.setPath(aListFolder.getAbsolutePath());
                     asstFile.setFileName(aListFolder.getName());
-                    assetFile.add(asstFile);
+                    asset.add(asstFile);
                 }
             } else if (aListFolder.isDirectory()) {
                 searchPath(aListFolder.getAbsolutePath(), fileName, extension, fileHidden);
@@ -80,7 +76,7 @@ public class Search {
     public void searchPathNotExtencion(String path, String fileName, boolean fileHidden) {
         File folder = new File(path);
         File[] listFolder = folder.listFiles();
-        assetFile = new ArrayList<AssetFile>();
+        asset = new ArrayList<AssetFile>();
         for (File aListFolder : listFolder) {
             if (aListFolder.isFile()) {
                 if (fileHidden != aListFolder.isHidden()) {
@@ -92,15 +88,11 @@ public class Search {
                 if (aListFolder.getName().contains(fileName)) {
                     AssetFile asstFile = new AssetFile();
                     asstFile.setExtent(aListFolder.getName().substring(aListFolder.getName().indexOf(".")));
-                    if(fileHidden == true){
-                        asstFile.setHidden(true);
-                    } else{
-                        asstFile.setHidden(false);
-                    }
+                    asstFile.setHidden(fileHidden);
                     asstFile.setSize(aListFolder.length());
                     asstFile.setPath(aListFolder.getAbsolutePath());
                     asstFile.setFileName(aListFolder.getName());
-                    assetFile.add(asstFile);
+                    asset.add(asstFile);
                 }
             } else if (aListFolder.isDirectory()) {
                 searchPathNotExtencion(aListFolder.getAbsolutePath(), fileName,fileHidden);
@@ -109,6 +101,6 @@ public class Search {
     }
 
     public List<AssetFile> getResult() {
-        return assetFile;
+        return asset;
     }
 }

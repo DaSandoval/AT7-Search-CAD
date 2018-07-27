@@ -600,25 +600,25 @@ public class PanelSearch extends JPanel {
      */
     public ArrayList<String> getExtencion(){
         ArrayList<String> result = new ArrayList<>();
-        if (chSearchText.isSelected()==true){
+        if (chSearchText.isSelected()){
             if (txSearchText.getText()!= ""){
                 result.add(txSearchText.getText());
             }
-            if (chASCII.isSelected() == true){
+            if (chASCII.isSelected()){
                 result.add("bmp");
-            }if (chComplete.isSelected() == true){
+            }if (chComplete.isSelected()){
                 result.add("pdf");
-            }if (chMYmi.isSelected() == true){
+            }if (chMYmi.isSelected()){
                 result.add("doc");
-            }if (chUTF.isSelected() == true){
+            }if (chUTF.isSelected()){
                 result.add("exe");
-            }if (chRegex.isSelected() == true){
+            }if (chRegex.isSelected()){
                 result.add("gif");
-            }if (chNoExists.isSelected() == true){
+            }if (chNoExists.isSelected()){
                 result.add("log");
-            }if (chUnicode.isSelected() == true){
+            }if (chUnicode.isSelected()){
                 result.add("ppt");
-            }if (chHexa.isSelected() == true){
+            }if (chHexa.isSelected()){
                 result.add("rar");
             }
 
