@@ -13,6 +13,8 @@
  */
 package com.fundation.search.model;
 
+import com.fundation.search.controller.Criteria;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,6 +101,8 @@ public class Search {
             }
         }
     }
+
+    
 
     public List<AssetFile> getResult() {
         return asset;
