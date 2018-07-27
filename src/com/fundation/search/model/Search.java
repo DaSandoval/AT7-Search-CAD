@@ -27,12 +27,7 @@ import java.util.List;
  */
 public class Search {
 
-    Criteria criteria;
     private List<AssetFile> assetFile;
-
-    public Search(){
-      //  Criteria
-    }
 
     /**
      * Method for search to path, fileName.
