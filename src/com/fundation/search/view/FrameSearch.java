@@ -13,8 +13,8 @@
  */
 package com.fundation.search.view;
 
-import com.fundation.search.controller.Controller;
 
+import com.fundation.search.controller.Controller;
 
 import java.awt.Component;
 import java.awt.Dimension;

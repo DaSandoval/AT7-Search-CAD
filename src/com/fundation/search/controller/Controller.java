@@ -13,17 +13,14 @@
  */
 package com.fundation.search.controller;
 
-import com.fundation.search.model.Asset;
 import com.fundation.search.model.AssetFile;
 import com.fundation.search.model.Search;
-import com.fundation.search.utils.Converter;
-import com.fundation.search.utils.Validator;
 import com.fundation.search.view.FrameSearch;
 import com.fundation.search.view.util.Constantes;
 
 import javax.swing.ImageIcon;
+import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This class Search.
@@ -34,9 +31,8 @@ import java.util.List;
 public class Controller {
 
     private FrameSearch frameSearch;
-    private Converter converter;
-    private Validator validator;
     private Criteria criteria;
+
 
 
     /**
@@ -44,12 +40,8 @@ public class Controller {
      * @param frameSearch
      */
     public Controller(FrameSearch frameSearch) {
-
         this.frameSearch = frameSearch;
-        validator = new Validator();
-        criteria = new Criteria();
-
-
+        this.criteria = new Criteria();
     }
 
 
@@ -57,9 +49,7 @@ public class Controller {
      * Method that reads event from the search button.
      */
     public void star() {
-
-       // frameSearch.getPnSearch().getBtSearch().addActionListener(a -> getAtribut());
-        frameSearch.getPnSearch().getBtSearch().addActionListener(a -> getCriteria());
+        frameSearch.getPnSearch().getBtSearch().addActionListener(a -> getAtribut());
     }
 
     /**
@@ -67,23 +57,27 @@ public class Controller {
      */
     private void getAtribut() {
         frameSearch.cleanTable();
-        String name = frameSearch.getPnSearch().getTxSearch().getText();
-        String path = frameSearch.getPnSearch().getTxLocation().getText();
         Search search = new Search();
-
+        criteria.clean();
+        criteria.setFolderNew(new File(frameSearch.getPnSearch().getTxLocation().getText()));
+        criteria.setFileName(frameSearch.getPnSearch().getTxSearch().getText());
+        criteria.setPath(frameSearch.getPnSearch().getTxLocation().getText());
+        criteria.setHidden(frameSearch.getPnSearch().getChFileHidden().isSelected());
+        criteria.setExtensionEnable(frameSearch.getPnSearch().getChSearchText().isSelected());
         ArrayList<String> resul = frameSearch.getPnSearch().getExtencion();
         ArrayList<AssetFile> fileList = new ArrayList<>();
         if (resul.size()>0) {
             for (String file : resul) {
-                search.searchPath(path, name, file, frameSearch.getPnSearch().getChFileHidden().isSelected());
+                criteria.setExtension(file);
+                search.searchPath(criteria);
                 fileList.addAll(search.getResult());
             }
         }
-        else { search.searchPathNotExtencion(path, name, frameSearch.getPnSearch().getChFileHidden().isSelected());
+        else { search.searchPath(criteria);
             fileList = (ArrayList<AssetFile>) search.getResult();
         }
 
-        for (Asset file : fileList) {
+        for (AssetFile file : fileList) {
             frameSearch.addRowTable(
                     new ImageIcon(Constantes.getFileIcon()),
                     file.getFileName(),
@@ -95,44 +89,4 @@ public class Controller {
 
         }
     }
-    private void getCriteria() {
-        frameSearch.cleanTable();
-        String name = frameSearch.getPnSearch().getTxSearch().getText();
-        String path = frameSearch.getPnSearch().getTxLocation().getText();
-        boolean hidden = frameSearch.getPnSearch().getChFileHidden().isSelected();
-
-        Search search = new Search();
-        ArrayList<String> resul = frameSearch.getPnSearch().getExtencion();
-        List<AssetFile> fileList = new ArrayList<>();
-        if(!path.isEmpty() && validator.isValidPath(path)){
-            if (resul.size()>0) {
-                for (String file : resul) {
-                    search.searchPath(path, name, file, hidden);
-                    fileList.addAll(search.getResult());
-                }
-            }
-            else {
-                criteria.setPath(frameSearch.getPnSearch().getTxSearch().getText());
-                criteria.setFileName(frameSearch.getPnSearch().getTxSearch().getText());
-                criteria.setHidden(frameSearch.getPnSearch().getChFileHidden().isSelected());
-                search.searchPathNotExtencion(path, name, hidden);
-                fileList = search.getResult();
-            }
-
-        }else {
-            System.out.println("No exist path");
-        }
-
-        for (AssetFile file : fileList) {
-            frameSearch.addRowTable(
-                    new ImageIcon(Constantes.getFileIcon()),
-                    file.getFileName(),
-                    file.getExtent(),
-                    (Double.parseDouble(String.valueOf(file.getSize())) / 1000000),
-                    file.getPath(),
-                    file.getHidden()
-            );
-        }
-    }
-
 }

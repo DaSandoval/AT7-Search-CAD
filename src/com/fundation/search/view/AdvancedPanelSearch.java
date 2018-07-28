@@ -13,10 +13,9 @@
  */
 package com.fundation.search.view;
 
+
 import com.fundation.search.controller.Controller;
 
-
-import java.util.Calendar;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;

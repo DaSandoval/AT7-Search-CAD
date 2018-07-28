@@ -1,27 +1,26 @@
 /*
- * @(#)Class .java
  *
- * Copyright (c) 2018 Jala Foundation.
- * 2643 Av Melchor Perez de Olguin, Colquiri Sud, Cochabamba, Bolivia.
- * All rights reserved.
+ *   @(#)Class.java
  *
- * This software is the confidential and proprietary information of
- * Jala Foundation, ("Confidential Information").  You shall not
- * disclose such Confidential Information and shall use it only in
- * accordance with the terms of the license agreement you entered into
- * with Jala Foundation.
+ *   Copyright (c) 2018 Jala Foundation.
+ *   2643 Av Melchor Perez de Olguin, Colquiri Sud, Cochabamba, Bolivia.
+ *   All rights reserved.
+ *
+ *   This software is the confidential and proprietary information of
+ *   Jala Foundation, ("Confidential Information").  You shall not
+ *   disclose such Confidential Information and shall use it only in
+ *   accordance with the terms of the license agreement you entered into
+ *   with Jala Foundation.
+ *
  */
+
 package com.fundation.search.controller;
 
-/**
- * This class Search.
- *
- * @author Ana Mamani - AT-[07].
- * @version 1.0.
- */
-import java.util.Date;
+import java.io.File;
 
 public class Criteria {
+
+    private File folderNew;
     private String path;
     private String fileName;
     private boolean hidden;
@@ -31,131 +30,115 @@ public class Criteria {
     private long size;
     private boolean readOnly;
     private boolean keySensitive;
+    private boolean isExtensionEnable;
 
-    /**
-     * Method for get the value
-     * @return String
-     */
+    public boolean isExtensionEnable() {
+        return isExtensionEnable;
+    }
+
+    public void setExtensionEnable(boolean extensionEnable) {
+        isExtensionEnable = extensionEnable;
+    }
+
+    public Criteria(){
+        clean();
+
+    }
+
+    public File getFolderNew() {
+
+
+        return folderNew;
+    }
+
+    public void setFolderNew(File folderNew) {
+        this.folderNew = folderNew;
+    }
+
+    public void clean (){
+        this.folderNew = null;
+        this.path = "";
+        this.fileName ="";
+        this.hidden = false;
+        this.folder = false;
+        this.extension = "";
+        this.owner = "";
+        this.size = 0;
+        this.readOnly = false;
+        this.keySensitive = false;
+        this.isExtensionEnable = false;
+    }
+
     public String getPath() {
         return path;
     }
-    /**
-     * Method for set the value
-     *
-     */
+
     public void setPath(String path) {
         this.path = path;
     }
-    /**
-     * Method for get the value
-     * @return String
-     */
+
     public String getFileName() {
         return fileName;
     }
-    /**
-     * Method for set the value
-     *
-     */
+
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
-    /**
-     * Method for get the value
-     * @return boolean
-     */
-    public boolean getHidden() {
+
+    public boolean isHidden() {
         return hidden;
     }
-    /**
-     * Method for set the value
-     *
-     */
+
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
     }
-    /**
-     * Method for get the value
-     * @return boolean
-     */
-    public boolean getFolder() {
+
+    public boolean isFolder() {
         return folder;
     }
-    /**
-     * Method for set the value
-     *
-     */
+
     public void setFolder(boolean folder) {
         this.folder = folder;
     }
-    /**
-     * Method for get the value
-     * @return String
-     */
+
     public String getExtension() {
         return extension;
     }
-    /**
-     * Method for set the value
-     *
-     */
+
     public void setExtension(String extension) {
         this.extension = extension;
     }
-    /**
-     * Method for get the value
-     * @return String
-     */
+
     public String getOwner() {
         return owner;
     }
-    /**
-     * Method for set the value
-     *
-     */
+
     public void setOwner(String owner) {
         this.owner = owner;
     }
-    /**
-     * Method for get the value
-     * @return long
-     */
+
     public long getSize() {
         return size;
     }
-    /**
-     * Method for set the value
-     *
-     */
+
     public void setSize(long size) {
         this.size = size;
     }
-    /**
-     * Method for get the value
-     * @return boolean
-     */
-    public boolean getReadOnly() {
+
+    public boolean isReadOnly() {
         return readOnly;
     }
-    /**
-     * Method for set the value
-     *
-     */
+
     public void setReadOnly(boolean readOnly) {
         this.readOnly = readOnly;
     }
-    /**
-     * Method for get the value
-     * @return boolean
-     */
-    public boolean getKeySensitive() {
+
+    public boolean isKeySensitive() {
         return keySensitive;
     }
-    /**
-     * Method for set the value
-     *
-     */
+
     public void setKeySensitive(boolean keySensitive) {
         this.keySensitive = keySensitive;
     }
+
 }
