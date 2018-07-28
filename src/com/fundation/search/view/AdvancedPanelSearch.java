@@ -16,6 +16,7 @@ package com.fundation.search.view;
 import com.fundation.search.controller.Controller;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JSpinnerDateEditor;
+import javafx.scene.control.TextFormatter;
 
 
 import java.util.Calendar;
@@ -46,6 +47,12 @@ public class AdvancedPanelSearch extends JPanel {
     private JCheckBox chFechas;
     private JDateChooser dateModificationOne;
     private JDateChooser dateModificationTwo;
+    private JCheckBox chAccess;
+    private JDateChooser dateAccessOne;
+    private JDateChooser dateAccessTwo;
+    private JCheckBox chCreation;
+    private JDateChooser dateCreationOne;
+    private JDateChooser dateCreationTwo;
     /**
      * Declaration of TextField.
      */
@@ -69,10 +76,13 @@ public class AdvancedPanelSearch extends JPanel {
     private JCheckBox chDupContent;
     private JCheckBox chDupName;
     private JCheckBox chDupSize;
+
     /**
      * Declaration boolean of activation true - false
      */
     private boolean isFechasEnabled;
+    private boolean isAccessEnabled;
+    private boolean isCreationEnabled;
     private boolean isTermEnabled;
     private boolean isSizeEnabled;
     private boolean isAttributesEnabled;
@@ -84,6 +94,9 @@ public class AdvancedPanelSearch extends JPanel {
     private JComboBox<String> jcbSizeDuration;
     private JComboBox<String> cbTerm;
     private JComboBox<String> cbSize;
+    private JComboBox<String> cbFrameRate;
+    private JComboBox<String> cbVideoCode;
+    private JComboBox<String> cbResolution;
 
 
     /**
@@ -125,45 +138,72 @@ public class AdvancedPanelSearch extends JPanel {
         dateModificationTwo.setBounds(260, 13, 110, 20);
         this.add(dateModificationTwo);
 
+        chAccess.setText("Access Date:");
+        chAccess.setBounds(8, 35, 135, 23);
+        this.add(chAccess);
+
+        dateAccessOne.getDate();
+        dateAccessOne.setEnabled(false);
+        dateAccessOne.setBounds(145, 36, 110, 20);
+        this.add(dateAccessOne);
+
+        dateAccessTwo.getDate();
+        dateAccessTwo.setEnabled(false);
+        dateAccessTwo.setBounds(260, 36, 110, 20);
+        this.add(dateAccessTwo);
+
+        chCreation.setText("Creation Date:");
+        chCreation.setBounds(8, 58, 135, 23);
+        this.add(chCreation);
+
+        dateCreationOne.getDate();
+        dateCreationOne.setEnabled(false);
+        dateCreationOne.setBounds(145, 59, 110, 20);
+        this.add(dateCreationOne);
+
+        dateCreationTwo.getDate();
+        dateCreationTwo.setEnabled(false);
+        dateCreationTwo.setBounds(260, 59, 110, 20);
+        this.add(dateCreationTwo);
 
         chTerm.setText("Duration:");
-        chTerm.setBounds(8, 69, 80, 23);
+        chTerm.setBounds(8, 87, 80, 23);
         this.add(chTerm);
 
         jcbSizeDuration.setEnabled(false);
-        jcbSizeDuration.setBounds(90, 70, 50, 20);
+        jcbSizeDuration.setBounds(90, 88, 50, 20);
         this.add(jcbSizeDuration);
         jcbSizeDuration.addItem("=");
         jcbSizeDuration.addItem(">");
         jcbSizeDuration.addItem("<");
 
         txTerm.setEnabled(false);
-        txTerm.setBounds(150, 70, 50, 20);
+        txTerm.setBounds(150, 88, 50, 20);
         this.add(txTerm);
 
         cbTerm.setModel(new DefaultComboBoxModel<>(new String[]{"Horas", "Minutes", "Second"}));
         cbTerm.setEnabled(false);
-        cbTerm.setBounds(205, 70, 70, 20);
+        cbTerm.setBounds(205, 88, 70, 20);
         this.add(cbTerm);
 
         chsSize.setText("Size:");
-        chsSize.setBounds(8, 100, 70, 23);
+        chsSize.setBounds(8, 113, 70, 23);
         this.add(chsSize);
 
         jcbSize.setEnabled(false);
-        jcbSize.setBounds(90, 101, 50, 20);
+        jcbSize.setBounds(90, 113, 50, 20);
         this.add(jcbSize);
         jcbSize.addItem("=");
         jcbSize.addItem(">");
         jcbSize.addItem("<");
 
         txSize.setEnabled(false);
-        txSize.setBounds(150, 101, 50, 20);
+        txSize.setBounds(150, 113, 50, 20);
         this.add(txSize);
 
         cbSize.setModel(new DefaultComboBoxModel<>(new String[]{"bytes", "Kbytes", "Mbytes"}));
         cbSize.setEnabled(false);
-        cbSize.setBounds(205, 101, 70, 20);
+        cbSize.setBounds(205, 113, 70, 20);
         this.add(cbSize);
 
         chAttributes.setText("Multimedia:");
@@ -209,28 +249,36 @@ public class AdvancedPanelSearch extends JPanel {
         this.add(chAtVideo);
         chAtVideo.setBounds(440, 100, 60, 23);
 
-        chDuplicates.setText("Search Duplicate:");
-        chDuplicates.setBounds(600, 12, 150, 23);
-        this.add(chDuplicates);
+        cbFrameRate.setModel(new DefaultComboBoxModel<>(new String[]{"24", "25", "27", "30", "64"}));
+        cbFrameRate.setEnabled(true);
+        cbFrameRate.setBounds(600, 12, 150, 23);
+        this.add(cbFrameRate);
 
-        chDupName.setText("Equals Name");
-        chDupName.setEnabled(false);
-        chDupName.setBounds(600, 12, 150, 23);
-        this.add(chDupName);
+        cbVideoCode.setModel(new DefaultComboBoxModel<>(new String[]{"H264", "H263", "MPEG4", "WMV1",}));
+        cbVideoCode.setEnabled(true);
+        cbVideoCode.setBounds(600, 45, 150, 23);
+        this.add(cbVideoCode);
 
-        chDupSize.setText("Equals Size");
-        chDupSize.setEnabled(false);
-        chDupSize.setBounds(600, 38, 150, 23);
-        this.add(chDupSize);
-
-        chDupContent.setText("Equals Content");
-        chDupContent.setEnabled(false);
-        chDupContent.setBounds(600, 100, 130, 23);
-        this.add(chDupContent);
+        cbResolution.setModel(new DefaultComboBoxModel<>(new String[]{"320 x 240", "480 x 360", "720 x 480", "1280 x 720", "1920 x 1080"}));
+        cbResolution.setEnabled(true);
+        cbResolution.setBounds(600, 78, 150, 23);
+        this.add(cbResolution);
 
         chFechas.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent evt) {
                 chFechasStateChanged(evt);
+            }
+        });
+
+        chAccess.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                chAccessStateChanged(evt);
+            }
+        });
+
+        chCreation.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                chCreationStateChanged(evt);
             }
         });
 
@@ -251,12 +299,6 @@ public class AdvancedPanelSearch extends JPanel {
                 chAtributosStateChanged(evt);
             }
         });
-
-        chDuplicates.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent evt) {
-                chDuplicadosStateChanged(evt);
-            }
-        });
     }
 
     /**
@@ -266,12 +308,23 @@ public class AdvancedPanelSearch extends JPanel {
         chFechas = new JCheckBox();
         dateModificationOne = new JDateChooser(null, null, null, new JSpinnerDateEditor());
         dateModificationTwo = new JDateChooser(null, null, null, new JSpinnerDateEditor());
+        chAccess = new JCheckBox();
+        dateAccessOne = new JDateChooser(null, null, null, new JSpinnerDateEditor());
+        dateAccessTwo = new JDateChooser(null, null, null, new JSpinnerDateEditor());
+        chCreation = new JCheckBox();
+        dateCreationOne = new JDateChooser(null, null, null, new JSpinnerDateEditor());
+        dateCreationTwo = new JDateChooser(null, null, null, new JSpinnerDateEditor());
         chTerm = new JCheckBox();
         txTerm = new JTextField();
         cbTerm = new JComboBox<>();
         chsSize = new JCheckBox();
         txSize = new JTextField();
         cbSize = new JComboBox<>();
+
+        cbFrameRate = new JComboBox<>();
+        cbVideoCode = new JComboBox<>();
+        cbResolution = new JComboBox<>();
+
         chAttributes = new JCheckBox();
         chAtModify = new JCheckBox();
         chAtHidden = new JCheckBox();
@@ -289,6 +342,8 @@ public class AdvancedPanelSearch extends JPanel {
         jcbSizeDuration = new JComboBox<>();
 
         this.isFechasEnabled = false;
+        this.isAccessEnabled = false;
+        this.isCreationEnabled = false;
         this.isTermEnabled = false;
         this.isSizeEnabled = false;
         this.isAttributesEnabled = false;
@@ -305,6 +360,22 @@ public class AdvancedPanelSearch extends JPanel {
             this.isFechasEnabled = chFechas.isSelected();
             dateModificationOne.setEnabled(isFechasEnabled);
             dateModificationTwo.setEnabled(isFechasEnabled);
+        }
+    }
+
+    private void chAccessStateChanged(ChangeEvent evt) {
+        if (this.isAccessEnabled != chAccess.isSelected()) {
+            this.isAccessEnabled = chAccess.isSelected();
+            dateAccessOne.setEnabled(isAccessEnabled);
+            dateAccessTwo.setEnabled(isAccessEnabled);
+        }
+    }
+
+    private void chCreationStateChanged(ChangeEvent evt) {
+        if (this.isCreationEnabled != chCreation.isSelected()) {
+            this.isCreationEnabled = chCreation.isSelected();
+            dateCreationOne.setEnabled(isCreationEnabled);
+            dateCreationTwo.setEnabled(isCreationEnabled);
         }
     }
 
@@ -368,6 +439,7 @@ public class AdvancedPanelSearch extends JPanel {
             chDupContent.setEnabled(isDuplicatesEnabled);
         }
     }
+
 
     public boolean getFechas() {
         return chFechas.isSelected();

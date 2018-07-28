@@ -23,14 +23,7 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileSystemView;
@@ -42,20 +35,33 @@ import javax.swing.filechooser.FileSystemView;
  * @version 1.0.
  */
 public class PanelSearch extends JPanel {
-
+    /**
+     * Definition of buttons.
+     */
     private JButton btSearch;
     private JButton btSelect;
+    /**
+     * Definition of label.
+     */
     private JLabel lbSearch;
     private JLabel lbLocation;
+    /**
+     * Definition of TextField.
+     */
     private JTextField txSearch;
     private JTextField txLocation;
+    private JTextField txtOwner;
+    private JTextField txtContent;
+    private JTextField txSearchText;
+    /**
+     * Definition of CheckBox
+     */
     private JCheckBox chFileHidden;
     private JCheckBox chContent;
     private JCheckBox chOwner;
     private JCheckBox chFolder;
     private JCheckBox chReadOnly;
     private JCheckBox chKeySensitive;
-    private JTextField txSearchText;
     private JCheckBox chSearchText;
     private JCheckBox chASCII;
     private JCheckBox chComplete;
@@ -66,7 +72,12 @@ public class PanelSearch extends JPanel {
     private JCheckBox chMYmi;
     private JCheckBox chNoExists;
     private Controller controller;
+    /**
+     * Definition of exprecion Booleans
+     */
     private boolean isSearchTxEnabled;
+    private boolean isOwnerEnabled;
+    private boolean isContentEnabled;
 
     /**
      * Method for the builder
@@ -74,7 +85,6 @@ public class PanelSearch extends JPanel {
     public PanelSearch() {
         initComponents();
         settings();
-        //controller = new Controller();
     }
 
     /**
@@ -120,20 +130,32 @@ public class PanelSearch extends JPanel {
         chFileHidden.setBounds(310, 12, 90, 23);
         this.add(chFileHidden);
 
-        chContent.setText("Content");
+        chContent.setText("Content:");
         chContent.setEnabled(true);
-        chContent.setBounds(310, 72, 90, 23);
+        chContent.setBounds(310, 72, 75, 23);
         this.add(chContent);
+
+        txtContent.setEnabled(false);
+        txtContent.setBackground(new Color(255, 255, 255));
+        txtContent.setText("");
+        txtContent.setBounds(395, 72, 100, 20);
+        this.add(txtContent);
 
         chFolder.setText("Folder");
         chFolder.setEnabled(true);
         chFolder.setBounds(310, 42, 90, 23);
         this.add(chFolder);
 
-        chOwner.setText("Owner");
+        chOwner.setText("Owner:");
         chOwner.setEnabled(true);
-        chOwner.setBounds(310, 102, 100, 23);
+        chOwner.setBounds(310, 102, 75, 23);
         this.add(chOwner);
+
+        txtOwner.setEnabled(false);
+        txtOwner.setBackground(new Color(255, 255, 255));
+        txtOwner.setText("");
+        txtOwner.setBounds(395, 102, 100, 20);
+        this.add(txtOwner);
 
         chKeySensitive.setText("Key Sensitive");
         chKeySensitive.setEnabled(true);
@@ -146,7 +168,7 @@ public class PanelSearch extends JPanel {
         this.add(chReadOnly);
 
         chSearchText.setText("Search Extend");
-        chSearchText.setBounds(530, 12, 130, 23);
+        chSearchText.setBounds(530, 12, 120, 23);
         this.add(chSearchText);
 
         txSearchText.setEnabled(false);
@@ -214,6 +236,16 @@ public class PanelSearch extends JPanel {
                 btSelectMouseClicked(evt);
             }
         });
+        chOwner.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                chOwnerMouseClicked(evt);
+            }
+        });
+        chContent.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                chContentMouseClicked(evt);
+            }
+        });
 
       /*  btSearch.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
@@ -231,6 +263,8 @@ public class PanelSearch extends JPanel {
         lbSearch = new JLabel();
         lbLocation = new JLabel();
         txLocation = new JTextField();
+        txtOwner = new JTextField();
+        txtContent = new JTextField();
         chSearchText = new JCheckBox();
         txSearchText = new JTextField();
         chComplete = new JCheckBox();
@@ -250,6 +284,8 @@ public class PanelSearch extends JPanel {
         chReadOnly = new JCheckBox();
         chKeySensitive = new JCheckBox();
         this.isSearchTxEnabled = false;
+        this.isOwnerEnabled = false;
+        this.isContentEnabled = false;
     }
 
     /**
@@ -284,6 +320,30 @@ public class PanelSearch extends JPanel {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = jfc.getSelectedFile();
             txLocation.setText(selectedFile.getAbsolutePath());
+        }
+    }
+
+    /**
+     * Method for the event select checkbox.
+     *
+     * @param evt accion.
+     */
+    private void chOwnerMouseClicked(MouseEvent evt) {
+        if (isOwnerEnabled != chOwner.isSelected()) {
+            this.isOwnerEnabled = chOwner.isSelected();
+            txtOwner.setEnabled(isOwnerEnabled);
+        }
+    }
+
+    /**
+     * Method for the event select checkbox.
+     *
+     * @param evt accion.
+     */
+    private void chContentMouseClicked(MouseEvent evt) {
+        if (isContentEnabled != chContent.isSelected()) {
+            this.isContentEnabled = chContent.isSelected();
+            txtContent.setEnabled(isContentEnabled);
         }
     }
 
@@ -719,6 +779,45 @@ public class PanelSearch extends JPanel {
         this.chKeySensitive = chKeySensitive;
     }
 
+    public void getMessageInformation() {
+        JOptionPane.showMessageDialog(null, "Seleccionar un path y colocar un nombre en file name", "Llenar los campos primero", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JTextField getTxtOwner() {
+        return txtOwner;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setTxtOwner(JTextField txtOwner) {
+        this.txtOwner = txtOwner;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JTextField getTxtContent() {
+        return txtContent;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setTxtContent(JTextField txtContent) {
+        this.txtContent = txtContent;
+    }
 
     /**
      * Method of extencion.
