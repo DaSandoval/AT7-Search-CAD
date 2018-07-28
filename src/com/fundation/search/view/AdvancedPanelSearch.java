@@ -15,6 +15,12 @@ package com.fundation.search.view;
 
 
 import com.fundation.search.controller.Controller;
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JSpinnerDateEditor;
+import javafx.scene.control.TextFormatter;
+
+
+import com.fundation.search.controller.Controller;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -37,23 +43,28 @@ import javax.swing.event.ChangeListener;
  * @version 1.0.
  */
 public class AdvancedPanelSearch extends JPanel {
-
+    /**
+     * Declarationof Calendar.
+     */
     private JCheckBox chFechas;
-    private JComboBox<String> cbFecha1Ano;
-    private JComboBox<String> cbFecha1Dia;
-    private JComboBox<String> cbFecha1Mes;
-    private JComboBox<String> cbFecha2Ano;
-    private JComboBox<String> cbFecha2Dia;
-    private JComboBox<String> cbFecha2Mes;
-
-    private JCheckBox chTerm;
+    private JDateChooser dateModificationOne;
+    private JDateChooser dateModificationTwo;
+    private JCheckBox chAccess;
+    private JDateChooser dateAccessOne;
+    private JDateChooser dateAccessTwo;
+    private JCheckBox chCreation;
+    private JDateChooser dateCreationOne;
+    private JDateChooser dateCreationTwo;
+    /**
+     * Declaration of TextField.
+     */
     private JTextField txTerm;
-    private JComboBox<String> cbTerm;
-
-    private JCheckBox chsSize;
-    private JComboBox<String> cbSize;
     private JTextField txSize;
-
+    /**
+     * Declaration of the CheckBox.
+     */
+    private JCheckBox chsSize;
+    private JCheckBox chTerm;
     private JCheckBox chAttributes;
     private JCheckBox chAtModify;
     private JCheckBox chAtHidden;
@@ -62,18 +73,32 @@ public class AdvancedPanelSearch extends JPanel {
     private JCheckBox chAtReading;
     private JCheckBox chAtSistema;
     private JCheckBox chAtComprimido;
-
+    private JCheckBox chAtVideo;
     private JCheckBox chDuplicates;
     private JCheckBox chDupContent;
     private JCheckBox chDupName;
     private JCheckBox chDupSize;
 
+    /**
+     * Declaration boolean of activation true - false
+     */
     private boolean isFechasEnabled;
+    private boolean isAccessEnabled;
+    private boolean isCreationEnabled;
     private boolean isTermEnabled;
     private boolean isSizeEnabled;
     private boolean isAttributesEnabled;
     private boolean isDuplicatesEnabled;
+    /**
+     * Declaration about content of ComboBox.
+     */
     private JComboBox<String> jcbSize;
+    private JComboBox<String> jcbSizeDuration;
+    private JComboBox<String> cbTerm;
+    private JComboBox<String> cbSize;
+    private JComboBox<String> cbFrameRate;
+    private JComboBox<String> cbVideoCode;
+    private JComboBox<String> cbResolution;
 
 
     /**
@@ -101,134 +126,161 @@ public class AdvancedPanelSearch extends JPanel {
         this.setBorder(BorderFactory.createEtchedBorder());
         this.setLayout(null);
 
-        chFechas.setText("Date range");
-        chFechas.setBounds(8, 12, 125, 23);
+        chFechas.setText("Modification Date:");
+        chFechas.setBounds(8, 12, 135, 23);
         this.add(chFechas);
 
-        cbFecha1Dia.setModel(new DefaultComboBoxModel<>(new String[]{"01"}));
-        cbFecha1Dia.setEnabled(false);
-        cbFecha1Dia.setBounds(280, 13, 56, 20);
-        this.add(cbFecha1Dia);
+        dateModificationOne.getDate();
+        dateModificationOne.setEnabled(false);
+        dateModificationOne.setBounds(145, 13, 110, 20);
+        this.add(dateModificationOne);
 
-        cbFecha1Mes.setModel(new DefaultComboBoxModel<>(new String[]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}));
-        cbFecha1Mes.setEnabled(false);
-        cbFecha1Mes.setBounds(195, 13, 79, 20);
-        this.add(cbFecha1Mes);
+        dateModificationTwo.getDate();
+        dateModificationTwo.setEnabled(false);
+        dateModificationTwo.setBounds(260, 13, 110, 20);
+        this.add(dateModificationTwo);
 
-        cbFecha1Ano.setModel(new DefaultComboBoxModel<>(new String[]{"2018"}));
-        cbFecha1Ano.setEnabled(false);
-        cbFecha1Ano.setBounds(133, 13, 56, 20);
-        this.add(cbFecha1Ano);
+        chAccess.setText("Access Date:");
+        chAccess.setBounds(8, 35, 135, 23);
+        this.add(chAccess);
 
-        cbFecha2Ano.setModel(new DefaultComboBoxModel<>(new String[]{"2018"}));
-        cbFecha2Ano.setEnabled(false);
-        cbFecha2Ano.setBounds(133, 39, 56, 20);
-        this.add(cbFecha2Ano);
+        dateAccessOne.getDate();
+        dateAccessOne.setEnabled(false);
+        dateAccessOne.setBounds(145, 36, 110, 20);
+        this.add(dateAccessOne);
 
-        cbFecha2Mes.setModel(new DefaultComboBoxModel<>(new String[]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}));
-        cbFecha2Mes.setEnabled(false);
-        cbFecha2Mes.setBounds(195, 39, 79, 20);
-        this.add(cbFecha2Mes);
+        dateAccessTwo.getDate();
+        dateAccessTwo.setEnabled(false);
+        dateAccessTwo.setBounds(260, 36, 110, 20);
+        this.add(dateAccessTwo);
 
-        cbFecha2Dia.setModel(new DefaultComboBoxModel<>(new String[]{"01"}));
-        cbFecha2Dia.setEnabled(false);
-        cbFecha2Dia.setBounds(280, 39, 56, 20);
-        this.add(cbFecha2Dia);
+        chCreation.setText("Creation Date:");
+        chCreation.setBounds(8, 58, 135, 23);
+        this.add(chCreation);
 
-        chTerm.setText("De no mas de:");
-        chTerm.setBounds(8, 69, 120, 23);
+        dateCreationOne.getDate();
+        dateCreationOne.setEnabled(false);
+        dateCreationOne.setBounds(145, 59, 110, 20);
+        this.add(dateCreationOne);
+
+        dateCreationTwo.getDate();
+        dateCreationTwo.setEnabled(false);
+        dateCreationTwo.setBounds(260, 59, 110, 20);
+        this.add(dateCreationTwo);
+
+        chTerm.setText("Duration:");
+        chTerm.setBounds(8, 87, 80, 23);
         this.add(chTerm);
 
+        jcbSizeDuration.setEnabled(false);
+        jcbSizeDuration.setBounds(90, 88, 50, 20);
+        this.add(jcbSizeDuration);
+        jcbSizeDuration.addItem("=");
+        jcbSizeDuration.addItem(">");
+        jcbSizeDuration.addItem("<");
+
         txTerm.setEnabled(false);
-        txTerm.setBounds(137, 70, 79, 20);
+        txTerm.setBounds(150, 88, 50, 20);
         this.add(txTerm);
 
-        cbTerm.setModel(new DefaultComboBoxModel<>(new String[]{"Dias"}));
+        cbTerm.setModel(new DefaultComboBoxModel<>(new String[]{"Horas", "Minutes", "Second"}));
         cbTerm.setEnabled(false);
-        cbTerm.setBounds(222, 70, 100, 20);
+        cbTerm.setBounds(205, 88, 70, 20);
         this.add(cbTerm);
 
         chsSize.setText("Size:");
-        chsSize.setBounds(8, 100, 70, 23);
+        chsSize.setBounds(8, 113, 70, 23);
         this.add(chsSize);
 
         jcbSize.setEnabled(false);
-        jcbSize.setBounds(80, 100, 56, 20);
+        jcbSize.setBounds(90, 113, 50, 20);
         this.add(jcbSize);
         jcbSize.addItem("=");
         jcbSize.addItem(">");
         jcbSize.addItem("<");
 
         txSize.setEnabled(false);
-        txSize.setBounds(137, 101, 79, 20);
+        txSize.setBounds(150, 113, 50, 20);
         this.add(txSize);
 
-        cbSize.setModel(new DefaultComboBoxModel<>(new String[]{"bytes","Kbytes","Mbytes"}));
+        cbSize.setModel(new DefaultComboBoxModel<>(new String[]{"bytes", "Kbytes", "Mbytes"}));
         cbSize.setEnabled(false);
-        cbSize.setBounds(222, 101, 100, 20);
+        cbSize.setBounds(205, 113, 70, 20);
         this.add(cbSize);
 
         chAttributes.setText("Multimedia:");
         this.add(chAttributes);
-        chAttributes.setBounds(350, 12, 150, 23);
+        chAttributes.setBounds(410, 12, 150, 23);
 
         chAtModify.setText("ASF");
         chAtModify.setEnabled(false);
-        chAtModify.setBounds(350, 38, 90, 23);
+        chAtModify.setBounds(380, 38, 60, 23);
         this.add(chAtModify);
 
         chAtHidden.setText("AVI");
         chAtHidden.setEnabled(false);
-        chAtHidden.setBounds(440, 38, 70, 23);
+        chAtHidden.setBounds(440, 38, 60, 23);
         this.add(chAtHidden);
 
         chAtFolder.setText("DIVX");
         chAtFolder.setEnabled(false);
-        chAtFolder.setBounds(510, 38, 90, 23);
+        chAtFolder.setBounds(510, 38, 60, 23);
         this.add(chAtFolder);
 
         chAtEncriptado.setText("FLV");
         chAtEncriptado.setEnabled(false);
         this.add(chAtEncriptado);
-        chAtEncriptado.setBounds(350, 69, 90, 23);
+        chAtEncriptado.setBounds(380, 69, 60, 23);
 
         chAtReading.setText("MPEG");
         chAtReading.setEnabled(false);
         this.add(chAtReading);
-        chAtReading.setBounds(440, 69, 70, 23);
+        chAtReading.setBounds(440, 69, 60, 23);
 
         chAtSistema.setText("WMV");
         chAtSistema.setEnabled(false);
         this.add(chAtSistema);
-        chAtSistema.setBounds(510, 69, 90, 23);
+        chAtSistema.setBounds(510, 69, 60, 23);
 
         chAtComprimido.setText("MP3");
         chAtComprimido.setEnabled(false);
         this.add(chAtComprimido);
-        chAtComprimido.setBounds(350, 100, 150, 23);
+        chAtComprimido.setBounds(380, 100, 60, 23);
+        chAtVideo.setText("MP4");
+        chAtVideo.setEnabled(false);
+        this.add(chAtVideo);
+        chAtVideo.setBounds(440, 100, 60, 23);
 
-        chDuplicates.setText("Buscador Duplicados:");
-        chDuplicates.setBounds(600, 12, 150, 23);
-        this.add(chDuplicates);
+        cbFrameRate.setModel(new DefaultComboBoxModel<>(new String[]{"24", "25", "27", "30", "64"}));
+        cbFrameRate.setEnabled(true);
+        cbFrameRate.setBounds(600, 12, 150, 23);
+        this.add(cbFrameRate);
 
-        chDupName.setText("Nombre Igual");
-        chDupName.setEnabled(false);
-        chDupName.setBounds(600, 38, 150, 23);
-        this.add(chDupName);
+        cbVideoCode.setModel(new DefaultComboBoxModel<>(new String[]{"H264", "H263", "MPEG4", "WMV1",}));
+        cbVideoCode.setEnabled(true);
+        cbVideoCode.setBounds(600, 45, 150, 23);
+        this.add(cbVideoCode);
 
-        chDupSize.setText("Tamano Igual");
-        chDupSize.setEnabled(false);
-        chDupSize.setBounds(600, 69, 150, 23);
-        this.add(chDupSize);
-
-        chDupContent.setText("Contenido Igual");
-        chDupContent.setEnabled(false);
-        chDupContent.setBounds(600, 100, 130, 23);
-        this.add(chDupContent);
+        cbResolution.setModel(new DefaultComboBoxModel<>(new String[]{"320 x 240", "480 x 360", "720 x 480", "1280 x 720", "1920 x 1080"}));
+        cbResolution.setEnabled(true);
+        cbResolution.setBounds(600, 78, 150, 23);
+        this.add(cbResolution);
 
         chFechas.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent evt) {
                 chFechasStateChanged(evt);
+            }
+        });
+
+        chAccess.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                chAccessStateChanged(evt);
+            }
+        });
+
+        chCreation.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                chCreationStateChanged(evt);
             }
         });
 
@@ -249,12 +301,6 @@ public class AdvancedPanelSearch extends JPanel {
                 chAtributosStateChanged(evt);
             }
         });
-
-        chDuplicates.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent evt) {
-                chDuplicadosStateChanged(evt);
-            }
-        });
     }
 
     /**
@@ -262,18 +308,25 @@ public class AdvancedPanelSearch extends JPanel {
      */
     public void initComponents() {
         chFechas = new JCheckBox();
-        cbFecha1Dia = new JComboBox<>();
-        cbFecha1Mes = new JComboBox<>();
-        cbFecha1Ano = new JComboBox<>();
-        cbFecha2Ano = new JComboBox<>();
-        cbFecha2Mes = new JComboBox<>();
-        cbFecha2Dia = new JComboBox<>();
+        dateModificationOne = new JDateChooser(null, null, null, new JSpinnerDateEditor());
+        dateModificationTwo = new JDateChooser(null, null, null, new JSpinnerDateEditor());
+        chAccess = new JCheckBox();
+        dateAccessOne = new JDateChooser(null, null, null, new JSpinnerDateEditor());
+        dateAccessTwo = new JDateChooser(null, null, null, new JSpinnerDateEditor());
+        chCreation = new JCheckBox();
+        dateCreationOne = new JDateChooser(null, null, null, new JSpinnerDateEditor());
+        dateCreationTwo = new JDateChooser(null, null, null, new JSpinnerDateEditor());
         chTerm = new JCheckBox();
         txTerm = new JTextField();
         cbTerm = new JComboBox<>();
         chsSize = new JCheckBox();
         txSize = new JTextField();
         cbSize = new JComboBox<>();
+
+        cbFrameRate = new JComboBox<>();
+        cbVideoCode = new JComboBox<>();
+        cbResolution = new JComboBox<>();
+
         chAttributes = new JCheckBox();
         chAtModify = new JCheckBox();
         chAtHidden = new JCheckBox();
@@ -282,13 +335,17 @@ public class AdvancedPanelSearch extends JPanel {
         chAtReading = new JCheckBox();
         chAtSistema = new JCheckBox();
         chAtComprimido = new JCheckBox();
+        chAtVideo = new JCheckBox();
         chDuplicates = new JCheckBox();
         chDupName = new JCheckBox();
         chDupSize = new JCheckBox();
         chDupContent = new JCheckBox();
         jcbSize = new JComboBox<>();
+        jcbSizeDuration = new JComboBox<>();
 
         this.isFechasEnabled = false;
+        this.isAccessEnabled = false;
+        this.isCreationEnabled = false;
         this.isTermEnabled = false;
         this.isSizeEnabled = false;
         this.isAttributesEnabled = false;
@@ -303,12 +360,24 @@ public class AdvancedPanelSearch extends JPanel {
     private void chFechasStateChanged(ChangeEvent evt) {
         if (this.isFechasEnabled != chFechas.isSelected()) {
             this.isFechasEnabled = chFechas.isSelected();
-            cbFecha1Ano.setEnabled(isFechasEnabled);
-            cbFecha1Mes.setEnabled(isFechasEnabled);
-            cbFecha1Dia.setEnabled(isFechasEnabled);
-            cbFecha2Ano.setEnabled(isFechasEnabled);
-            cbFecha2Mes.setEnabled(isFechasEnabled);
-            cbFecha2Dia.setEnabled(isFechasEnabled);
+            dateModificationOne.setEnabled(isFechasEnabled);
+            dateModificationTwo.setEnabled(isFechasEnabled);
+        }
+    }
+
+    private void chAccessStateChanged(ChangeEvent evt) {
+        if (this.isAccessEnabled != chAccess.isSelected()) {
+            this.isAccessEnabled = chAccess.isSelected();
+            dateAccessOne.setEnabled(isAccessEnabled);
+            dateAccessTwo.setEnabled(isAccessEnabled);
+        }
+    }
+
+    private void chCreationStateChanged(ChangeEvent evt) {
+        if (this.isCreationEnabled != chCreation.isSelected()) {
+            this.isCreationEnabled = chCreation.isSelected();
+            dateCreationOne.setEnabled(isCreationEnabled);
+            dateCreationTwo.setEnabled(isCreationEnabled);
         }
     }
 
@@ -322,6 +391,7 @@ public class AdvancedPanelSearch extends JPanel {
             this.isTermEnabled = chTerm.isSelected();
             txTerm.setEnabled(isTermEnabled);
             cbTerm.setEnabled(isTermEnabled);
+            jcbSizeDuration.setEnabled(isTermEnabled);
         }
     }
 
@@ -354,6 +424,7 @@ public class AdvancedPanelSearch extends JPanel {
             chAtReading.setEnabled(isAttributesEnabled);
             chAtSistema.setEnabled(isAttributesEnabled);
             chAtComprimido.setEnabled(isAttributesEnabled);
+            chAtVideo.setEnabled(isAttributesEnabled);
         }
     }
 
@@ -371,29 +442,729 @@ public class AdvancedPanelSearch extends JPanel {
         }
     }
 
+
     public boolean getFechas() {
         return chFechas.isSelected();
     }
 
-    public String getFecha1() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(cbFecha1Ano.getSelectedItem().toString())
-                .append("-")
-                .append(cbFecha1Mes.getSelectedItem().toString())
-                .append("-")
-                .append(cbFecha1Dia.getSelectedItem().toString());
-        return sb.toString();
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChFechas() {
+        return chFechas;
     }
 
-    public String getFecha2() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(cbFecha2Ano.getSelectedItem().toString())
-                .append("-")
-                .append(cbFecha2Mes.getSelectedItem().toString())
-                .append("-")
-                .append(cbFecha2Dia.getSelectedItem().toString());
-        return sb.toString();
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChFechas(JCheckBox chFechas) {
+        this.chFechas = chFechas;
     }
 
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JDateChooser getDateModificationOne() {
+        return dateModificationOne;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setDateModificationOne(JDateChooser dateModificationOne) {
+        this.dateModificationOne = dateModificationOne;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JDateChooser getDateModificationTwo() {
+        return dateModificationTwo;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setDateModificationTwo(JDateChooser dateModificationTwo) {
+        this.dateModificationTwo = dateModificationTwo;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAccess() {
+        return chAccess;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAccess(JCheckBox chAccess) {
+        this.chAccess = chAccess;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JDateChooser getDateAccessOne() {
+        return dateAccessOne;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setDateAccessOne(JDateChooser dateAccessOne) {
+        this.dateAccessOne = dateAccessOne;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JDateChooser getDateAccessTwo() {
+        return dateAccessTwo;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setDateAccessTwo(JDateChooser dateAccessTwo) {
+        this.dateAccessTwo = dateAccessTwo;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChCreation() {
+        return chCreation;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChCreation(JCheckBox chCreation) {
+        this.chCreation = chCreation;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JDateChooser getDateCreationOne() {
+        return dateCreationOne;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setDateCreationOne(JDateChooser dateCreationOne) {
+        this.dateCreationOne = dateCreationOne;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JDateChooser getDateCreationTwo() {
+        return dateCreationTwo;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setDateCreationTwo(JDateChooser dateCreationTwo) {
+        this.dateCreationTwo = dateCreationTwo;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JTextField getTxTerm() {
+        return txTerm;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setTxTerm(JTextField txTerm) {
+        this.txTerm = txTerm;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JTextField getTxSize() {
+        return txSize;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setTxSize(JTextField txSize) {
+        this.txSize = txSize;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChsSize() {
+        return chsSize;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChsSize(JCheckBox chsSize) {
+        this.chsSize = chsSize;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChTerm() {
+        return chTerm;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChTerm(JCheckBox chTerm) {
+        this.chTerm = chTerm;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAttributes() {
+        return chAttributes;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAttributes(JCheckBox chAttributes) {
+        this.chAttributes = chAttributes;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAtModify() {
+        return chAtModify;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAtModify(JCheckBox chAtModify) {
+        this.chAtModify = chAtModify;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAtHidden() {
+        return chAtHidden;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAtHidden(JCheckBox chAtHidden) {
+        this.chAtHidden = chAtHidden;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAtFolder() {
+        return chAtFolder;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAtFolder(JCheckBox chAtFolder) {
+        this.chAtFolder = chAtFolder;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAtEncriptado() {
+        return chAtEncriptado;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAtEncriptado(JCheckBox chAtEncriptado) {
+        this.chAtEncriptado = chAtEncriptado;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAtReading() {
+        return chAtReading;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAtReading(JCheckBox chAtReading) {
+        this.chAtReading = chAtReading;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAtSistema() {
+        return chAtSistema;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAtSistema(JCheckBox chAtSistema) {
+        this.chAtSistema = chAtSistema;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAtComprimido() {
+        return chAtComprimido;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAtComprimido(JCheckBox chAtComprimido) {
+        this.chAtComprimido = chAtComprimido;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAtVideo() {
+        return chAtVideo;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAtVideo(JCheckBox chAtVideo) {
+        this.chAtVideo = chAtVideo;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChDuplicates() {
+        return chDuplicates;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChDuplicates(JCheckBox chDuplicates) {
+        this.chDuplicates = chDuplicates;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChDupContent() {
+        return chDupContent;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChDupContent(JCheckBox chDupContent) {
+        this.chDupContent = chDupContent;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChDupName() {
+        return chDupName;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChDupName(JCheckBox chDupName) {
+        this.chDupName = chDupName;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChDupSize() {
+        return chDupSize;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChDupSize(JCheckBox chDupSize) {
+        this.chDupSize = chDupSize;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public boolean getFechasEnabled() {
+        return isFechasEnabled;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setFechasEnabled(boolean fechasEnabled) {
+        isFechasEnabled = fechasEnabled;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public boolean getAccessEnabled() {
+        return isAccessEnabled;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setAccessEnabled(boolean accessEnabled) {
+        isAccessEnabled = accessEnabled;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public boolean getCreationEnabled() {
+        return isCreationEnabled;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setCreationEnabled(boolean creationEnabled) {
+        isCreationEnabled = creationEnabled;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public boolean getTermEnabled() {
+        return isTermEnabled;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setTermEnabled(boolean termEnabled) {
+        isTermEnabled = termEnabled;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public boolean getSizeEnabled() {
+        return isSizeEnabled;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setSizeEnabled(boolean sizeEnabled) {
+        isSizeEnabled = sizeEnabled;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public boolean getAttributesEnabled() {
+        return isAttributesEnabled;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setAttributesEnabled(boolean attributesEnabled) {
+        isAttributesEnabled = attributesEnabled;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public boolean getDuplicatesEnabled() {
+        return isDuplicatesEnabled;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setDuplicatesEnabled(boolean duplicatesEnabled) {
+        isDuplicatesEnabled = duplicatesEnabled;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JComboBox<String> getJcbSize() {
+        return jcbSize;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setJcbSize(JComboBox<String> jcbSize) {
+        this.jcbSize = jcbSize;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JComboBox<String> getJcbSizeDuration() {
+        return jcbSizeDuration;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setJcbSizeDuration(JComboBox<String> jcbSizeDuration) {
+        this.jcbSizeDuration = jcbSizeDuration;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JComboBox<String> getCbTerm() {
+        return cbTerm;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setCbTerm(JComboBox<String> cbTerm) {
+        this.cbTerm = cbTerm;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JComboBox<String> getCbSize() {
+        return cbSize;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setCbSize(JComboBox<String> cbSize) {
+        this.cbSize = cbSize;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JComboBox<String> getCbFrameRate() {
+        return cbFrameRate;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setCbFrameRate(JComboBox<String> cbFrameRate) {
+        this.cbFrameRate = cbFrameRate;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JComboBox<String> getCbVideoCode() {
+        return cbVideoCode;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setCbVideoCode(JComboBox<String> cbVideoCode) {
+        this.cbVideoCode = cbVideoCode;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JComboBox<String> getCbResolution() {
+        return cbResolution;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setCbResolution(JComboBox<String> cbResolution) {
+        this.cbResolution = cbResolution;
+    }
 }
 

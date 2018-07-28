@@ -41,6 +41,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrameSearch extends JFrame {
 
+    /**
+     * Declaration of the panels.
+     */
     private Controller controller;
     private boolean isAdvancedEnabled;
     private JCheckBox chAdvanced;
@@ -86,7 +89,7 @@ public class FrameSearch extends JFrame {
     }
 
     /**
-     * method position of the windows.
+     * Method position of the windows.
      */
     public void settings() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -113,6 +116,8 @@ public class FrameSearch extends JFrame {
         tmLocation.addColumn("Size");
         tmLocation.addColumn("Path");
         tmLocation.addColumn("Hidden");
+        tmLocation.addColumn("Content");
+        tmLocation.addColumn("Owner");
         tbLocation.setModel(tmLocation);
         scLocation.setViewportView(tbLocation);
         getContentPane().add(scLocation);
@@ -174,7 +179,8 @@ public class FrameSearch extends JFrame {
             }
         }
     }
-    public void cleanTable (){
+
+    public void cleanTable() {
         if (tmLocation.getRowCount() > 0) {
             for (int i = tmLocation.getRowCount() - 1; i > -1; i--) {
                 tmLocation.removeRow(i);
