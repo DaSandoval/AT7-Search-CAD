@@ -445,5 +445,724 @@ public class AdvancedPanelSearch extends JPanel {
         return chFechas.isSelected();
     }
 
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChFechas() {
+        return chFechas;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChFechas(JCheckBox chFechas) {
+        this.chFechas = chFechas;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JDateChooser getDateModificationOne() {
+        return dateModificationOne;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setDateModificationOne(JDateChooser dateModificationOne) {
+        this.dateModificationOne = dateModificationOne;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JDateChooser getDateModificationTwo() {
+        return dateModificationTwo;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setDateModificationTwo(JDateChooser dateModificationTwo) {
+        this.dateModificationTwo = dateModificationTwo;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAccess() {
+        return chAccess;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAccess(JCheckBox chAccess) {
+        this.chAccess = chAccess;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JDateChooser getDateAccessOne() {
+        return dateAccessOne;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setDateAccessOne(JDateChooser dateAccessOne) {
+        this.dateAccessOne = dateAccessOne;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JDateChooser getDateAccessTwo() {
+        return dateAccessTwo;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setDateAccessTwo(JDateChooser dateAccessTwo) {
+        this.dateAccessTwo = dateAccessTwo;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChCreation() {
+        return chCreation;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChCreation(JCheckBox chCreation) {
+        this.chCreation = chCreation;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JDateChooser getDateCreationOne() {
+        return dateCreationOne;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setDateCreationOne(JDateChooser dateCreationOne) {
+        this.dateCreationOne = dateCreationOne;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JDateChooser getDateCreationTwo() {
+        return dateCreationTwo;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setDateCreationTwo(JDateChooser dateCreationTwo) {
+        this.dateCreationTwo = dateCreationTwo;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JTextField getTxTerm() {
+        return txTerm;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setTxTerm(JTextField txTerm) {
+        this.txTerm = txTerm;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JTextField getTxSize() {
+        return txSize;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setTxSize(JTextField txSize) {
+        this.txSize = txSize;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChsSize() {
+        return chsSize;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChsSize(JCheckBox chsSize) {
+        this.chsSize = chsSize;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChTerm() {
+        return chTerm;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChTerm(JCheckBox chTerm) {
+        this.chTerm = chTerm;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAttributes() {
+        return chAttributes;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAttributes(JCheckBox chAttributes) {
+        this.chAttributes = chAttributes;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAtModify() {
+        return chAtModify;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAtModify(JCheckBox chAtModify) {
+        this.chAtModify = chAtModify;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAtHidden() {
+        return chAtHidden;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAtHidden(JCheckBox chAtHidden) {
+        this.chAtHidden = chAtHidden;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAtFolder() {
+        return chAtFolder;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAtFolder(JCheckBox chAtFolder) {
+        this.chAtFolder = chAtFolder;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAtEncriptado() {
+        return chAtEncriptado;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAtEncriptado(JCheckBox chAtEncriptado) {
+        this.chAtEncriptado = chAtEncriptado;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAtReading() {
+        return chAtReading;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAtReading(JCheckBox chAtReading) {
+        this.chAtReading = chAtReading;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAtSistema() {
+        return chAtSistema;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAtSistema(JCheckBox chAtSistema) {
+        this.chAtSistema = chAtSistema;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAtComprimido() {
+        return chAtComprimido;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAtComprimido(JCheckBox chAtComprimido) {
+        this.chAtComprimido = chAtComprimido;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChAtVideo() {
+        return chAtVideo;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChAtVideo(JCheckBox chAtVideo) {
+        this.chAtVideo = chAtVideo;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChDuplicates() {
+        return chDuplicates;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChDuplicates(JCheckBox chDuplicates) {
+        this.chDuplicates = chDuplicates;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChDupContent() {
+        return chDupContent;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChDupContent(JCheckBox chDupContent) {
+        this.chDupContent = chDupContent;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChDupName() {
+        return chDupName;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChDupName(JCheckBox chDupName) {
+        this.chDupName = chDupName;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JCheckBox getChDupSize() {
+        return chDupSize;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setChDupSize(JCheckBox chDupSize) {
+        this.chDupSize = chDupSize;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public boolean getFechasEnabled() {
+        return isFechasEnabled;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setFechasEnabled(boolean fechasEnabled) {
+        isFechasEnabled = fechasEnabled;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public boolean getAccessEnabled() {
+        return isAccessEnabled;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setAccessEnabled(boolean accessEnabled) {
+        isAccessEnabled = accessEnabled;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public boolean getCreationEnabled() {
+        return isCreationEnabled;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setCreationEnabled(boolean creationEnabled) {
+        isCreationEnabled = creationEnabled;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public boolean getTermEnabled() {
+        return isTermEnabled;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setTermEnabled(boolean termEnabled) {
+        isTermEnabled = termEnabled;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public boolean getSizeEnabled() {
+        return isSizeEnabled;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setSizeEnabled(boolean sizeEnabled) {
+        isSizeEnabled = sizeEnabled;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public boolean getAttributesEnabled() {
+        return isAttributesEnabled;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setAttributesEnabled(boolean attributesEnabled) {
+        isAttributesEnabled = attributesEnabled;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public boolean getDuplicatesEnabled() {
+        return isDuplicatesEnabled;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setDuplicatesEnabled(boolean duplicatesEnabled) {
+        isDuplicatesEnabled = duplicatesEnabled;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JComboBox<String> getJcbSize() {
+        return jcbSize;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setJcbSize(JComboBox<String> jcbSize) {
+        this.jcbSize = jcbSize;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JComboBox<String> getJcbSizeDuration() {
+        return jcbSizeDuration;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setJcbSizeDuration(JComboBox<String> jcbSizeDuration) {
+        this.jcbSizeDuration = jcbSizeDuration;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JComboBox<String> getCbTerm() {
+        return cbTerm;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setCbTerm(JComboBox<String> cbTerm) {
+        this.cbTerm = cbTerm;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JComboBox<String> getCbSize() {
+        return cbSize;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setCbSize(JComboBox<String> cbSize) {
+        this.cbSize = cbSize;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JComboBox<String> getCbFrameRate() {
+        return cbFrameRate;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setCbFrameRate(JComboBox<String> cbFrameRate) {
+        this.cbFrameRate = cbFrameRate;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JComboBox<String> getCbVideoCode() {
+        return cbVideoCode;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setCbVideoCode(JComboBox<String> cbVideoCode) {
+        this.cbVideoCode = cbVideoCode;
+    }
+
+    /**
+     * Method of the get value.
+     *
+     * @return a value.
+     */
+    public JComboBox<String> getCbResolution() {
+        return cbResolution;
+    }
+
+    /**
+     * Method of the set value.
+     *
+     * @return a value.
+     */
+    public void setCbResolution(JComboBox<String> cbResolution) {
+        this.cbResolution = cbResolution;
+    }
 }
 

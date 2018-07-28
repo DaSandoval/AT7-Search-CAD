@@ -247,11 +247,6 @@ public class PanelSearch extends JPanel {
             }
         });
 
-      /*  btSearch.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                btSearchMouseClicked(evt);
-            }
-        });*/
     }
 
     /**

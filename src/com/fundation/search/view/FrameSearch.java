@@ -41,6 +41,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrameSearch extends JFrame {
 
+    /**
+     * Declaration of the panels.
+     */
     private Controller controller;
     private boolean isAdvancedEnabled;
     private JCheckBox chAdvanced;
@@ -86,7 +89,7 @@ public class FrameSearch extends JFrame {
     }
 
     /**
-     * method position of the windows.
+     * Method position of the windows.
      */
     public void settings() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
