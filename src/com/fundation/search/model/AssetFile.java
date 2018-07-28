@@ -24,8 +24,4 @@ public class AssetFile extends Asset {
     public AssetFile() {
         super();
     }
-
-    public AssetFile(String path, String fileName, String extent, boolean hidden, long size, String owner) {
-        super(path, fileName, extent, hidden, size, owner);
-    }
 }

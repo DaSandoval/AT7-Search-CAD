@@ -13,13 +13,15 @@
  */
 package com.fundation.search.view;
 
+
 import com.fundation.search.controller.Controller;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JSpinnerDateEditor;
 import javafx.scene.control.TextFormatter;
 
 
-import java.util.Calendar;
+import com.fundation.search.controller.Controller;
+
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;

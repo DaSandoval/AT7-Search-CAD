@@ -16,7 +16,6 @@ package com.fundation.search.view;
 
 import com.fundation.search.controller.Controller;
 
-
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -121,7 +120,7 @@ public class PanelSearch extends JPanel {
 
         txLocation.setEditable(false);
         txLocation.setBackground(new Color(255, 255, 255));
-        txLocation.setText("C:\\");
+        txLocation.setText("");
         txLocation.setBounds(90, 39, 210, 20);
         this.add(txLocation);
 

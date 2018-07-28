@@ -20,7 +20,7 @@ package com.fundation.search.utils;
  * @author Daniel Sandoval - AT-[07].
  * @version 1.0.
  */
-public class Coverter {
+public class Converter {
     /**
      * Size of the file or movies or audio, gigas, megas, kilobyte.
      * SIZEFILE this is capacity.

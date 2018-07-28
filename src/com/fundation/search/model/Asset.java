@@ -1,45 +1,39 @@
+/*
+ *
+ *   @(#)Class.java
+ *
+ *   Copyright (c) 2018 Jala Foundation.
+ *   2643 Av Melchor Perez de Olguin, Colquiri Sud, Cochabamba, Bolivia.
+ *   All rights reserved.
+ *
+ *   This software is the confidential and proprietary information of
+ *   Jala Foundation, ("Confidential Information").  You shall not
+ *   disclose such Confidential Information and shall use it only in
+ *   accordance with the terms of the license agreement you entered into
+ *   with Jala Foundation.
+ *
+ */
+
 package com.fundation.search.model;
 
 public class Asset {
+
     private String path;
     private String fileName;
+    private long size;
     private String extent;
     private boolean hidden;
-    private long size;
 
+    /**
+     * Constructor of the class.
+     */
     public Asset() {
-        this.path = this.path;
-        this.hidden = this.hidden;
-        this.fileName = this.fileName;
-        this.size = this.size;
-        this.extent = this.extent;
-    }
-
-    public Asset(String path, String fileName, String extent, boolean hidden, long size, String owner) {
         this.path = path;
-        this.fileName = fileName;
-        this.extent = extent;
         this.hidden = hidden;
+        this.fileName = fileName;
         this.size = size;
-        this.owner = owner;
+        this.extent = extent;
     }
-
-
-    public boolean isHidden() {
-        return hidden;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
-    private String owner;
-    //owner,date
-
 
     /**
      * Get the value of Path.
@@ -131,4 +125,3 @@ public class Asset {
         this.extent = extent;
     }
 }
-

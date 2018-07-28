@@ -13,13 +13,13 @@
  */
 package com.fundation.search.controller;
 
-import com.fundation.search.model.Asset;
 import com.fundation.search.model.AssetFile;
 import com.fundation.search.model.Search;
 import com.fundation.search.view.FrameSearch;
 import com.fundation.search.view.util.Constantes;
 
 import javax.swing.ImageIcon;
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -31,6 +31,8 @@ import java.util.ArrayList;
 public class Controller {
 
     private FrameSearch frameSearch;
+    private Criteria criteria;
+
 
 
     /**
@@ -39,6 +41,7 @@ public class Controller {
      */
     public Controller(FrameSearch frameSearch) {
         this.frameSearch = frameSearch;
+        this.criteria = new Criteria();
     }
 
 
@@ -54,22 +57,27 @@ public class Controller {
      */
     private void getAtribut() {
         frameSearch.cleanTable();
-        String name = frameSearch.getPnSearch().getTxSearch().getText();
-        String path = frameSearch.getPnSearch().getTxLocation().getText();
         Search search = new Search();
+        criteria.clean();
+        criteria.setFolderNew(new File(frameSearch.getPnSearch().getTxLocation().getText()));
+        criteria.setFileName(frameSearch.getPnSearch().getTxSearch().getText());
+        criteria.setPath(frameSearch.getPnSearch().getTxLocation().getText());
+        criteria.setHidden(frameSearch.getPnSearch().getChFileHidden().isSelected());
+        criteria.setExtensionEnable(frameSearch.getPnSearch().getChSearchText().isSelected());
         ArrayList<String> resul = frameSearch.getPnSearch().getExtencion();
         ArrayList<AssetFile> fileList = new ArrayList<>();
         if (resul.size()>0) {
             for (String file : resul) {
-                search.searchPath(path, name, file, frameSearch.getPnSearch().getChFileHidden().isSelected());
+                criteria.setExtension(file);
+                search.searchPath(criteria);
                 fileList.addAll(search.getResult());
             }
         }
-        else { search.searchPathNotExtencion(path, name, frameSearch.getPnSearch().getChFileHidden().isSelected());
+        else { search.searchPath(criteria);
             fileList = (ArrayList<AssetFile>) search.getResult();
         }
 
-        for (Asset file : fileList) {
+        for (AssetFile file : fileList) {
             frameSearch.addRowTable(
                     new ImageIcon(Constantes.getFileIcon()),
                     file.getFileName(),
