@@ -169,101 +169,103 @@ public class AdvancedPanelSearch extends JPanel {
         this.add(dateCreationTwo);
 
         chTerm.setText("Duration:");
-        chTerm.setBounds(8, 87, 80, 23);
+        chTerm.setEnabled(false);
+        chTerm.setBounds(405, 111, 80, 23);
         this.add(chTerm);
 
         jcbSizeDuration.setEnabled(false);
-        jcbSizeDuration.setBounds(90, 88, 50, 20);
+        jcbSizeDuration.setBounds(490, 111, 50, 20);
         this.add(jcbSizeDuration);
         jcbSizeDuration.addItem("=");
         jcbSizeDuration.addItem(">");
         jcbSizeDuration.addItem("<");
 
         txTerm.setEnabled(false);
-        txTerm.setBounds(150, 88, 50, 20);
+        txTerm.setBounds(545, 111, 50, 20);
         this.add(txTerm);
 
         cbTerm.setModel(new DefaultComboBoxModel<>(new String[]{"Horas", "Minutes", "Second"}));
         cbTerm.setEnabled(false);
-        cbTerm.setBounds(205, 88, 70, 20);
+        cbTerm.setBounds(600, 111, 70, 20);
         this.add(cbTerm);
 
         chsSize.setText("Size:");
-        chsSize.setBounds(8, 113, 70, 23);
+        chsSize.setBounds(8,87,80,23);
         this.add(chsSize);
 
         jcbSize.setEnabled(false);
-        jcbSize.setBounds(90, 113, 50, 20);
+        jcbSize.setBounds(90,88,50,20);
         this.add(jcbSize);
         jcbSize.addItem("=");
         jcbSize.addItem(">");
         jcbSize.addItem("<");
 
         txSize.setEnabled(false);
-        txSize.setBounds(150, 113, 50, 20);
+        txSize.setBounds(150,88,50,20);
         this.add(txSize);
 
         cbSize.setModel(new DefaultComboBoxModel<>(new String[]{"bytes", "Kbytes", "Mbytes"}));
         cbSize.setEnabled(false);
-        cbSize.setBounds(205, 113, 70, 20);
+        cbSize.setBounds(205,88,70,20);
         this.add(cbSize);
 
         chAttributes.setText("Multimedia:");
         this.add(chAttributes);
-        chAttributes.setBounds(410, 12, 150, 23);
+        chAttributes.setBounds(435, 12, 150, 23);
 
         chAtModify.setText("ASF");
         chAtModify.setEnabled(false);
-        chAtModify.setBounds(380, 38, 60, 23);
+        chAtModify.setBounds(405, 38, 50, 23);
         this.add(chAtModify);
 
         chAtHidden.setText("AVI");
         chAtHidden.setEnabled(false);
-        chAtHidden.setBounds(440, 38, 60, 23);
+        chAtHidden.setBounds(462, 38, 50, 23);
         this.add(chAtHidden);
 
         chAtFolder.setText("DIVX");
         chAtFolder.setEnabled(false);
-        chAtFolder.setBounds(510, 38, 60, 23);
+        chAtFolder.setBounds(520, 38, 60, 23);
         this.add(chAtFolder);
 
         chAtEncriptado.setText("FLV");
         chAtEncriptado.setEnabled(false);
         this.add(chAtEncriptado);
-        chAtEncriptado.setBounds(380, 69, 60, 23);
+        chAtEncriptado.setBounds(405, 63, 50, 23);
 
         chAtReading.setText("MPEG");
         chAtReading.setEnabled(false);
         this.add(chAtReading);
-        chAtReading.setBounds(440, 69, 60, 23);
+        chAtReading.setBounds(462, 63, 60, 23);
 
         chAtSistema.setText("WMV");
         chAtSistema.setEnabled(false);
         this.add(chAtSistema);
-        chAtSistema.setBounds(510, 69, 60, 23);
+        chAtSistema.setBounds(520, 63, 60, 23);
 
         chAtComprimido.setText("MP3");
         chAtComprimido.setEnabled(false);
         this.add(chAtComprimido);
-        chAtComprimido.setBounds(380, 100, 60, 23);
+        chAtComprimido.setBounds(405, 88, 50, 23);
+
         chAtVideo.setText("MP4");
         chAtVideo.setEnabled(false);
         this.add(chAtVideo);
-        chAtVideo.setBounds(440, 100, 60, 23);
+        chAtVideo.setBounds(462, 88, 50, 23);
 
-        cbFrameRate.setModel(new DefaultComboBoxModel<>(new String[]{"24", "25", "27", "30", "64"}));
-        cbFrameRate.setEnabled(true);
+        cbFrameRate.setModel(new DefaultComboBoxModel<>(new String[]{"All Trame Rate","24", "25", "27", "30", "64"}));
+        cbFrameRate.setEnabled(false);
         cbFrameRate.setBounds(600, 12, 150, 23);
         this.add(cbFrameRate);
 
-        cbVideoCode.setModel(new DefaultComboBoxModel<>(new String[]{"H264", "H263", "MPEG4", "WMV1",}));
-        cbVideoCode.setEnabled(true);
-        cbVideoCode.setBounds(600, 45, 150, 23);
+        cbVideoCode.setModel(new DefaultComboBoxModel<>(new String[]{"All Video Code","H264", "H263", "MPEG4", "WMV1",}));
+        cbVideoCode.setEnabled(false);
+        cbVideoCode.setBounds(600, 42, 150, 23);
         this.add(cbVideoCode);
 
-        cbResolution.setModel(new DefaultComboBoxModel<>(new String[]{"320 x 240", "480 x 360", "720 x 480", "1280 x 720", "1920 x 1080"}));
-        cbResolution.setEnabled(true);
-        cbResolution.setBounds(600, 78, 150, 23);
+        cbResolution.setModel(new DefaultComboBoxModel<>(new String[]{"All Resolution","320 x 240", "480 x 360", "720 x 480", "1280 x 720", "1920 x 1080"}));
+        cbResolution.setEnabled(false);
+        cbResolution.setBounds(600, 73, 150, 23);
         this.add(cbResolution);
 
         chFechas.addChangeListener(new ChangeListener() {
@@ -425,6 +427,10 @@ public class AdvancedPanelSearch extends JPanel {
             chAtSistema.setEnabled(isAttributesEnabled);
             chAtComprimido.setEnabled(isAttributesEnabled);
             chAtVideo.setEnabled(isAttributesEnabled);
+            cbFrameRate.setEnabled(isAttributesEnabled);
+            cbVideoCode.setEnabled(isAttributesEnabled);
+            cbResolution.setEnabled(isAttributesEnabled);
+            chTerm.setEnabled(isAttributesEnabled);
         }
     }
 
