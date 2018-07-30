@@ -117,8 +117,11 @@ public class FrameSearch extends JFrame {
         tmLocation.addColumn("Size");
         tmLocation.addColumn("Path");
         tmLocation.addColumn("Hidden");
-        tmLocation.addColumn("Content");
         tmLocation.addColumn("Owner");
+        tmLocation.addColumn("Read Online");
+        tmLocation.addColumn("Date Creation");
+        tmLocation.addColumn("Date Access");
+        tmLocation.addColumn("Dare Modification ");
         tbLocation.setModel(tmLocation);
         scLocation.setViewportView(tbLocation);
         getContentPane().add(scLocation);
