@@ -16,6 +16,14 @@
 
 package com.fundation.search.model;
 
+import java.sql.Timestamp;
+
+/**
+ * This class AssetFile .
+ *
+ * @author Cesar Calvi - AT-[07].
+ * @version 1.0.
+ */
 public class Asset {
 
     private String path;
@@ -23,16 +31,27 @@ public class Asset {
     private long size;
     private String extent;
     private boolean hidden;
+    private String owner;
+    private boolean realOnline;
+    private Timestamp dateCreacion;
+    private Timestamp dateModi;
+    private Timestamp dateAccess;
 
     /**
      * Constructor of the class.
      */
     public Asset() {
-        this.path = path;
-        this.hidden = hidden;
-        this.fileName = fileName;
-        this.size = size;
-        this.extent = extent;
+        this.path = "";
+        this.hidden = false;
+        this.fileName = "";
+        this.size = 0;
+        this.extent = "";
+        this.owner = "";
+        this.realOnline = false;
+        this.dateAccess = new Timestamp(System.currentTimeMillis());
+        this.dateCreacion = new Timestamp(System.currentTimeMillis());
+        this.dateModi = new Timestamp(System.currentTimeMillis());
+
     }
 
     /**
@@ -124,4 +143,93 @@ public class Asset {
     public void setExtent(String extent) {
         this.extent = extent;
     }
+
+    /**
+     *
+     * @return hidden.
+     */
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    /**
+     *
+     * @return owner.
+     */
+    public String getOwner() {
+        return owner;
+    }
+
+    /**
+     *
+     * @param owner input.
+     */
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    /**
+     *
+     * @return readonly.
+     */
+    public boolean isRealOnline() {
+        return realOnline;
+    }
+
+    /**
+     *
+     * @param realOnline
+     */
+    public void setRealOnline(boolean realOnline) {
+        this.realOnline = realOnline;
+    }
+
+    /**
+     *
+     * @return datecreation.
+     */
+    public Timestamp getDateCreacion() {
+        return dateCreacion;
+    }
+
+    /**
+     *
+     * @param dateCreacion input.
+     */
+    public void setDateCreacion(Timestamp dateCreacion) {
+        this.dateCreacion = dateCreacion;
+    }
+
+    /**
+     *
+     * @return datemodifi.
+     */
+    public Timestamp getDateModi() {
+        return dateModi;
+    }
+
+    /**
+     *
+     * @param dateModi input.
+     */
+    public void setDateModi(Timestamp dateModi) {
+        this.dateModi = dateModi;
+    }
+
+    /**
+     *
+     * @return dateAccess.
+     */
+    public Timestamp getDateAccess() {
+        return dateAccess;
+    }
+
+    /**
+     *
+     * @param dateAccess input.
+     */
+    public void setDateAccess(Timestamp dateAccess) {
+        this.dateAccess = dateAccess;
+    }
+
 }
