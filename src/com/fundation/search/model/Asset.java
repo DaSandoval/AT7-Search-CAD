@@ -16,6 +16,11 @@
 
 package com.fundation.search.model;
 
+import java.security.PrivateKey;
+import java.sql.Timestamp;
+import java.time.DateTimeException;
+import java.util.Date;
+
 public class Asset {
 
     private String path;
@@ -23,16 +28,27 @@ public class Asset {
     private long size;
     private String extent;
     private boolean hidden;
+    private String owner;
+    private boolean realOnline;
+    private Timestamp dateCreacion;
+    private Timestamp dateModi;
+    private Timestamp dateAccess;
 
     /**
      * Constructor of the class.
      */
     public Asset() {
-        this.path = path;
-        this.hidden = hidden;
-        this.fileName = fileName;
-        this.size = size;
-        this.extent = extent;
+        this.path = "";
+        this.hidden = false;
+        this.fileName = "";
+        this.size = 0;
+        this.extent = "";
+        this.owner = "";
+        this.realOnline = false;
+        this.dateAccess = new Timestamp(System.currentTimeMillis());
+        this.dateCreacion = new Timestamp(System.currentTimeMillis());
+        this.dateModi = new Timestamp(System.currentTimeMillis());
+
     }
 
     /**
@@ -124,4 +140,49 @@ public class Asset {
     public void setExtent(String extent) {
         this.extent = extent;
     }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public boolean isRealOnline() {
+        return realOnline;
+    }
+
+    public void setRealOnline(boolean realOnline) {
+        this.realOnline = realOnline;
+    }
+
+    public Timestamp getDateCreacion() {
+        return dateCreacion;
+    }
+
+    public void setDateCreacion(Timestamp dateCreacion) {
+        this.dateCreacion = dateCreacion;
+    }
+
+    public Timestamp getDateModi() {
+        return dateModi;
+    }
+
+    public void setDateModi(Timestamp dateModi) {
+        this.dateModi = dateModi;
+    }
+
+    public Timestamp getDateAccess() {
+        return dateAccess;
+    }
+
+    public void setDateAccess(Timestamp dateAccess) {
+        this.dateAccess = dateAccess;
+    }
+
 }
