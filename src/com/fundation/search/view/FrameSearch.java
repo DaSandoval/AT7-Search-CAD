@@ -15,6 +15,7 @@ package com.fundation.search.view;
 
 
 import com.fundation.search.controller.Controller;
+import com.fundation.search.model.AssetFile;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -130,19 +131,21 @@ public class FrameSearch extends JFrame {
      * Method of Table date.
      *
      * @param img  value of the imagen.
-     * @param name value of the name.
-     * @param size value of the size.
+     * @param files class AssetFile.
      */
-    public void addRowTable(ImageIcon img, String name, String extent, double size,
-                            String path, boolean hidden) {
+    public void addRowTable(ImageIcon img, AssetFile files) {
         tmLocation.addRow(
                 new Object[]{
                         img,
-                        name,
-                        extent,
-                        String.valueOf(size),
-                        path,
-                        hidden
+                        files.getFileName(),files.getExtent(),
+                        String.valueOf(files.getSize()),
+                        files.getPath(),
+                        files.getHidden(),
+                        files.getOwner(),
+                        files.isRealOnline(),
+                        files.getDateCreacion().toString(),
+                        files.getDateAccess().toString(),
+                        files.getDateModi().toString()
                 });
         updateRowHeights();
     }
