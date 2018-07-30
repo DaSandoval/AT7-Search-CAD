@@ -15,11 +15,13 @@ package com.fundation.search.controller;
 
 import com.fundation.search.model.AssetFile;
 import com.fundation.search.model.Search;
+import com.fundation.search.utils.Validator;
 import com.fundation.search.view.FrameSearch;
 import com.fundation.search.view.util.Constantes;
 
 import javax.swing.ImageIcon;
 import java.io.File;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -32,6 +34,7 @@ public class Controller {
 
     private FrameSearch frameSearch;
     private Criteria criteria;
+    private Validator validator;
 
 
 
@@ -40,8 +43,9 @@ public class Controller {
      * @param frameSearch
      */
     public Controller(FrameSearch frameSearch) {
-        this.frameSearch = frameSearch;
+        this.frameSearch =  frameSearch;
         this.criteria = new Criteria();
+        this.validator= new Validator();
     }
 
 
@@ -64,29 +68,75 @@ public class Controller {
         criteria.setPath(frameSearch.getPnSearch().getTxLocation().getText());
         criteria.setHidden(frameSearch.getPnSearch().getChFileHidden().isSelected());
         criteria.setExtensionEnable(frameSearch.getPnSearch().getChSearchText().isSelected());
-        ArrayList<String> resul = frameSearch.getPnSearch().getExtencion();
-        ArrayList<AssetFile> fileList = new ArrayList<>();
-        if (resul.size()>0) {
-            for (String file : resul) {
-                criteria.setExtension(file);
-                search.searchPath(criteria);
-                fileList.addAll(search.getResult());
+            if (frameSearch.getPnSearch().getChKeySensitive().isSelected()){
+                criteria.setKeySensitive(false);
             }
-        }
-        else { search.searchPath(criteria);
-            fileList = (ArrayList<AssetFile>) search.getResult();
-        }
+            else {
+                criteria.setKeySensitive(true);
+            }
+            criteria.setFolder(frameSearch.getPnSearch().getChFolder().isSelected());
+            criteria.setOwner(frameSearch.getPnSearch().getTxtOwner().getText());
+            criteria.setCheckOwner(frameSearch.getPnSearch().getChOwner().isSelected());
+            criteria.setReadOnly(frameSearch.getPnSearch().getChReadOnly().isSelected());
+            criteria.setContent(frameSearch.getPnSearch().getTxtContent().getText());
+            criteria.setCheckContent(frameSearch.getPnSearch().getChContent().isSelected());
 
-        for (AssetFile file : fileList) {
-            frameSearch.addRowTable(
-                    new ImageIcon(Constantes.getFileIcon()),
-                    file.getFileName(),
-                    file.getExtent(),
-                    (Double.parseDouble(String.valueOf(file.getSize()))/1000000),
-                    file.getPath(),
-                    file.getHidden()
-            );
+            ArrayList<String> resul = frameSearch.getPnSearch().getExtencion();
+            ArrayList<AssetFile> fileList = new ArrayList<>();
+            if (resul.size()>0) {
+                for (String file : resul) {
+                    criteria.setExtension(file);
+                    search.searchPath(criteria);
+                    fileList.addAll(search.getResult());
+                }
+            }
+            else { search.searchPath(criteria);
+                fileList = (ArrayList<AssetFile>) search.getResult();
+            }
+            if (criteria.isCheckOwner()){
+                fileList = search.owner(fileList,criteria);
+            }
+            if (criteria.isReadOnly()) {
+                fileList = search.searchReadOnly(fileList,criteria);
+            }
+            if(criteria.isCheckContent()) {
+                fileList = search.searchContent(criteria, fileList);
+            }
 
-        }
+            if (frameSearch.getChAdvanced().isSelected()){
+                if (frameSearch.getPnAdvanced().getChsSize().isSelected()){
+                    criteria.setSignSize(frameSearch.getPnAdvanced().getCbSize().getSelectedItem().toString());
+                    criteria.setType(frameSearch.getPnAdvanced().getJcbSize().getSelectedItem().toString());
+                    criteria.setSize(Double.parseDouble(frameSearch.getPnAdvanced().getTxSize().getText()));
+                    fileList = search.searchSze(fileList,criteria);
+
+                }
+                if (frameSearch.getPnAdvanced().getChCreation().isSelected()){
+                    criteria.setIniCreationFile(new Timestamp(frameSearch.getPnAdvanced().getDateCreationOne().getDate().getTime()));
+                    criteria.setFinCreationFile(new Timestamp(frameSearch.getPnAdvanced().getDateCreationTwo().getDate().getTime()));
+                    fileList = search.searchDateCreation(fileList,criteria);
+
+                }
+                if (frameSearch.getPnAdvanced().getChAccess().isSelected()){
+                    criteria.setIniAccessFile(new Timestamp(frameSearch.getPnAdvanced().getDateAccessOne().getDate().getTime()));
+                    criteria.setFinAccessFile(new Timestamp(frameSearch.getPnAdvanced().getDateAccessTwo().getDate().getTime()));
+                    fileList = search.searchDateAccess(fileList,criteria);
+
+                }
+                if (frameSearch.getPnAdvanced().getChFechas().isSelected()){
+                    criteria.setIniModFile(new Timestamp(frameSearch.getPnAdvanced().getDateModificationOne().getDate().getTime()));
+                    criteria.setFinModFile(new Timestamp(frameSearch.getPnAdvanced().getDateModificationTwo().getDate().getTime()));
+                    fileList = search.searchDateMod(fileList,criteria);
+
+                }
+            }
+            for (AssetFile file : fileList) {
+                frameSearch.addRowTable(
+                        new ImageIcon(Constantes.getFileIcon()),
+                        file
+                );
+
+            }
+
     }
 }
