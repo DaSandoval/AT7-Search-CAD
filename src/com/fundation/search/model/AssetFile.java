@@ -14,13 +14,18 @@
 
 package com.fundation.search.model;
 
-/**
- * Class AssertFile.
- */
 
+/**
+ * This class AssetFile .
+ *
+ * @author  Daniel Sandoval - AT-[07].
+ * @version 1.0.
+ */
 public class AssetFile extends Asset {
 
-
+    /**
+     * Constructor of the class.
+     */
     public AssetFile() {
         super();
     }

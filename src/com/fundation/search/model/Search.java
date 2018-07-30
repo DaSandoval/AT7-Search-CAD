@@ -35,6 +35,9 @@ public class Search {
 
     private List<AssetFile> assetFile;
 
+    /**
+     * Constructor of the class.
+     */
     public Search() {
         this.assetFile = new ArrayList<>();
     }

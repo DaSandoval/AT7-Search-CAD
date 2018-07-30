@@ -16,8 +16,17 @@
 
 package com.fundation.search.model;
 
+/**
+ * This class FrameSearch can be FileResult.
+ *
+ * @author Cesar Calvi - AT-[07].
+ * @version 1.0.
+ */
 public class AssetMultimed extends Asset {
 
+    /**
+     * Constructor of the class.
+     */
     public AssetMultimed() {
         super();
     }

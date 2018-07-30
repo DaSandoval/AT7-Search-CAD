@@ -16,11 +16,14 @@
 
 package com.fundation.search.model;
 
-import java.security.PrivateKey;
 import java.sql.Timestamp;
-import java.time.DateTimeException;
-import java.util.Date;
 
+/**
+ * This class AssetFile .
+ *
+ * @author Cesar Calvi - AT-[07].
+ * @version 1.0.
+ */
 public class Asset {
 
     private String path;
@@ -141,46 +144,90 @@ public class Asset {
         this.extent = extent;
     }
 
+    /**
+     *
+     * @return hidden.
+     */
     public boolean isHidden() {
         return hidden;
     }
 
+    /**
+     *
+     * @return owner.
+     */
     public String getOwner() {
         return owner;
     }
 
+    /**
+     *
+     * @param owner input.
+     */
     public void setOwner(String owner) {
         this.owner = owner;
     }
 
+    /**
+     *
+     * @return readonly.
+     */
     public boolean isRealOnline() {
         return realOnline;
     }
 
+    /**
+     *
+     * @param realOnline
+     */
     public void setRealOnline(boolean realOnline) {
         this.realOnline = realOnline;
     }
 
+    /**
+     *
+     * @return datecreation.
+     */
     public Timestamp getDateCreacion() {
         return dateCreacion;
     }
 
+    /**
+     *
+     * @param dateCreacion input.
+     */
     public void setDateCreacion(Timestamp dateCreacion) {
         this.dateCreacion = dateCreacion;
     }
 
+    /**
+     *
+     * @return datemodifi.
+     */
     public Timestamp getDateModi() {
         return dateModi;
     }
 
+    /**
+     *
+     * @param dateModi input.
+     */
     public void setDateModi(Timestamp dateModi) {
         this.dateModi = dateModi;
     }
 
+    /**
+     *
+     * @return dateAccess.
+     */
     public Timestamp getDateAccess() {
         return dateAccess;
     }
 
+    /**
+     *
+     * @param dateAccess input.
+     */
     public void setDateAccess(Timestamp dateAccess) {
         this.dateAccess = dateAccess;
     }
