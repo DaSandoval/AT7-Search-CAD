@@ -18,9 +18,7 @@ import com.fundation.search.controller.Controller;
 import com.fundation.search.model.Asset;
 import com.fundation.search.model.AssetFile;
 
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
 
 
 import javax.swing.ImageIcon;
@@ -48,13 +46,19 @@ public class FrameSearch extends JFrame {
      */
     private Controller controller;
     private boolean isAdvancedEnabled;
+    private boolean isDataBaseEnabled;
     private JCheckBox chAdvanced;
+    private JCheckBox chDataBase;
     private AdvancedPanelSearch pnAdvanced;
     private PanelSearch pnSearch;
     private JScrollPane scLocation;
     private JTable tbLocation;
     private JTabbedPane tpPanel;
     private DefaultTableModel tmLocation;
+    private PanelDataBase tpDataBase;
+
+
+
 
     public FrameSearch() {
         initComponents();
@@ -66,14 +70,18 @@ public class FrameSearch extends JFrame {
      */
     private void initComponents() {
         isAdvancedEnabled = false;
+        isDataBaseEnabled = false;
         tpPanel = new JTabbedPane();
         chAdvanced = new JCheckBox();
-        pnSearch = new PanelSearch(controller);
+        chDataBase = new JCheckBox();
+        pnSearch = new PanelSearch();
         tpPanel.addTab("Basic", pnSearch);
-        pnAdvanced = new AdvancedPanelSearch(controller);
-        tpPanel.addTab("Adcanced", pnAdvanced);
+        pnAdvanced = new AdvancedPanelSearch();
+        tpPanel.addTab("Advanced", pnAdvanced);
         scLocation = new JScrollPane();
         tbLocation = new JTable();
+        tpDataBase = new PanelDataBase();
+        tpPanel.addTab("Data Base", tpDataBase);
         tmLocation = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -96,22 +104,37 @@ public class FrameSearch extends JFrame {
     public void settings() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-        this.setMinimumSize(new Dimension(820, 530));
-        this.setMaximumSize(new Dimension(820, 530));
-        this.setSize(new Dimension(820, 530));
+        this.setMinimumSize(new Dimension(1120, 560)); //frame
+        this.setMaximumSize(new Dimension(1120, 560));//frame
+        this.setSize(new Dimension(1020, 560));//frame
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
         this.setTitle("File Finder");
         this.setResizable(false);
         tpPanel.setEnabledAt(1, false);
+        tpPanel.setEnabledAt(2, false);
+
         chAdvanced.setText("Enable Advanced Options");
-        chAdvanced.setBounds(12, 185, 200, 23);
-        chAdvanced.addChangeListener(new ChangeListener() {
+        chAdvanced.setBounds(12, 235, 200, 23); //cambio de posion check que habilita
+        chAdvanced.setFont(new Font("Serif", Font.PLAIN, 14));
+        chAdvanced.setForeground(Color.decode("#010a0c"));
+        chAdvanced.addChangeListener(new ChangeListener(){
             public void stateChanged(ChangeEvent evt) {
                 chAdvancedStateChanged(evt);
             }
         });
+
+        chDataBase.setText("Enable Data Base Options");
+        chDataBase.setBounds(250, 235, 200, 23); //cambio de posion check que habilita
+        chDataBase.setFont(new Font("Serif", Font.PLAIN, 14));
+        chDataBase.setForeground(Color.decode("#010a0c"));
+        chDataBase.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                chAdvancedStateChangedDataBase(evt);
+            }
+        });
         getContentPane().add(chAdvanced);
+        getContentPane().add(chDataBase);
         tmLocation.addColumn("Icon");
         tmLocation.addColumn("Name");
         tmLocation.addColumn("Extent");
@@ -127,9 +150,9 @@ public class FrameSearch extends JFrame {
         tbLocation.setModel(tmLocation);
         scLocation.setViewportView(tbLocation);
         getContentPane().add(scLocation);
-        scLocation.setBounds(10, 210, 770, 240);
+        scLocation.setBounds(10, 260, 1095, 240); //table
         getContentPane().add(tpPanel);
-        tpPanel.setBounds(10, 10, 770, 170);
+        tpPanel.setBounds(10, 10, 1095, 220);
     }
 
     /**
@@ -183,6 +206,21 @@ public class FrameSearch extends JFrame {
             this.isAdvancedEnabled = chAdvanced.isSelected();
             tpPanel.setEnabledAt(1, chAdvanced.isSelected());
             if (chAdvanced.isSelected() == false) {
+                tpPanel.setSelectedIndex(0);
+            }
+        }
+    }
+
+    /**
+     * Method of option Data Base.
+     *
+     * @param evt data of the value.
+     */
+    private void chAdvancedStateChangedDataBase(ChangeEvent evt) {
+        if (this.isDataBaseEnabled != chDataBase.isSelected()){
+            this.isDataBaseEnabled = chDataBase.isSelected();
+            tpPanel.setEnabledAt(2, chDataBase.isSelected());
+            if (chDataBase.isSelected() == false) {
                 tpPanel.setSelectedIndex(0);
             }
         }

@@ -15,6 +15,7 @@ package com.fundation.search.view;
 
 
 import com.fundation.search.controller.Controller;
+import com.fundation.search.view.util.Constantes;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JSpinnerDateEditor;
 import javafx.scene.control.TextFormatter;
@@ -22,14 +23,10 @@ import javafx.scene.control.TextFormatter;
 
 import com.fundation.search.controller.Controller;
 
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 
 /**
@@ -100,6 +97,14 @@ public class AdvancedPanelSearch extends JPanel {
     private JComboBox<String> cbVideoCode;
     private JComboBox<String> cbResolution;
 
+    /**
+     * Definition of JLabel
+     */
+    private  JLabel lbImageAdv;
+    private JLabel lbTitleAdvanced;
+    private JLabel lbMultimedia;
+    private JLabel lbVideo;
+    private JLabel lbImageJalaAdv;
 
     /**
      * method of advanced of search constructs.
@@ -126,146 +131,184 @@ public class AdvancedPanelSearch extends JPanel {
         this.setBorder(BorderFactory.createEtchedBorder());
         this.setLayout(null);
 
+        lbImageJalaAdv.setBounds(0, 0, 150, 45);
+        lbImageJalaAdv.setIcon(new ImageIcon(Constantes.getSearchImageJala()));
+        this.add(lbImageJalaAdv);
+
+        lbTitleAdvanced.setHorizontalAlignment(SwingConstants.CENTER);
+        lbTitleAdvanced.setText("SEARCH ADVANCED");
+        lbTitleAdvanced.setFont(new Font("Serif", Font.PLAIN, 20));
+        lbTitleAdvanced.setBounds(150, 15, 203, 24);
+        lbTitleAdvanced.setForeground(Color.decode("#074692"));
+        this.add(lbTitleAdvanced);
+
         chFechas.setText("Modification Date:");
-        chFechas.setBounds(8, 12, 135, 23);
+        chFechas.setBounds(15, 60, 150, 25);
+        chFechas.setFont(new Font("Serif", Font.PLAIN, 16));
+        chFechas.setForeground(Color.decode("#010a0c"));
         this.add(chFechas);
 
         dateModificationOne.getDate();
         dateModificationOne.setEnabled(false);
-        dateModificationOne.setBounds(145, 13, 110, 20);
+        dateModificationOne.setBounds(175, 60, 110, 25);
         this.add(dateModificationOne);
 
         dateModificationTwo.getDate();
         dateModificationTwo.setEnabled(false);
-        dateModificationTwo.setBounds(260, 13, 110, 20);
+        dateModificationTwo.setBounds(290, 60, 110, 25);
         this.add(dateModificationTwo);
 
         chAccess.setText("Access Date:");
-        chAccess.setBounds(8, 35, 135, 23);
+        chAccess.setBounds(15, 100, 135, 25);
+        chAccess.setFont(new Font("Serif", Font.PLAIN, 16));
+        chAccess.setForeground(Color.decode("#010a0c"));
         this.add(chAccess);
 
         dateAccessOne.getDate();
         dateAccessOne.setEnabled(false);
-        dateAccessOne.setBounds(145, 36, 110, 20);
+        dateAccessOne.setBounds(175, 100, 110, 25);
         this.add(dateAccessOne);
 
         dateAccessTwo.getDate();
         dateAccessTwo.setEnabled(false);
-        dateAccessTwo.setBounds(260, 36, 110, 20);
+        dateAccessTwo.setBounds(290, 100, 110, 25);
         this.add(dateAccessTwo);
 
         chCreation.setText("Creation Date:");
-        chCreation.setBounds(8, 58, 135, 23);
+        chCreation.setBounds(15, 135, 135, 25);
+        chCreation.setFont(new Font("Serif", Font.PLAIN, 16));
+        chCreation.setForeground(Color.decode("#010a0c"));
         this.add(chCreation);
 
         dateCreationOne.getDate();
         dateCreationOne.setEnabled(false);
-        dateCreationOne.setBounds(145, 59, 110, 20);
+        dateCreationOne.setBounds(175, 135, 110, 25);
         this.add(dateCreationOne);
 
         dateCreationTwo.getDate();
         dateCreationTwo.setEnabled(false);
-        dateCreationTwo.setBounds(260, 59, 110, 20);
+        dateCreationTwo.setBounds(290, 135, 110, 25);
         this.add(dateCreationTwo);
 
-        chTerm.setText("Duration:");
-        chTerm.setEnabled(false);
-        chTerm.setBounds(405, 111, 80, 23);
-        this.add(chTerm);
-
-        jcbSizeDuration.setEnabled(false);
-        jcbSizeDuration.setBounds(490, 111, 50, 20);
-        this.add(jcbSizeDuration);
-        jcbSizeDuration.addItem("=");
-        jcbSizeDuration.addItem(">");
-        jcbSizeDuration.addItem("<");
-
-        txTerm.setEnabled(false);
-        txTerm.setBounds(545, 111, 50, 20);
-        this.add(txTerm);
-
-        cbTerm.setModel(new DefaultComboBoxModel<>(new String[]{"Horas", "Minutes", "Second"}));
-        cbTerm.setEnabled(false);
-        cbTerm.setBounds(600, 111, 70, 20);
-        this.add(cbTerm);
-
         chsSize.setText("Size:");
-        chsSize.setBounds(8,87,80,23);
+        chsSize.setBounds(450,10,80,25);
+        chsSize.setFont(new Font("Serif", Font.PLAIN, 14));
+        chsSize.setForeground(Color.decode("#010a0c"));
         this.add(chsSize);
 
         jcbSize.setEnabled(false);
-        jcbSize.setBounds(90,88,50,20);
+        jcbSize.setBounds(540,10,50,25);
         this.add(jcbSize);
         jcbSize.addItem("=");
         jcbSize.addItem(">");
         jcbSize.addItem("<");
 
         txSize.setEnabled(false);
-        txSize.setBounds(150,88,50,20);
+        txSize.setBounds(600,10,50,25);
         this.add(txSize);
 
         cbSize.setModel(new DefaultComboBoxModel<>(new String[]{"bytes", "Kbytes", "Mbytes"}));
         cbSize.setEnabled(false);
-        cbSize.setBounds(205,88,70,20);
+        cbSize.setBounds(660,10,70,25);
         this.add(cbSize);
 
-        chAttributes.setText("Multimedia:");
+        lbMultimedia.setText("Multimedia");
+        lbMultimedia.setBounds(460, 50, 100, 25);
+        lbMultimedia.setFont(new Font("Serif", Font.PLAIN, 16));
+        lbMultimedia.setForeground(Color.decode("#010a0c"));
+        this.add(lbMultimedia);
+
+        lbVideo.setBounds(590, 40, 150, 75);
+        lbVideo.setIcon(new ImageIcon(Constantes.getSearchImageVideo()));
+        this.add(lbVideo);
+
+        chAttributes.setText("Video && Music");
+        chAttributes.setBounds(450, 80, 150, 25);
+        chAttributes.setFont(new Font("Serif", Font.PLAIN, 14));
+        chAttributes.setForeground(Color.decode("#010a0c"));
         this.add(chAttributes);
-        chAttributes.setBounds(435, 12, 150, 23);
+
+        chTerm.setText("Duration:");
+        chTerm.setEnabled(false);
+        chTerm.setBounds(450, 120, 90, 25);
+        chTerm.setFont(new Font("Serif", Font.PLAIN, 14));
+        chTerm.setForeground(Color.decode("#010a0c"));
+        this.add(chTerm);
+
+        jcbSizeDuration.setEnabled(false);
+        jcbSizeDuration.setBounds(540, 120, 50, 25);
+        this.add(jcbSizeDuration);
+        jcbSizeDuration.addItem("=");
+        jcbSizeDuration.addItem(">");
+        jcbSizeDuration.addItem("<");
+
+        txTerm.setEnabled(false);
+        txTerm.setBounds(600, 120, 50, 25);
+        this.add(txTerm);
+
+        cbTerm.setModel(new DefaultComboBoxModel<>(new String[]{"Horas", "Minutes", "Second"}));
+        cbTerm.setEnabled(false);
+        cbTerm.setBounds(660, 120, 70, 25);
+        this.add(cbTerm);
+
+        chAtReading.setText("MPEG");
+        chAtReading.setEnabled(false);
+        chAtReading.setBounds(750, 10, 65, 25);
+        this.add(chAtReading);
+
+        chAtSistema.setText("WMV");
+        chAtSistema.setEnabled(false);
+        this.add(chAtSistema);
+        chAtSistema.setBounds(830, 10, 65, 25);
+
+        chAtComprimido.setText("MP3");
+        chAtComprimido.setEnabled(false);
+        this.add(chAtComprimido);
+        chAtComprimido.setBounds(750, 50, 65, 25);
+
+        chAtVideo.setText("MP4");
+        chAtVideo.setEnabled(false);
+        this.add(chAtVideo);
+        chAtVideo.setBounds(830, 50, 65, 25);
+
 
         chAtModify.setText("ASF");
         chAtModify.setEnabled(false);
-        chAtModify.setBounds(405, 38, 50, 23);
+        chAtModify.setBounds(750, 95, 65, 25);
         this.add(chAtModify);
 
         chAtHidden.setText("AVI");
         chAtHidden.setEnabled(false);
-        chAtHidden.setBounds(462, 38, 50, 23);
+        chAtHidden.setBounds(830, 95, 65, 25);
         this.add(chAtHidden);
 
         chAtFolder.setText("DIVX");
         chAtFolder.setEnabled(false);
-        chAtFolder.setBounds(520, 38, 60, 23);
+        chAtFolder.setBounds(750, 140, 65, 25);
         this.add(chAtFolder);
 
         chAtEncriptado.setText("FLV");
         chAtEncriptado.setEnabled(false);
         this.add(chAtEncriptado);
-        chAtEncriptado.setBounds(405, 63, 50, 23);
+        chAtEncriptado.setBounds(830, 140, 65, 25);
 
-        chAtReading.setText("MPEG");
-        chAtReading.setEnabled(false);
-        this.add(chAtReading);
-        chAtReading.setBounds(462, 63, 60, 23);
-
-        chAtSistema.setText("WMV");
-        chAtSistema.setEnabled(false);
-        this.add(chAtSistema);
-        chAtSistema.setBounds(520, 63, 60, 23);
-
-        chAtComprimido.setText("MP3");
-        chAtComprimido.setEnabled(false);
-        this.add(chAtComprimido);
-        chAtComprimido.setBounds(405, 88, 50, 23);
-
-        chAtVideo.setText("MP4");
-        chAtVideo.setEnabled(false);
-        this.add(chAtVideo);
-        chAtVideo.setBounds(462, 88, 50, 23);
+        lbImageAdv.setBounds(900, 10, 150, 75);
+        lbImageAdv.setIcon(new ImageIcon(Constantes.getSearchImageAdv()));
+        this.add(lbImageAdv);
 
         cbFrameRate.setModel(new DefaultComboBoxModel<>(new String[]{"All Trame Rate","24", "25", "27", "30", "64"}));
         cbFrameRate.setEnabled(false);
-        cbFrameRate.setBounds(600, 12, 150, 23);
+        cbFrameRate.setBounds(900, 90, 150, 25);
         this.add(cbFrameRate);
 
         cbVideoCode.setModel(new DefaultComboBoxModel<>(new String[]{"All Video Code","H264", "H263", "MPEG4", "WMV1",}));
         cbVideoCode.setEnabled(false);
-        cbVideoCode.setBounds(600, 42, 150, 23);
+        cbVideoCode.setBounds(900, 120, 150, 25);
         this.add(cbVideoCode);
 
         cbResolution.setModel(new DefaultComboBoxModel<>(new String[]{"All Resolution","320 x 240", "480 x 360", "720 x 480", "1280 x 720", "1920 x 1080"}));
         cbResolution.setEnabled(false);
-        cbResolution.setBounds(600, 73, 150, 23);
+        cbResolution.setBounds(900, 150, 150, 25);
         this.add(cbResolution);
 
         chFechas.addChangeListener(new ChangeListener() {
@@ -344,6 +387,12 @@ public class AdvancedPanelSearch extends JPanel {
         chDupContent = new JCheckBox();
         jcbSize = new JComboBox<>();
         jcbSizeDuration = new JComboBox<>();
+
+        lbTitleAdvanced = new JLabel();
+        lbMultimedia = new JLabel();
+        lbImageAdv = new JLabel();
+        lbVideo = new JLabel();
+        lbImageJalaAdv = new JLabel();
 
         this.isFechasEnabled = false;
         this.isAccessEnabled = false;
@@ -433,6 +482,7 @@ public class AdvancedPanelSearch extends JPanel {
             chTerm.setEnabled(isAttributesEnabled);
         }
     }
+//cesar desde aqui
 
     /**
      * Method of the event.

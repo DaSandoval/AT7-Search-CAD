@@ -22,7 +22,7 @@ import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.probe.FFmpegProbeResult;
 import net.bramp.ffmpeg.probe.FFmpegStream;
 import org.apache.commons.lang3.math.Fraction;
-import org.slf4j.LoggerFactory;
+import ucar.nc2.util.log.LoggerFactory;
 import com.google.common.base.MoreObjects;
 import com.google.gson.TypeAdapterFactory;
 import org.slf4j.impl.StaticLoggerBinder;
@@ -58,7 +58,7 @@ public class Search {
     private FFmpegStream stream2;
 
     private String PATH_TO_FFPROBE = "ffmpeg\\bin\\ffprobe.exe";
-    //C:\Users\admin-hp\Documents\FUNDACION-JALA\BUG ADVOCITY\ffmpeg\bin\ffprobe.exe
+
 
     public Search() {
         this.assetList = new ArrayList<>();
@@ -341,7 +341,7 @@ public class Search {
             stream = movie.probe(as.getPath()).getStreams().get(0);
             System.out.println("duracion   : "+stream.duration);
             System.out.println("codec      : "+stream.codec_name);
-            System.out.println("frame rate : "+stream.avg_frame_rate);
+            //System.out.println("frame rate : "+stream.avg_frame_rate);
             System.out.println("frame rate : "+stream);
             System.out.println("resolucion : "+stream.width + " x " + stream.height);
             as.setDuracion(stream.duration);
