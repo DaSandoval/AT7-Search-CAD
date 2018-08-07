@@ -21,7 +21,7 @@ import org.apache.tika.mime.MediaType;
 import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.probe.FFmpegProbeResult;
 import net.bramp.ffmpeg.probe.FFmpegStream;
-import org.apache.commons.lang.math.Fraction;
+import org.apache.commons.lang3.math.Fraction;
 import ucar.nc2.util.log.LoggerFactory;
 import com.google.common.base.MoreObjects;
 import com.google.gson.TypeAdapterFactory;
@@ -58,7 +58,7 @@ public class Search {
     private FFmpegStream stream2;
 
     private String PATH_TO_FFPROBE = "ffmpeg\\bin\\ffprobe.exe";
-    //C:\Users\admin-hp\Documents\FUNDACION-JALA\BUG ADVOCITY\ffmpeg\bin\ffprobe.exe
+
 
     public Search() {
         this.assetList = new ArrayList<>();
@@ -346,7 +346,7 @@ public class Search {
             System.out.println("resolucion : "+stream.width + " x " + stream.height);
             as.setDuracion(stream.duration);
             as.setCodec(stream.codec_name);
-            //as.setFrameRate(this.getFPS(stream.avg_frame_rate.toString()));
+            as.setFrameRate(this.getFPS(stream.avg_frame_rate.toString()));
             as.setResolucion(stream.width + "x" + stream.height);
         } catch (IOException ex) {
         }
