@@ -448,6 +448,87 @@ public class AdvancedPanelSearch extends JPanel {
         }
     }
 
+    public String selectFrame () {
+        String aux = "";
+        if (cbFrameRate.getSelectedIndex() == 0){
+            aux = "TODO";
+        }
+        if (cbFrameRate.getSelectedIndex() == 1){
+            aux = "24";
+        }
+        if (cbFrameRate.getSelectedIndex() == 2){
+            aux = "25";
+        }
+        if (cbFrameRate.getSelectedIndex() == 3){
+            aux = "27";
+        }
+        if (cbFrameRate.getSelectedIndex() == 4){
+            aux = "30";
+        }
+        if (cbFrameRate.getSelectedIndex() == 5){
+            aux = "64";
+        }
+        return aux;
+    }
+
+    public String selectVideo () {
+        String aux = "";
+        if (cbVideoCode.getSelectedIndex() == 0){
+            aux = "TODO";
+        }
+        if (cbVideoCode.getSelectedIndex() == 1){
+            aux = "H264";
+        }
+        if (cbVideoCode.getSelectedIndex() == 2){
+            aux = "H263";
+        }
+        if (cbVideoCode.getSelectedIndex() == 3){
+            aux = "MPEG4";
+        }
+        if (cbVideoCode.getSelectedIndex() == 4){
+            aux = "WMV1";
+        }
+        return aux;
+    }
+
+    public String selectResolution () {
+        String aux = "";
+        if (cbResolution.getSelectedIndex() == 0){
+            aux = "TODO";
+        }
+        if (cbResolution.getSelectedIndex() == 1){
+            aux = "320x240";
+        }
+        if (cbResolution.getSelectedIndex() == 2){
+            aux = "480x360";
+        }
+        if (cbResolution.getSelectedIndex() == 3){
+            aux = "720x480";
+        }
+        if (cbResolution.getSelectedIndex() == 4){
+            aux = "1280x720";
+        }
+        if (cbResolution.getSelectedIndex() == 5){
+            aux = "1920x1080";
+        }
+        return aux;
+    }
+
+    public String getScaleDuration () {
+        String aux = "";
+        if (jcbSizeDuration.getSelectedIndex() == 0){
+            aux = "H";
+        }
+        if (jcbSizeDuration.getSelectedIndex() == 1){
+            aux = "M";
+        }
+        if (jcbSizeDuration.getSelectedIndex() == 2){
+            aux = "S";
+        }
+        return aux;
+    }
+
+
 
     public boolean getFechas() {
         return chFechas.isSelected();
@@ -1172,5 +1253,35 @@ public class AdvancedPanelSearch extends JPanel {
     public void setCbResolution(JComboBox<String> cbResolution) {
         this.cbResolution = cbResolution;
     }
+
+
+    public boolean isFechasEnabled() {
+        return isFechasEnabled;
+    }
+
+    public boolean isAccessEnabled() {
+        return isAccessEnabled;
+    }
+
+    public boolean isCreationEnabled() {
+        return isCreationEnabled;
+    }
+
+    public boolean isTermEnabled() {
+        return isTermEnabled;
+    }
+
+    public boolean isSizeEnabled() {
+        return isSizeEnabled;
+    }
+
+    public boolean isAttributesEnabled() {
+        return isAttributesEnabled;
+    }
+
+    public boolean isDuplicatesEnabled() {
+        return isDuplicatesEnabled;
+    }
+
 }
 

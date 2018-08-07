@@ -38,6 +38,7 @@ public class Converter {
      * @return the new size in byte.
      */
     public long convertSize(int size, String capacity) {
+
         long convert = 0;
         if (capacity.equalsIgnoreCase(GIGAS)) {
             convert = (long) (size * Math.pow(SIZEFILE, 3));
@@ -48,6 +49,7 @@ public class Converter {
         if (capacity.equalsIgnoreCase(KILOBYTS)) {
             convert = (long) (size * Math.pow(SIZEFILE, 1));
         }
+
         return convert;
     }
 }

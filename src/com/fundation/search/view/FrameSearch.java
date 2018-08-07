@@ -15,6 +15,7 @@ package com.fundation.search.view;
 
 
 import com.fundation.search.controller.Controller;
+import com.fundation.search.model.Asset;
 import com.fundation.search.model.AssetFile;
 
 import java.awt.Component;
@@ -122,6 +123,7 @@ public class FrameSearch extends JFrame {
         tmLocation.addColumn("Date Creation");
         tmLocation.addColumn("Date Access");
         tmLocation.addColumn("Dare Modification ");
+        tmLocation.addColumn("Multimedia");
         tbLocation.setModel(tmLocation);
         scLocation.setViewportView(tbLocation);
         getContentPane().add(scLocation);
@@ -136,7 +138,7 @@ public class FrameSearch extends JFrame {
      * @param img  value of the imagen.
      * @param files class AssetFile.
      */
-    public void addRowTable(ImageIcon img, AssetFile files) {
+    public void addRowTable(ImageIcon img, Asset files) {
         tmLocation.addRow(
                 new Object[]{
                         img,
@@ -148,7 +150,7 @@ public class FrameSearch extends JFrame {
                         files.isRealOnline(),
                         files.getDateCreacion().toString(),
                         files.getDateAccess().toString(),
-                        files.getDateModi().toString()
+                        files.getDateModi().toString(),files.isMultimedia()
                 });
         updateRowHeights();
     }

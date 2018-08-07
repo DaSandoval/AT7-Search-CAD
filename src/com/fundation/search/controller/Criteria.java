@@ -18,6 +18,7 @@ package com.fundation.search.controller;
 
 import java.io.File;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 /**
  * This class Search.
@@ -120,6 +121,21 @@ public class Criteria {
      */
     private boolean checkContent;
 
+    private boolean checkMulti;
+
+    private String frameRate;
+
+    private String videoCode;
+
+    private String resolution;
+
+    private ArrayList<String> formatsMulti;
+
+    private String scale;
+
+    private String operator;
+
+    private double cantMulti;
     /**
      * Method for clean
      */
@@ -147,6 +163,23 @@ public class Criteria {
         this.finModFile = new Timestamp(System.currentTimeMillis());
         this.content = "";
         this.checkContent = false;
+        this.checkMulti = false;
+        this.formatsMulti = new ArrayList<>();
+        this.frameRate = "";
+        this.resolution = "";
+        this.videoCode = "";
+        this.scale = "";
+        this.operator = "";
+        this.cantMulti = 0.0;
+
+    }
+
+    public void addItem (String value) {
+        formatsMulti.add(value);
+    }
+
+    public void  clearList () {
+        formatsMulti.clear();
     }
 
     public Criteria() {
@@ -552,6 +585,69 @@ public class Criteria {
         this.checkContent = checkContent;
     }
 
+    public boolean isCheckMulti() {
+        return checkMulti;
+    }
+
+    public void setCheckMulti(boolean checkMulti) {
+        this.checkMulti = checkMulti;
+    }
+
+    public ArrayList<String> getFormatsMulti() {
+        return formatsMulti;
+    }
+
+    public void setFormatsMulti(ArrayList<String> formatsMulti) {
+        this.formatsMulti = formatsMulti;
+    }
+
+    public String getFrameRate() {
+        return frameRate;
+    }
+
+    public void setFrameRate(String frameRate) {
+        this.frameRate = frameRate;
+    }
+
+    public String getVideoCode() {
+        return videoCode;
+    }
+
+    public void setVideoCode(String videoCode) {
+        this.videoCode = videoCode;
+    }
+
+    public String getResolution() {
+        return resolution;
+    }
+
+    public void setResolution(String resolution) {
+        this.resolution = resolution;
+    }
+
+    public String getScale() {
+        return scale;
+    }
+
+    public void setScale(String scale) {
+        this.scale = scale;
+    }
+
+    public String getOperator() {
+        return operator;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
+
+    public double getCantMulti() {
+        return cantMulti;
+    }
+
+    public void setCantMulti(double cantMulti) {
+        this.cantMulti = cantMulti;
+    }
 
 }
 
