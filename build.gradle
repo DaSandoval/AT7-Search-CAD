@@ -11,10 +11,32 @@ repositories {
     mavenCentral()
     // https://mvnrepository.com/artifact/com.toedter/jcalendar
     // https://mvnrepository.com/artifact/log4j/log4j
+    // https://mvnrepository.com/artifact/org.apache.tika/tika-core
+    // https://mvnrepository.com/artifact/org.apache.tika/tika-parsers
+    // https://mvnrepository.com/artifact/org.apache.tika/tika-xmp
+    // https://mvnrepository.com/artifact/org.apache.tika/tika
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    // https://mvnrepository.com/artifact/net.bramp.ffmpeg/ffmpeg
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-math3
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    // https://mvnrepository.com/artifact/com.google.guava/guava
+
+
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'com.toedter', name: 'jcalendar', version: '1.4'
-    compile group: 'log4j', name: 'log4j', version: '1.2.16'
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
+    compile group: 'org.apache.tika', name: 'tika-core', version: '1.18'
+    compile group: 'org.apache.tika', name: 'tika-parsers', version: '1.18'
+    compile group: 'org.apache.tika', name: 'tika-xmp', version: '1.18'
+    compile group: 'org.apache.tika', name: 'tika', version: '1.18', ext: 'pom'
+    testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    compile group: 'net.bramp.ffmpeg', name: 'ffmpeg', version: '0.6.2'
+    compile group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
+    compile group: 'com.google.guava', name: 'guava', version: '18.0'
 }

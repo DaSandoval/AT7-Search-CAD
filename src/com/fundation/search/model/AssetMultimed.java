@@ -30,4 +30,51 @@ public class AssetMultimed extends Asset {
     public AssetMultimed() {
         super();
     }
+
+    @Override
+    public String toString() {
+        return "AssetMultimed{" +
+                "duracion=" + duracion +
+                ", codec='" + codec + '\'' +
+                ", frameRate='" + frameRate + '\'' +
+                ", resolucion='" + resolucion + '\'' +
+                '}';
+    }
+
+    private double duracion;
+    private String codec;
+    private String frameRate;
+    private String resolucion;
+
+    public double getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(double duracion) {
+        this.duracion = duracion;
+    }
+
+    public String getCodec() {
+        return codec;
+    }
+
+    public void setCodec(String codec) {
+        this.codec = codec;
+    }
+
+    public String getFrameRate() {
+        return frameRate;
+    }
+
+    public void setFrameRate(String frameRate) {
+        this.frameRate = frameRate;
+    }
+
+    public String getResolucion() {
+        return resolucion;
+    }
+
+    public void setResolucion(String resolucion) {
+        this.resolucion = resolucion;
+    }
 }

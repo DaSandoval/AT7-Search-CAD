@@ -36,6 +36,7 @@ public class Asset {
     private Timestamp dateCreacion;
     private Timestamp dateModi;
     private Timestamp dateAccess;
+    private boolean multimedia;
 
     /**
      * Constructor of the class.
@@ -51,7 +52,7 @@ public class Asset {
         this.dateAccess = new Timestamp(System.currentTimeMillis());
         this.dateCreacion = new Timestamp(System.currentTimeMillis());
         this.dateModi = new Timestamp(System.currentTimeMillis());
-
+        this.multimedia = false;
     }
 
     /**
@@ -231,5 +232,40 @@ public class Asset {
     public void setDateAccess(Timestamp dateAccess) {
         this.dateAccess = dateAccess;
     }
+
+
+    @Override
+    public String toString() {
+        return "Asset{" +
+                "path='" + path + '\'' +
+                ", fileName='" + fileName + '\'' +
+                ", size=" + size +
+                ", extent='" + extent + '\'' +
+                ", hidden=" + hidden +
+                ", owner='" + owner + '\'' +
+                ", realOnline=" + realOnline +
+                ", dateCreacion=" + dateCreacion +
+                ", dateModi=" + dateModi +
+                ", dateAccess=" + dateAccess +
+                ", multimedia=" + multimedia +
+                '}';
+    }
+
+    /**
+     *
+     * @return Flag.
+     */
+    public boolean isMultimedia() {
+        return multimedia;
+    }
+
+    /**
+     *
+     * @param multimedia value of check.
+     */
+    public void setMultimedia(boolean multimedia) {
+        this.multimedia = multimedia;
+    }
+
 
 }
