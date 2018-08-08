@@ -25,7 +25,11 @@ import net.bramp.ffmpeg.probe.FFmpegProbeResult;
 import net.bramp.ffmpeg.probe.FFmpegStream;
 import org.apache.commons.lang3.math.Fraction;
 
+
 import org.slf4j.LoggerFactory;
+
+import ucar.nc2.util.log.LoggerFactory;
+
 import com.google.common.base.MoreObjects;
 import com.google.gson.TypeAdapterFactory;
 import org.slf4j.impl.StaticLoggerBinder;
@@ -474,6 +478,7 @@ public class Search {
     public void getMultimediaData(AssetMultimed as) {
         log.info("getMultimediaData: get date of multimedia");
         try {
+
             log.debug("getMultimediaData: fill in date AssetMultimed");
             stream = movie.probe(as.getPath()).getStreams().get(0);/*
             System.out.println("duracion   : " + stream.duration);
@@ -481,6 +486,14 @@ public class Search {
             System.out.println("frame rate : " + stream.avg_frame_rate);
             System.out.println("frame rate : " + stream);
             System.out.println("resolucion : " + stream.width + " x " + stream.height);*/
+
+            stream = movie.probe(as.getPath()).getStreams().get(0);
+            System.out.println("duracion   : "+stream.duration);
+            System.out.println("codec      : "+stream.codec_name);
+            //System.out.println("frame rate : "+stream.avg_frame_rate);
+            System.out.println("frame rate : "+stream);
+            System.out.println("resolucion : "+stream.width + " x " + stream.height);
+
             as.setDuracion(stream.duration);
             as.setCodec(stream.codec_name);
             as.setFrameRate(this.getFPS(stream.avg_frame_rate.toString()));

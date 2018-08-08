@@ -15,17 +15,23 @@ package com.fundation.search.view;
 
 
 import com.fundation.search.controller.Controller;
+import com.fundation.search.view.util.Constantes;
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.button.StandardButtonShaper;
+import org.jvnet.substance.utils.SubstanceConstants;
 
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.ImageIcon;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileSystemView;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * This class PanelSearch can be FileResult.
@@ -79,9 +85,19 @@ public class PanelSearch extends JPanel {
     private boolean isContentEnabled;
 
     /**
+     * Definition of imagen
+     */
+    private  JLabel lbImage;
+    private JLabel lbTitle;
+    private JLabel lbImageTxt;
+    private JLabel lbImagePdf;
+    private JLabel lbImageJala;
+    /**
      * Method for the builder
      */
     public PanelSearch() {
+
+        //icono = new ImageIcon(image.getImage().getScaledInstance(btSearch.getWidth(), btSearch.getHeight(),Image.SCALE_DEFAULT));
         initComponents();
         settings();
     }
@@ -91,11 +107,12 @@ public class PanelSearch extends JPanel {
      *
      * @param cn
      */
-    public PanelSearch(Controller cn) {
+  /*  public PanelSearch(Controller cn) {
+
         initComponents();
         settings();
         controller = cn;
-    }
+    }*/
 
     /**
      * Method of the option.
@@ -104,125 +121,159 @@ public class PanelSearch extends JPanel {
         this.setBorder(BorderFactory.createEtchedBorder());
         this.setLayout(null);
 
-        txSearch.setBounds(90, 13, 210, 20);
-        this.add(txSearch);
+        lbImageJala.setBounds(0, 0, 150, 45);
+        lbImageJala.setIcon(new ImageIcon(Constantes.getSearchImageJala()));
+        this.add(lbImageJala);
 
-        lbSearch.setHorizontalAlignment(SwingConstants.RIGHT);
+        lbTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        lbTitle.setText("SEARCH BASIC");
+        lbTitle.setFont(new Font("Serif", Font.PLAIN, 20));
+        lbTitle.setBounds(130, 15, 203, 24);
+        lbTitle.setForeground(Color.decode("#074692"));
+        this.add(lbTitle);
+
+        //lbSearch.setHorizontalAlignment(SwingConstants.RIGHT);
         lbSearch.setText("Search:");
-        lbSearch.setBounds(12, 16, 53, 14);
+        lbSearch.setBounds(12, 50, 53, 25);
+        lbSearch.setFont(new Font("Serif", Font.PLAIN, 16));
+        lbSearch.setForeground(Color.decode("#010a0c"));
         this.add(lbSearch);
 
+        txSearch.setBounds(90, 50, 290, 25);
+        this.add(txSearch);
 
-        lbLocation.setHorizontalAlignment(SwingConstants.RIGHT);
         lbLocation.setText("Search in:");
-        lbLocation.setBounds(12, 42, 70, 14);
+        lbLocation.setBounds(12, 80, 70, 25);
+        lbLocation.setFont(new Font("Serif", Font.PLAIN, 16));
+        lbLocation.setForeground(Color.decode("#010a0c"));
         this.add(lbLocation);
 
         txLocation.setEditable(false);
         txLocation.setBackground(new Color(255, 255, 255));
         txLocation.setText("");
-        txLocation.setBounds(90, 39, 210, 20);
+        txLocation.setBounds(90, 80, 290, 25);
         this.add(txLocation);
+
+        chFolder.setText("Folder");
+        chFolder.setEnabled(true);
+        chFolder.setBounds(12, 115, 70, 23);
+        this.add(chFolder);
 
         chFileHidden.setText("File Hidden");
         chFileHidden.setEnabled(true);
-        chFileHidden.setBounds(310, 12, 90, 23);
+        chFileHidden.setBounds(80, 115, 90, 23);
         this.add(chFileHidden);
+
+        chKeySensitive.setText("Key Sensitive");
+        chKeySensitive.setEnabled(true);
+        chKeySensitive.setBounds(180, 115, 110, 23);
+        this.add(chKeySensitive);
+
+        chReadOnly.setText("Read Only");
+        chReadOnly.setEnabled(true);
+        chReadOnly.setBounds(300, 115, 100, 23);
+        this.add(chReadOnly);
+
+        btSearch.setText("Search");
+        btSearch.setBounds(400, 50, 120, 25);
+        this.btSearch.putClientProperty( SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        btSearch.setIcon(new ImageIcon(Constantes.getSearchButton()));
+        this.add(btSearch);
+
+        btSelect.setText("Select File");
+        btSelect.setBounds(400, 80, 120, 25);
+        this.btSelect.putClientProperty( SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        this.add(btSelect);
+
+        lbImage.setBounds(530, 5, 230, 100);
+        lbImage.setIcon(new ImageIcon(Constantes.getSearch()));
+        this.add(lbImage);
 
         chContent.setText("Content:");
         chContent.setEnabled(true);
-        chContent.setBounds(310, 72, 75, 23);
+        chContent.setBounds(530, 110, 82, 25);
+        chContent.setFont(new Font("Serif", Font.PLAIN, 14));
+        chContent.setForeground(Color.decode("#010a0c"));
         this.add(chContent);
 
         txtContent.setEnabled(false);
         txtContent.setBackground(new Color(255, 255, 255));
         txtContent.setText("");
-        txtContent.setBounds(395, 72, 100, 20);
+        txtContent.setBounds(610, 110, 150, 25);
         this.add(txtContent);
-
-        chFolder.setText("Folder");
-        chFolder.setEnabled(true);
-        chFolder.setBounds(310, 42, 90, 23);
-        this.add(chFolder);
 
         chOwner.setText("Owner:");
         chOwner.setEnabled(true);
-        chOwner.setBounds(310, 102, 75, 23);
+        chOwner.setBounds(530, 150, 75, 25);
+        chOwner.setFont(new Font("Serif", Font.PLAIN, 14));
+        chOwner.setForeground(Color.decode("#010a0c"));
         this.add(chOwner);
 
         txtOwner.setEnabled(false);
         txtOwner.setBackground(new Color(255, 255, 255));
         txtOwner.setText("");
-        txtOwner.setBounds(395, 102, 100, 20);
+        txtOwner.setBounds(610, 150, 150, 25);
         this.add(txtOwner);
 
-        chKeySensitive.setText("Key Sensitive");
-        chKeySensitive.setEnabled(true);
-        chKeySensitive.setBounds(400, 12, 110, 23);
-        this.add(chKeySensitive);
-
-        chReadOnly.setText("Read Only");
-        chReadOnly.setEnabled(true);
-        chReadOnly.setBounds(400, 42, 100, 23);
-        this.add(chReadOnly);
-
-        chSearchText.setText("Search Extend");
-        chSearchText.setBounds(530, 12, 120, 23);
+        chSearchText.setText("Search Ext");
+        chSearchText.setBounds(800, 12, 120, 25);
+        chSearchText.setFont(new Font("Serif", Font.PLAIN, 14));
+        chSearchText.setForeground(Color.decode("#010a0c"));
         this.add(chSearchText);
 
         txSearchText.setEnabled(false);
         txSearchText.setBackground(new Color(255, 255, 255));
         txSearchText.setText("");
-        txSearchText.setBounds(650, 12, 80, 20);
+        txSearchText.setBounds(930, 12, 90, 25);
         this.add(txSearchText);
 
         chComplete.setText(".pdf");
         chComplete.setEnabled(false);
-        chComplete.setBounds(530, 38, 60, 23);
+        chComplete.setBounds(800, 50, 60, 25);
         this.add(chComplete);
 
         chMYmi.setText(".doc");
         chMYmi.setEnabled(false);
-        chMYmi.setBounds(600, 38, 60, 23);
+        chMYmi.setBounds(880, 50, 60, 25);
         this.add(chMYmi);
 
         chUTF.setText(".exe");
         chUTF.setEnabled(false);
-        chUTF.setBounds(670, 38, 60, 23);
+        chUTF.setBounds(960, 50, 60, 25);
         this.add(chUTF);
 
         chASCII.setText(".gif");
         chASCII.setEnabled(false);
-        chASCII.setBounds(530, 65, 60, 23);
+        chASCII.setBounds(800, 80, 60, 25);
         this.add(chASCII);
 
         chRegex.setText(".ppt");
         chRegex.setEnabled(false);
-        chRegex.setBounds(600, 65, 60, 23);
+        chRegex.setBounds(880, 80, 60, 25);
         this.add(chRegex);
 
         chNoExists.setText(".log");
         chNoExists.setEnabled(false);
-        chNoExists.setBounds(670, 65, 60, 23);
+        chNoExists.setBounds(960, 80, 60, 25);
         this.add(chNoExists);
 
         chUnicode.setText(".jpg");
         chUnicode.setEnabled(false);
-        chUnicode.setBounds(530, 92, 60, 23);
+        chUnicode.setBounds(800, 110, 60, 25);
         this.add(chUnicode);
 
         chHexa.setText(".rar");
         chHexa.setEnabled(false);
-        chHexa.setBounds(600, 92, 60, 23);
+        chHexa.setBounds(880, 110, 60, 25);
         this.add(chHexa);
 
-        btSearch.setText("Search");
-        btSearch.setBounds(90, 65, 80, 48);
-        this.add(btSearch);
+        lbImageTxt.setBounds(1030, 120, 50, 60);
+        lbImageTxt.setIcon(new ImageIcon(Constantes.getSearchImageTxt()));
+        this.add(lbImageTxt);
 
-        btSelect.setText("Select File");
-        btSelect.setBounds(180, 65, 120, 48);
-        this.add(btSelect);
+        lbImagePdf.setBounds(970, 130, 40, 50);
+        lbImagePdf.setIcon(new ImageIcon(Constantes.getSearchImagePdf()));
+        this.add(lbImagePdf);
 
         chSearchText.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent evt) {
@@ -280,6 +331,12 @@ public class PanelSearch extends JPanel {
         this.isSearchTxEnabled = false;
         this.isOwnerEnabled = false;
         this.isContentEnabled = false;
+
+        lbImage = new JLabel();
+        lbTitle = new JLabel();
+        lbImageTxt = new JLabel();
+        lbImagePdf = new JLabel();
+        lbImageJala = new JLabel();
     }
 
     /**
