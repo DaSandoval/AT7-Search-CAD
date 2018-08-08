@@ -16,6 +16,8 @@
 
 package com.fundation.search.controller;
 
+import org.apache.log4j.Logger;
+
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ import java.util.ArrayList;
  */
 public class Criteria {
 
+    final static Logger log = Logger.getLogger(Criteria.class);
     /**
      * folderNew of criteria.
      */
@@ -120,26 +123,25 @@ public class Criteria {
      * check content of criteria.
      */
     private boolean checkContent;
-
     private boolean checkMulti;
 
+    /**
+     * Atributes String.
+     */
     private String frameRate;
-
     private String videoCode;
-
     private String resolution;
-
-    private ArrayList<String> formatsMulti;
-
     private String scale;
-
     private String operator;
 
     private double cantMulti;
+    private ArrayList<String> formatsMulti;
+
     /**
      * Method for clean
      */
     public void clean() {
+        log.info("Criteria - clean: Start");
         this.folderNew = null;
         this.path = "";
         this.fileName = "";
@@ -171,15 +173,19 @@ public class Criteria {
         this.scale = "";
         this.operator = "";
         this.cantMulti = 0.0;
-
+        log.info("Criteria - clean: End");
     }
 
-    public void addItem (String value) {
+    public void addItem(String value) {
+        log.info("Criteria - addItem: Start"+ value);
         formatsMulti.add(value);
+        log.info("Criteria - addItem: End"+ value);
     }
 
-    public void  clearList () {
+    public void clearList() {
+        log.info("Criteria - clearList: Start");
         formatsMulti.clear();
+        log.info("Criteria - clearList: End/");
     }
 
     public Criteria() {
@@ -218,433 +224,514 @@ public class Criteria {
     }
 
     /**
-     * method for the set folder new
+     * method for the set folder new.
      *
-     * @param folderNew
+     * @param folderNew File.
      */
     public void setFolderNew(File folderNew) {
         this.folderNew = folderNew;
     }
 
     /**
-     * method for the get path
+     * method for the get path.
      *
-     * @return a String
+     * @return a String.
      */
     public String getPath() {
         return path;
     }
 
     /*
-     * method for the get path
+     * method for the get path.
      */
     public void setPath(String path) {
         this.path = path;
     }
 
     /**
-     * method for the get File name
+     * method for the get File name.
      *
-     * @return String
+     * @return String.
      */
     public String getFileName() {
         return fileName;
     }
 
     /**
-     * method for the get  fileName
+     * method for the get  fileName.
      */
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
 
     /**
-     * method for the get hidden
+     * method for the get hidden.
      *
-     * @return a boolean
+     * @return a boolean.
      */
     public boolean isHidden() {
         return hidden;
     }
 
     /**
-     * method for the set Hidden
+     * method for the set Hidden.
      */
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
     }
 
     /**
-     * method for the get folder
+     * method for the get folder.
      *
-     * @return a boolean
+     * @return a boolean.
      */
     public boolean isFolder() {
         return folder;
     }
 
     /**
-     * method for the set folder
+     * method for the set folder.
      */
     public void setFolder(boolean folder) {
         this.folder = folder;
     }
 
     /**
-     * method for the get extension
+     * method for the get extension.
      *
-     * @return
+     * @return string.
      */
     public String getExtension() {
         return extension;
     }
 
     /**
-     * method for the set extension
+     * method for the set extension.
      *
-     * @param extension
+     * @param extension string.
      */
     public void setExtension(String extension) {
         this.extension = extension;
     }
 
     /**
-     * method for the get owner
+     * method for the get owner.
      *
-     * @return String
+     * @return String.
      */
     public String getOwner() {
         return owner;
     }
 
     /**
-     * method for the set owner
+     * method for the set owner.
      */
     public void setOwner(String owner) {
         this.owner = owner;
     }
 
     /**
-     * method for the get size
+     * method for the get size.
      *
-     * @return a double
+     * @return a double.
      */
     public double getSize() {
         return size;
     }
 
     /**
-     * method for the set Size
+     * method for the set Size.
      */
     public void setSize(long size) {
         this.size = size;
     }
 
     /**
-     * method for the get read only
+     * method for the get read only.
      *
-     * @return boolean
+     * @return boolean.
      */
     public boolean isReadOnly() {
         return readOnly;
     }
 
     /**
-     * method for the  set read only
+     * method for the  set read only.
      */
     public void setReadOnly(boolean readOnly) {
         this.readOnly = readOnly;
     }
 
     /**
-     * method for the get value
+     * method for the get value.
      *
-     * @return boolean
+     * @return boolean.
      */
     public boolean isKeySensitive() {
         return keySensitive;
     }
 
     /**
-     * method for the  set
+     * method for the  set.
      */
     public void setKeySensitive(boolean keySensitive) {
         this.keySensitive = keySensitive;
     }
 
     /**
-     * method for the  set
+     * method for the  set.
      */
     public void setSize(double size) {
         this.size = size;
     }
 
     /**
-     * method for the get value
+     * method for the get value.
      *
-     * @return boolean
+     * @return boolean.
      */
     public boolean isCheckSize() {
         return checkSize;
     }
 
     /**
-     * method for the  set
+     * method for the  set.
      */
     public void setCheckSize(boolean checkSize) {
         this.checkSize = checkSize;
     }
 
     /**
-     * method for the get value
+     * method for the get value.
      *
-     * @return boolean
+     * @return boolean.
      */
     public String getSignSize() {
         return signSize;
     }
 
     /**
-     * method for the  set
+     * method for the  set.
      */
     public void setSignSize(String signSize) {
         this.signSize = signSize;
     }
 
     /**
-     * method for the get value
+     * method for the get value.
      *
-     * @return boolean
+     * @return boolean.
      */
     public String getType() {
         return TypeSize;
     }
 
     /**
-     * method for the  set
+     * method for the  set.
      */
     public void setType(String type) {
         TypeSize = type;
     }
 
     /**
-     * method for the  set
+     * method for the  set.
      */
     public boolean isCheckOwner() {
         return checkOwner;
     }
 
     /**
-     * method for the  set
+     * method for the  set.
      */
     public void setCheckOwner(boolean checkOwner) {
         this.checkOwner = checkOwner;
     }
 
     /**
-     * method for the get value
+     * method for the get value.
      *
-     * @return boolean
+     * @return boolean.
      */
     public String getTypeSize() {
         return TypeSize;
     }
 
     /**
-     * method for the  set
+     * method for the  set.
      */
     public void setTypeSize(String typeSize) {
         TypeSize = typeSize;
     }
 
     /**
-     * method for the get value
+     * method for the get value.
      *
-     * @return boolean
+     * @return boolean.
      */
     public Timestamp getIniCreationFile() {
         return iniCreationFile;
     }
 
     /**
-     * method for the  set
+     * method for the  set.
      */
     public void setIniCreationFile(Timestamp iniCreationFile) {
         this.iniCreationFile = iniCreationFile;
     }
 
     /**
-     * method for the get value
+     * method for the get value.
      *
-     * @return timesTamp
+     * @return timesTamp.
      */
     public Timestamp getFinCreationFile() {
         return finCreationFile;
     }
 
     /**
-     * method for the  set
+     * method for the  set.
      */
     public void setFinCreationFile(Timestamp finCreationFile) {
         this.finCreationFile = finCreationFile;
     }
 
     /**
-     * method for the get value
+     * method for the get value.
      *
-     * @return timesTamp
+     * @return timesTamp.
      */
     public Timestamp getIniModFile() {
         return iniModFile;
     }
 
     /**
-     * method for the  set
+     * method for the  set.
      */
     public void setIniModFile(Timestamp iniModFile) {
         this.iniModFile = iniModFile;
     }
 
     /**
-     * method for the get value
+     * method for the get value.
      *
-     * @return timesTamp
+     * @return timesTamp.
      */
     public Timestamp getFinModFile() {
         return finModFile;
     }
 
     /**
-     * method for the  set
+     * method for the  set.
      */
     public void setFinModFile(Timestamp finModFile) {
         this.finModFile = finModFile;
     }
 
     /**
-     * method for the get value
+     * method for the get value.
      *
-     * @return timesTamp
+     * @return timesTamp.
      */
     public Timestamp getIniAccessFile() {
         return iniAccessFile;
     }
 
     /**
-     * method for the  set
+     * Method for the setIniAccessFile.
+     *
+     * @param iniAccessFile timestamp.
      */
     public void setIniAccessFile(Timestamp iniAccessFile) {
         this.iniAccessFile = iniAccessFile;
     }
 
     /**
-     * method for the get value
+     * method for the get value.
      *
-     * @return timesTamp
+     * @return timesTamp.
      */
     public Timestamp getFinAccessFile() {
         return finAccessFile;
     }
 
     /**
-     * method for the  set
+     * method for the  set.
      */
     public void setFinAccessFile(Timestamp finAccessFile) {
         this.finAccessFile = finAccessFile;
     }
 
     /**
-     * method for the get value
+     * method for the get value.
      *
-     * @return String
+     * @return String.
      */
     public String getContent() {
         return content;
     }
 
     /**
-     * method for the  set
+     * method for the  set.
      */
     public void setContent(String content) {
         this.content = content;
     }
 
     /**
-     * method for the get value
+     * method for the get value.
      *
-     * @return boolean
+     * @return boolean.
      */
     public boolean isCheckContent() {
         return checkContent;
     }
 
     /**
-     * method for the  set
+     * Method for the  set.
      */
     public void setCheckContent(boolean checkContent) {
         this.checkContent = checkContent;
     }
 
+    /**
+     * Method for the isCheckMulti
+     *
+     * @return boolean.
+     */
+
     public boolean isCheckMulti() {
         return checkMulti;
     }
 
+    /**
+     * Method for the setCheckMult.
+     */
     public void setCheckMulti(boolean checkMulti) {
         this.checkMulti = checkMulti;
     }
 
+    /**
+     * Method for the getFormatsMulti.
+     *
+     * @return Arraylist.
+     */
     public ArrayList<String> getFormatsMulti() {
         return formatsMulti;
     }
 
+    /**
+     * Method for the setFormatsMulti.
+     *
+     * @param formatsMulti Arraylist.
+     */
     public void setFormatsMulti(ArrayList<String> formatsMulti) {
         this.formatsMulti = formatsMulti;
     }
 
+    /**
+     * Method for the getframeRate.
+     *
+     * @return String.
+     */
     public String getFrameRate() {
         return frameRate;
     }
 
+    /**
+     * Method setFrameRate.
+     *
+     * @param frameRate string.
+     */
     public void setFrameRate(String frameRate) {
         this.frameRate = frameRate;
     }
 
+    /**
+     * Method for getVideoCode.
+     *
+     * @return String.
+     */
     public String getVideoCode() {
         return videoCode;
     }
 
+    /**
+     * Method for the setVideoCode.
+     *
+     * @param videoCode string.
+     */
     public void setVideoCode(String videoCode) {
         this.videoCode = videoCode;
     }
 
+    /**
+     * Method for the getResolution.
+     *
+     * @return string.
+     */
     public String getResolution() {
         return resolution;
     }
 
+    /**
+     * Method for the setResolution.
+     *
+     * @param resolution string.
+     */
     public void setResolution(String resolution) {
         this.resolution = resolution;
     }
 
+    /**
+     * Method for the getScale.
+     *
+     * @return string.
+     */
     public String getScale() {
         return scale;
     }
 
+    /**
+     * Method for the setScale.
+     *
+     * @param scale string.
+     */
     public void setScale(String scale) {
         this.scale = scale;
     }
 
+    /**
+     * Method for the getOperator.
+     *
+     * @return string.
+     */
     public String getOperator() {
         return operator;
     }
 
+    /**
+     * Method for the setOperator.
+     *
+     * @param operator string.
+     */
     public void setOperator(String operator) {
         this.operator = operator;
     }
 
+    /**
+     * Method for the getCantMulti.
+     *
+     * @return double.
+     */
     public double getCantMulti() {
         return cantMulti;
     }
 
+    /**
+     * Method for the setCantMulti.
+     *
+     * @param cantMulti double.
+     */
     public void setCantMulti(double cantMulti) {
         this.cantMulti = cantMulti;
     }
