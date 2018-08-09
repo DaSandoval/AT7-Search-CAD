@@ -13,6 +13,8 @@
  */
 package com.fundation.search.model;
 
+import com.fundation.search.dataBase.SearchQuery;
+import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.apache.tika.config.TikaConfig;
 import org.apache.tika.detect.Detector;
@@ -28,6 +30,8 @@ import org.apache.commons.lang3.math.Fraction;
 
 import org.slf4j.LoggerFactory;
 
+//import org.slf4j.LoggerFactory;
+
 
 
 import com.google.common.base.MoreObjects;
@@ -36,7 +40,7 @@ import org.slf4j.impl.StaticLoggerBinder;
 
 import com.fundation.search.controller.Criteria;
 import com.fundation.search.utils.LoggerWraper;
-
+import org.apache.log4j.RollingFileAppender;
 
 import java.io.File;
 import java.io.IOException;
@@ -91,6 +95,7 @@ public class Search {
         log.info("searchPath: Start " + inputData);
         File folder = new File(inputData.getPath());
         File[] listFolder = folder.listFiles();
+        gsonCriterio(inputData);
         assetList.clear();
         for (File aListFolder : listFolder) {
             log.debug("searchPath: for each " + aListFolder.getPath());
@@ -683,5 +688,15 @@ public class Search {
     public List<Asset> getResult() {
         log.info("getResult: return of AssetList");
         return assetList;
+    }
+
+    public void gsonCriterio( Criteria criteria) {
+
+        Gson criteriaGson = new Gson();
+        String criteriaString  = criteriaGson.toJson(criteria);
+        System.out.println(criteriaString);
+        SearchQuery searchQuery = new SearchQuery();
+        searchQuery.insertCriteria(criteriaString);
+
     }
 }

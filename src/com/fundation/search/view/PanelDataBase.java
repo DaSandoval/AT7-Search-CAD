@@ -75,7 +75,7 @@ public class PanelDataBase extends JPanel {
         txBdata.setBounds(300, 80, 210, 30);
         this.add(txBdata);
 
-        btSeve.setText("Seve");
+        btSeve.setText("Save");
         btSeve.setBounds(300, 120, 95, 40);
         this.btSeve.putClientProperty( SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         this.add(btSeve);
