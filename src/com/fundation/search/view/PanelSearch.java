@@ -366,6 +366,8 @@ public class PanelSearch extends JPanel {
      */
     private void btSelectMouseClicked(MouseEvent evt) {
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        javax.swing.Action newFolder = jfc.getActionMap().get("New Folder");
+        newFolder.setEnabled(false);
         jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int returnValue = jfc.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
@@ -878,11 +880,11 @@ public class PanelSearch extends JPanel {
     public ArrayList<String> getExtencion() {
         ArrayList<String> result = new ArrayList<>();
         if (chSearchText.isSelected()) {
-            if (txSearchText.getText() != "") {
+            if (!txSearchText.getText().equals("")) {
                 result.add(txSearchText.getText());
             }
             if (chASCII.isSelected()) {
-                result.add("bmp");
+                result.add("gif");
             }
             if (chComplete.isSelected()) {
                 result.add("pdf");
@@ -894,18 +896,21 @@ public class PanelSearch extends JPanel {
                 result.add("exe");
             }
             if (chRegex.isSelected()) {
-                result.add("gif");
+                result.add("ppt");
             }
             if (chNoExists.isSelected()) {
                 result.add("log");
             }
             if (chUnicode.isSelected()) {
-                result.add("ppt");
+                result.add("jpg");
             }
             if (chHexa.isSelected()) {
                 result.add("rar");
             }
 
+        }
+        for (String i : result ) {
+            System.out.println("extension vista"+ i);
         }
         return result;
     }

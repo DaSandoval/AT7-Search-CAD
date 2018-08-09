@@ -127,26 +127,30 @@ public class Controller {
                 criteria.setSize(Double.parseDouble(frameSearch.getPnAdvanced().getTxSize().getText()));
                 fileList = search.searchSze(fileList, criteria);
             }
-            if (frameSearch.getPnAdvanced().getChCreation().isSelected()) {
-                log.debug("getAtribut: check date creation " + frameSearch.getPnAdvanced().getChCreation().isSelected());
-                criteria.setIniCreationFile(new Timestamp(frameSearch.getPnAdvanced().getDateCreationOne().getDate().getTime()));
-                criteria.setFinCreationFile(new Timestamp(frameSearch.getPnAdvanced().getDateCreationTwo().getDate().getTime()));
-                fileList = search.searchDateCreation(fileList, criteria);
+            if ((frameSearch.getPnAdvanced().getChCreation().isSelected()) | (frameSearch.getPnAdvanced().getChFechas().isSelected()) | (frameSearch.getPnAdvanced().getChAccess().isSelected())) {
+                ArrayList<Asset> aux = (ArrayList<Asset>) fileList.clone();
+                if (frameSearch.getPnAdvanced().getChCreation().isSelected()) {
+                    log.debug("getAtribut: check date creation " + frameSearch.getPnAdvanced().getChCreation().isSelected());
+                    criteria.setIniCreationFile(new Timestamp(frameSearch.getPnAdvanced().getDateCreationOne().getDate().getTime()));
+                    criteria.setFinCreationFile(new Timestamp(frameSearch.getPnAdvanced().getDateCreationTwo().getDate().getTime()));
+                    aux = search.searchDateCreation(aux, criteria);
 
-            }
-            if (frameSearch.getPnAdvanced().getChAccess().isSelected()) {
-                log.debug("getAtribut: check date access " + frameSearch.getPnAdvanced().getChAccess().isSelected());
-                criteria.setIniAccessFile(new Timestamp(frameSearch.getPnAdvanced().getDateAccessOne().getDate().getTime()));
-                criteria.setFinAccessFile(new Timestamp(frameSearch.getPnAdvanced().getDateAccessTwo().getDate().getTime()));
-                fileList = search.searchDateAccess(fileList, criteria);
+                }
+                if (frameSearch.getPnAdvanced().getChAccess().isSelected()) {
+                    log.debug("getAtribut: check date access " + frameSearch.getPnAdvanced().getChAccess().isSelected());
+                    criteria.setIniAccessFile(new Timestamp(frameSearch.getPnAdvanced().getDateAccessOne().getDate().getTime()));
+                    criteria.setFinAccessFile(new Timestamp(frameSearch.getPnAdvanced().getDateAccessTwo().getDate().getTime()));
+                    aux = search.searchDateAccess(aux, criteria);
 
-            }
-            if (frameSearch.getPnAdvanced().getChFechas().isSelected()) {
-                log.debug("getAtribut: check date " + frameSearch.getPnAdvanced().getChFechas().isSelected());
-                criteria.setIniModFile(new Timestamp(frameSearch.getPnAdvanced().getDateModificationOne().getDate().getTime()));
-                criteria.setFinModFile(new Timestamp(frameSearch.getPnAdvanced().getDateModificationTwo().getDate().getTime()));
-                fileList = search.searchDateMod(fileList, criteria);
+                }
+                if (frameSearch.getPnAdvanced().getChFechas().isSelected()) {
+                    log.debug("getAtribut: check date " + frameSearch.getPnAdvanced().getChFechas().isSelected());
+                    criteria.setIniModFile(new Timestamp(frameSearch.getPnAdvanced().getDateModificationOne().getDate().getTime()));
+                    criteria.setFinModFile(new Timestamp(frameSearch.getPnAdvanced().getDateModificationTwo().getDate().getTime()));
+                    aux = search.searchDateMod(aux, criteria);
 
+                }
+                fileList = aux;
             }
             if (frameSearch.getPnAdvanced().getChAttributes().isSelected()) {
                 log.debug("getAtribut: check Attributes " + frameSearch.getPnAdvanced().getChAttributes().isSelected());
