@@ -5,6 +5,7 @@ import com.fundation.search.utils.LoggerWraper;
 import com.fundation.search.view.FrameSearch;
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.watermark.SubstanceImageWatermark;
+import org.apache.log4j.RollingFileAppender;
 
 /**
  * The connection between the view and the model.

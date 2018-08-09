@@ -28,7 +28,7 @@ import org.apache.commons.lang3.math.Fraction;
 
 import org.slf4j.LoggerFactory;
 
-import ucar.nc2.util.log.LoggerFactory;
+
 
 import com.google.common.base.MoreObjects;
 import com.google.gson.TypeAdapterFactory;
@@ -108,6 +108,7 @@ public class Search {
                     log.debug("searchPath: content sensiti " + aListFolder.getName());
                     continue;
                 }
+                System.out.println("extension"+aListFolder.getName().endsWith(inputData.getExtension())+ "  "+ aListFolder.getName()+ "  "   + "  "+inputData.getExtension()) ;
                 if (inputData.isExtensionEnable() && !aListFolder.getName().endsWith(inputData.getExtension())) {
                     log.debug("searchPath: extention of file " + inputData.getExtension());
                     continue;
