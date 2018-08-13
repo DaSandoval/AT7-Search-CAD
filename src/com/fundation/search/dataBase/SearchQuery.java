@@ -42,11 +42,7 @@ public class SearchQuery {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        // System.out.println(pre);
-
         try {
-            // System.out.println(pre);
-            //  pre.setInt(1,1);
             pre.setString(2, valueCriteriaJSON);
         } catch (SQLException e) {
             e.printStackTrace();

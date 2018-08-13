@@ -366,7 +366,7 @@ public class PanelSearch extends JPanel {
      */
     private void btSelectMouseClicked(MouseEvent evt) {
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        javax.swing.Action newFolder = jfc.getActionMap().get("New Folder");
+        Action newFolder = jfc.getActionMap().get("New Folder");
         newFolder.setEnabled(false);
         jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int returnValue = jfc.showOpenDialog(null);
@@ -871,6 +871,27 @@ public class PanelSearch extends JPanel {
     public void setTxtContent(JTextField txtContent) {
         this.txtContent = txtContent;
     }
+
+    public boolean isSearchTxEnabled() {
+        return isSearchTxEnabled;
+    }
+
+    public boolean isOwnerEnabled() {
+        return isOwnerEnabled;
+    }
+
+    public void setOwnerEnabled(boolean ownerEnabled) {
+        isOwnerEnabled = ownerEnabled;
+    }
+
+    public boolean isContentEnabled() {
+        return isContentEnabled;
+    }
+
+    public void setContentEnabled(boolean contentEnabled) {
+        isContentEnabled = contentEnabled;
+    }
+
 
     /**
      * Method of extencion.
