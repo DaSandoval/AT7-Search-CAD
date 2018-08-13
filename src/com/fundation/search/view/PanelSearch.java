@@ -87,11 +87,12 @@ public class PanelSearch extends JPanel {
     /**
      * Definition of imagen
      */
-    private  JLabel lbImage;
+    private JLabel lbImage;
     private JLabel lbTitle;
     private JLabel lbImageTxt;
     private JLabel lbImagePdf;
     private JLabel lbImageJala;
+
     /**
      * Method for the builder
      */
@@ -101,18 +102,6 @@ public class PanelSearch extends JPanel {
         initComponents();
         settings();
     }
-
-    /**
-     * Method of the builder.
-     *
-     * @param cn
-     */
-  /*  public PanelSearch(Controller cn) {
-
-        initComponents();
-        settings();
-        controller = cn;
-    }*/
 
     /**
      * Method of the option.
@@ -176,13 +165,13 @@ public class PanelSearch extends JPanel {
 
         btSearch.setText("Search");
         btSearch.setBounds(400, 50, 120, 25);
-        this.btSearch.putClientProperty( SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        this.btSearch.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         btSearch.setIcon(new ImageIcon(Constantes.getSearchButton()));
         this.add(btSearch);
 
         btSelect.setText("Select File");
         btSelect.setBounds(400, 80, 120, 25);
-        this.btSelect.putClientProperty( SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        this.btSelect.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         this.add(btSelect);
 
         lbImage.setBounds(530, 5, 230, 100);
@@ -872,26 +861,50 @@ public class PanelSearch extends JPanel {
         this.txtContent = txtContent;
     }
 
+    /**
+     * Method get option search text String.
+     *
+     * @return boolean.
+     */
     public boolean isSearchTxEnabled() {
         return isSearchTxEnabled;
     }
 
+    /**
+     * Method get option Owner enabled.
+     *
+     * @return boolean.
+     */
     public boolean isOwnerEnabled() {
         return isOwnerEnabled;
     }
 
+    /**
+     * Method set option Owner enabled.
+     *
+     * @param ownerEnabled boolean.
+     */
     public void setOwnerEnabled(boolean ownerEnabled) {
         isOwnerEnabled = ownerEnabled;
     }
 
+    /**
+     * Method get option content enable.
+     *
+     * @return boolean.
+     */
     public boolean isContentEnabled() {
         return isContentEnabled;
     }
 
+    /**
+     * Method set option Content Enable.
+     *
+     * @param contentEnabled boolean.
+     */
     public void setContentEnabled(boolean contentEnabled) {
         isContentEnabled = contentEnabled;
     }
-
 
     /**
      * Method of extencion.
@@ -930,8 +943,8 @@ public class PanelSearch extends JPanel {
             }
 
         }
-        for (String i : result ) {
-            System.out.println("extension vista"+ i);
+        for (String i : result) {
+            System.out.println("extension vista" + i);
         }
         return result;
     }

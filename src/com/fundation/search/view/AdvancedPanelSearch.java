@@ -27,6 +27,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.util.Locale;
 
 
 /**
@@ -100,7 +101,7 @@ public class AdvancedPanelSearch extends JPanel {
     /**
      * Definition of JLabel
      */
-    private  JLabel lbImageAdv;
+    private JLabel lbImageAdv;
     private JLabel lbTitleAdvanced;
     private JLabel lbMultimedia;
     private JLabel lbVideo;
@@ -150,11 +151,13 @@ public class AdvancedPanelSearch extends JPanel {
 
         dateModificationOne.getDate();
         dateModificationOne.setEnabled(false);
+        dateModificationOne.setLocale(new Locale("en"));
         dateModificationOne.setBounds(175, 60, 110, 25);
         this.add(dateModificationOne);
 
         dateModificationTwo.getDate();
         dateModificationTwo.setEnabled(false);
+        dateModificationTwo.setLocale(new Locale("en"));
         dateModificationTwo.setBounds(290, 60, 110, 25);
         this.add(dateModificationTwo);
 
@@ -166,11 +169,13 @@ public class AdvancedPanelSearch extends JPanel {
 
         dateAccessOne.getDate();
         dateAccessOne.setEnabled(false);
+        dateAccessOne.setLocale(new Locale("en"));
         dateAccessOne.setBounds(175, 100, 110, 25);
         this.add(dateAccessOne);
 
         dateAccessTwo.getDate();
         dateAccessTwo.setEnabled(false);
+        dateAccessTwo.setLocale(new Locale("en"));
         dateAccessTwo.setBounds(290, 100, 110, 25);
         this.add(dateAccessTwo);
 
@@ -182,34 +187,36 @@ public class AdvancedPanelSearch extends JPanel {
 
         dateCreationOne.getDate();
         dateCreationOne.setEnabled(false);
+        dateCreationOne.setLocale(new Locale("en"));
         dateCreationOne.setBounds(175, 135, 110, 25);
         this.add(dateCreationOne);
 
         dateCreationTwo.getDate();
         dateCreationTwo.setEnabled(false);
+        dateCreationTwo.setLocale(new Locale("en"));
         dateCreationTwo.setBounds(290, 135, 110, 25);
         this.add(dateCreationTwo);
 
         chsSize.setText("Size:");
-        chsSize.setBounds(450,10,80,25);
+        chsSize.setBounds(450, 10, 80, 25);
         chsSize.setFont(new Font("Serif", Font.PLAIN, 14));
         chsSize.setForeground(Color.decode("#010a0c"));
         this.add(chsSize);
 
         jcbSize.setEnabled(false);
-        jcbSize.setBounds(540,10,50,25);
+        jcbSize.setBounds(540, 10, 50, 25);
         this.add(jcbSize);
         jcbSize.addItem("=");
         jcbSize.addItem(">");
         jcbSize.addItem("<");
 
         txSize.setEnabled(false);
-        txSize.setBounds(600,10,50,25);
+        txSize.setBounds(600, 10, 50, 25);
         this.add(txSize);
 
         cbSize.setModel(new DefaultComboBoxModel<>(new String[]{"bytes", "Kbytes", "Mbytes"}));
         cbSize.setEnabled(false);
-        cbSize.setBounds(660,10,70,25);
+        cbSize.setBounds(660, 10, 70, 25);
         this.add(cbSize);
 
         lbMultimedia.setText("Multimedia");
@@ -296,17 +303,17 @@ public class AdvancedPanelSearch extends JPanel {
         lbImageAdv.setIcon(new ImageIcon(Constantes.getSearchImageAdv()));
         this.add(lbImageAdv);
 
-        cbFrameRate.setModel(new DefaultComboBoxModel<>(new String[]{"All Trame Rate","24", "25", "27", "30", "64"}));
+        cbFrameRate.setModel(new DefaultComboBoxModel<>(new String[]{"All Trame Rate", "24", "25", "27", "30", "64"}));
         cbFrameRate.setEnabled(false);
         cbFrameRate.setBounds(900, 90, 150, 25);
         this.add(cbFrameRate);
 
-        cbVideoCode.setModel(new DefaultComboBoxModel<>(new String[]{"All Video Code","H264", "H263", "MPEG4", "WMV1",}));
+        cbVideoCode.setModel(new DefaultComboBoxModel<>(new String[]{"All Video Code", "H264", "H263", "MPEG4", "WMV1",}));
         cbVideoCode.setEnabled(false);
         cbVideoCode.setBounds(900, 120, 150, 25);
         this.add(cbVideoCode);
 
-        cbResolution.setModel(new DefaultComboBoxModel<>(new String[]{"All Resolution","320 x 240", "480 x 360", "720 x 480", "1280 x 720", "1920 x 1080"}));
+        cbResolution.setModel(new DefaultComboBoxModel<>(new String[]{"All Resolution", "320 x 240", "480 x 360", "720 x 480", "1280 x 720", "1920 x 1080"}));
         cbResolution.setEnabled(false);
         cbResolution.setBounds(900, 150, 150, 25);
         this.add(cbResolution);
@@ -416,6 +423,11 @@ public class AdvancedPanelSearch extends JPanel {
         }
     }
 
+    /**
+     * Method of the events Date Access.
+     *
+     * @param evt
+     */
     private void chAccessStateChanged(ChangeEvent evt) {
         if (this.isAccessEnabled != chAccess.isSelected()) {
             this.isAccessEnabled = chAccess.isSelected();
@@ -424,6 +436,11 @@ public class AdvancedPanelSearch extends JPanel {
         }
     }
 
+    /**
+     * Method of the events Date Creation.
+     *
+     * @param evt
+     */
     private void chCreationStateChanged(ChangeEvent evt) {
         if (this.isCreationEnabled != chCreation.isSelected()) {
             this.isCreationEnabled = chCreation.isSelected();
@@ -482,7 +499,6 @@ public class AdvancedPanelSearch extends JPanel {
             chTerm.setEnabled(isAttributesEnabled);
         }
     }
-//cesar desde aqui
 
     /**
      * Method of the event.
@@ -498,88 +514,111 @@ public class AdvancedPanelSearch extends JPanel {
         }
     }
 
-    public String selectFrame () {
+    /**
+     * Method that select option of Frame rate of multimedia.
+     *
+     * @return String.
+     */
+    public String selectFrame() {
         String aux = "";
-        if (cbFrameRate.getSelectedIndex() == 0){
+        if (cbFrameRate.getSelectedIndex() == 0) {
             aux = "TODO";
         }
-        if (cbFrameRate.getSelectedIndex() == 1){
+        if (cbFrameRate.getSelectedIndex() == 1) {
             aux = "24";
         }
-        if (cbFrameRate.getSelectedIndex() == 2){
+        if (cbFrameRate.getSelectedIndex() == 2) {
             aux = "25";
         }
-        if (cbFrameRate.getSelectedIndex() == 3){
+        if (cbFrameRate.getSelectedIndex() == 3) {
             aux = "27";
         }
-        if (cbFrameRate.getSelectedIndex() == 4){
+        if (cbFrameRate.getSelectedIndex() == 4) {
             aux = "30";
         }
-        if (cbFrameRate.getSelectedIndex() == 5){
+        if (cbFrameRate.getSelectedIndex() == 5) {
             aux = "64";
         }
         return aux;
     }
 
-    public String selectVideo () {
+    /**
+     * Method that select an option of Video code.
+     *
+     * @return String.
+     */
+    public String selectVideo() {
         String aux = "";
-        if (cbVideoCode.getSelectedIndex() == 0){
+        if (cbVideoCode.getSelectedIndex() == 0) {
             aux = "TODO";
         }
-        if (cbVideoCode.getSelectedIndex() == 1){
+        if (cbVideoCode.getSelectedIndex() == 1) {
             aux = "H264";
         }
-        if (cbVideoCode.getSelectedIndex() == 2){
+        if (cbVideoCode.getSelectedIndex() == 2) {
             aux = "H263";
         }
-        if (cbVideoCode.getSelectedIndex() == 3){
+        if (cbVideoCode.getSelectedIndex() == 3) {
             aux = "MPEG4";
         }
-        if (cbVideoCode.getSelectedIndex() == 4){
+        if (cbVideoCode.getSelectedIndex() == 4) {
             aux = "WMV1";
         }
         return aux;
     }
 
-    public String selectResolution () {
+    /**
+     * Method that select option Resolution Multimedia.
+     *
+     * @return String.
+     */
+    public String selectResolution() {
         String aux = "";
-        if (cbResolution.getSelectedIndex() == 0){
+        if (cbResolution.getSelectedIndex() == 0) {
             aux = "TODO";
         }
-        if (cbResolution.getSelectedIndex() == 1){
+        if (cbResolution.getSelectedIndex() == 1) {
             aux = "320x240";
         }
-        if (cbResolution.getSelectedIndex() == 2){
+        if (cbResolution.getSelectedIndex() == 2) {
             aux = "480x360";
         }
-        if (cbResolution.getSelectedIndex() == 3){
+        if (cbResolution.getSelectedIndex() == 3) {
             aux = "720x480";
         }
-        if (cbResolution.getSelectedIndex() == 4){
+        if (cbResolution.getSelectedIndex() == 4) {
             aux = "1280x720";
         }
-        if (cbResolution.getSelectedIndex() == 5){
+        if (cbResolution.getSelectedIndex() == 5) {
             aux = "1920x1080";
         }
         return aux;
     }
 
-    public String getScaleDuration () {
+    /**
+     * Method that select option of Size Duration Multimedia.
+     *
+     * @return String.
+     */
+    public String getScaleDuration() {
         String aux = "";
-        if (jcbSizeDuration.getSelectedIndex() == 0){
+        if (jcbSizeDuration.getSelectedIndex() == 0) {
             aux = "H";
         }
-        if (jcbSizeDuration.getSelectedIndex() == 1){
+        if (jcbSizeDuration.getSelectedIndex() == 1) {
             aux = "M";
         }
-        if (jcbSizeDuration.getSelectedIndex() == 2){
+        if (jcbSizeDuration.getSelectedIndex() == 2) {
             aux = "S";
         }
         return aux;
     }
 
-
-
+    /**
+     * Method get of Dates.
+     *
+     * @return boolean
+     */
     public boolean getFechas() {
         return chFechas.isSelected();
     }
@@ -1304,31 +1343,65 @@ public class AdvancedPanelSearch extends JPanel {
         this.cbResolution = cbResolution;
     }
 
-
+    /**
+     * Method get of Dates Enables.
+     *
+     * @return boolean.
+     */
     public boolean isFechasEnabled() {
         return isFechasEnabled;
     }
 
+    /**
+     * Method get of Access Enabled.
+     *
+     * @return boolean.
+     */
     public boolean isAccessEnabled() {
         return isAccessEnabled;
     }
 
+    /**
+     * Method get of Creation Enabled.
+     *
+     * @return boolean.
+     */
     public boolean isCreationEnabled() {
         return isCreationEnabled;
     }
 
+    /**
+     * Method get of Termination Enabled.
+     *
+     * @return boolean.
+     */
     public boolean isTermEnabled() {
         return isTermEnabled;
     }
 
+    /**
+     * Method get of Size Enabled.
+     *
+     * @return boolean.
+     */
     public boolean isSizeEnabled() {
         return isSizeEnabled;
     }
 
+    /**
+     * Method get of Attributes Enabled.
+     *
+     * @return boolean.
+     */
     public boolean isAttributesEnabled() {
         return isAttributesEnabled;
     }
 
+    /**
+     * Method get of Duplicates Enabled.
+     *
+     * @return boolean.
+     */
     public boolean isDuplicatesEnabled() {
         return isDuplicatesEnabled;
     }
