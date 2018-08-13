@@ -30,9 +30,6 @@ import org.apache.commons.lang3.math.Fraction;
 
 import org.slf4j.LoggerFactory;
 
-//import org.slf4j.LoggerFactory;
-
-
 
 import com.google.common.base.MoreObjects;
 import com.google.gson.TypeAdapterFactory;
@@ -46,10 +43,14 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -95,7 +96,7 @@ public class Search {
         log.info("searchPath: Start " + inputData);
         File folder = new File(inputData.getPath());
         File[] listFolder = folder.listFiles();
-        gsonCriterio(inputData);
+        //gsonCriterio(inputData);
         assetList.clear();
         for (File aListFolder : listFolder) {
             log.debug("searchPath: for each " + aListFolder.getPath());
@@ -113,7 +114,7 @@ public class Search {
                     log.debug("searchPath: content sensiti " + aListFolder.getName());
                     continue;
                 }
-                System.out.println("extension"+aListFolder.getName().endsWith(inputData.getExtension())+ "  "+ aListFolder.getName()+ "  "   + "  "+inputData.getExtension()) ;
+                System.out.println("extension" + aListFolder.getName().endsWith(inputData.getExtension()) + "  " + aListFolder.getName() + "  " + "  " + inputData.getExtension());
                 if (inputData.isExtensionEnable() && !aListFolder.getName().endsWith(inputData.getExtension())) {
                     log.debug("searchPath: extention of file " + inputData.getExtension());
                     continue;
@@ -137,7 +138,11 @@ public class Search {
                     asstFile.setMultimedia(false);
                 }
                 log.debug("searchPath: set to current");
-                current.setExtent(aListFolder.getName().substring(aListFolder.getName().indexOf(".")));
+                if (aListFolder.getName().contains(".")) {
+                    current.setExtent(aListFolder.getName().substring(aListFolder.getName().indexOf(".")));
+                }else {
+                    current.setExtent("");
+                }
                 current.setHidden(aListFolder.isHidden());
                 current.setSize(aListFolder.length());
                 current.setPath(aListFolder.getAbsolutePath());
@@ -494,11 +499,11 @@ public class Search {
             System.out.println("resolucion : " + stream.width + " x " + stream.height);*/
 
             stream = movie.probe(as.getPath()).getStreams().get(0);
-            System.out.println("duracion   : "+stream.duration);
-            System.out.println("codec      : "+stream.codec_name);
+            System.out.println("duracion   : " + stream.duration);
+            System.out.println("codec      : " + stream.codec_name);
             //System.out.println("frame rate : "+stream.avg_frame_rate);
-            System.out.println("frame rate : "+stream);
-            System.out.println("resolucion : "+stream.width + " x " + stream.height);
+            System.out.println("frame rate : " + stream);
+            System.out.println("resolucion : " + stream.width + " x " + stream.height);
 
             as.setDuracion(stream.duration);
             as.setCodec(stream.codec_name);
@@ -690,13 +695,28 @@ public class Search {
         return assetList;
     }
 
-    public void gsonCriterio( Criteria criteria) {
+    public void gsonCriterio(Criteria criteria) {
 
         Gson criteriaGson = new Gson();
-        String criteriaString  = criteriaGson.toJson(criteria);
+        String criteriaString = criteriaGson.toJson(criteria);
         System.out.println(criteriaString);
         SearchQuery searchQuery = new SearchQuery();
         searchQuery.insertCriteria(criteriaString);
 
+    }
+
+    public Map<Integer, Criteria> getDataBaseInHashMap() throws SQLException {
+        Map<Integer, Criteria> saveMap = new HashMap<Integer, Criteria>();
+        SearchQuery searchQuery = new SearchQuery();
+        ResultSet set = searchQuery.getAllCriteria();
+        Gson gson = new Gson();
+        while (set.next()) {
+            Criteria recoverCriteria = gson.fromJson(set.getString("CriteriaJSON"), Criteria.class);
+            System.out.println(recoverCriteria.getFileName());
+            System.out.println("====>>>"+recoverCriteria.getNameOwnwe());
+            int id = set.getInt("ID");
+            saveMap.put(id, recoverCriteria);
+        }
+        return saveMap;
     }
 }

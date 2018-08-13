@@ -16,6 +16,7 @@
 
 package com.fundation.search.controller;
 
+import com.sun.org.apache.bcel.internal.generic.FADD;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -136,6 +137,13 @@ public class Criteria {
 
     private double cantMulti;
     private ArrayList<String> formatsMulti;
+    private String nameOwnwe;
+    private boolean checkMod;
+    private boolean checkCre;
+    private boolean checAccess;
+    private String extencionAux;
+    private boolean checkDuration;
+    private String extencionMulti;
 
     /**
      * Method for clean
@@ -157,6 +165,9 @@ public class Criteria {
         this.checkSize = false;
         this.signSize = "";
         this.TypeSize = "";
+        this.checkMod = false;
+        this.checkCre = false;
+        this.checAccess = false;
         this.iniAccessFile = new Timestamp(System.currentTimeMillis());
         this.iniCreationFile = new Timestamp(System.currentTimeMillis());
         this.iniModFile = new Timestamp(System.currentTimeMillis());
@@ -170,16 +181,20 @@ public class Criteria {
         this.frameRate = "";
         this.resolution = "";
         this.videoCode = "";
+        this.checkDuration = false;
         this.scale = "";
         this.operator = "";
         this.cantMulti = 0.0;
+        this.nameOwnwe = "";
+        this.extencionAux = "";
+        this.extencionMulti = "";
         log.info("Criteria - clean: End");
     }
 
     public void addItem(String value) {
-        log.info("Criteria - addItem: Start"+ value);
+        log.info("Criteria - addItem: Start" + value);
         formatsMulti.add(value);
-        log.info("Criteria - addItem: End"+ value);
+        log.info("Criteria - addItem: End" + value);
     }
 
     public void clearList() {
@@ -735,6 +750,73 @@ public class Criteria {
     public void setCantMulti(double cantMulti) {
         this.cantMulti = cantMulti;
     }
+
+    /**
+     * nameOwnwe.
+     *
+     * @return nameOwnwe.
+     */
+    public String getNameOwnwe() {
+        return nameOwnwe;
+    }
+
+    /**
+     * value nameOwnwe.
+     *
+     * @param nameOwnwe input.
+     */
+    public void setNameOwnwe(String nameOwnwe) {
+        this.nameOwnwe = nameOwnwe;
+    }
+
+    public boolean isCheckMod() {
+        return checkMod;
+    }
+
+    public void setCheckMod(boolean checkMod) {
+        this.checkMod = checkMod;
+    }
+
+    public boolean isCheckCre() {
+        return checkCre;
+    }
+
+    public void setCheckCre(boolean checkCre) {
+        this.checkCre = checkCre;
+    }
+
+    public boolean isChecAccess() {
+        return checAccess;
+    }
+
+    public void setChecAccess(boolean checAccess) {
+        this.checAccess = checAccess;
+    }
+
+    public String getExtencionAux() {
+        return extencionAux;
+    }
+
+    public void setExtencionAux(String extencionAux) {
+        this.extencionAux = extencionAux;
+    }
+
+    public boolean isCheckDuration() {
+        return checkDuration;
+    }
+
+    public void setCheckDuration(boolean checkDuration) {
+        this.checkDuration = checkDuration;
+    }
+
+    public String getExtencionMulti() {
+        return extencionMulti;
+    }
+
+    public void setExtencionMulti(String extencionMulti) {
+        this.extencionMulti = extencionMulti;
+    }
+
 
 }
 

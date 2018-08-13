@@ -390,4 +390,32 @@ public class FrameSearch extends JFrame {
     public void setTmLocation(DefaultTableModel tmLocation) {
         this.tmLocation = tmLocation;
     }
+
+    public boolean isAdvancedEnabled() {
+        return isAdvancedEnabled;
+    }
+
+    public boolean isDataBaseEnabled() {
+        return isDataBaseEnabled;
+    }
+
+    public void setDataBaseEnabled(boolean dataBaseEnabled) {
+        isDataBaseEnabled = dataBaseEnabled;
+    }
+
+    public JCheckBox getChDataBase() {
+        return chDataBase;
+    }
+
+    public void setChDataBase(JCheckBox chDataBase) {
+        this.chDataBase = chDataBase;
+    }
+
+    public PanelDataBase getTpDataBase() {
+        return tpDataBase;
+    }
+
+    public void setTpDataBase(PanelDataBase tpDataBase) {
+        this.tpDataBase = tpDataBase;
+    }
 }
