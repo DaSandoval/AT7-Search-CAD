@@ -96,7 +96,6 @@ public class Search {
         log.info("searchPath: Start " + inputData);
         File folder = new File(inputData.getPath());
         File[] listFolder = folder.listFiles();
-        //gsonCriterio(inputData);
         assetList.clear();
         for (File aListFolder : listFolder) {
             log.debug("searchPath: for each " + aListFolder.getPath());
@@ -114,7 +113,6 @@ public class Search {
                     log.debug("searchPath: content sensiti " + aListFolder.getName());
                     continue;
                 }
-                System.out.println("extension" + aListFolder.getName().endsWith(inputData.getExtension()) + "  " + aListFolder.getName() + "  " + "  " + inputData.getExtension());
                 if (inputData.isExtensionEnable() && !aListFolder.getName().endsWith(inputData.getExtension())) {
                     log.debug("searchPath: extention of file " + inputData.getExtension());
                     continue;
@@ -126,8 +124,6 @@ public class Search {
                     AssetMultimed multi = new AssetMultimed();
                     multi.setPath(aListFolder.getAbsolutePath());
                     this.getMultimediaData(multi);
-                    System.out.println("" + multi.toString());
-                    System.out.println(((Asset) multi).toString());
                     current = multi;
                     current.setMultimedia(true);
 
@@ -140,7 +136,7 @@ public class Search {
                 log.debug("searchPath: set to current");
                 if (aListFolder.getName().contains(".")) {
                     current.setExtent(aListFolder.getName().substring(aListFolder.getName().indexOf(".")));
-                }else {
+                } else {
                     current.setExtent("");
                 }
                 current.setHidden(aListFolder.isHidden());
@@ -292,7 +288,7 @@ public class Search {
     /**
      * Method about date creation.
      *
-     * @param fileList ArrayList.
+     * @param fileList ArrayList that content the class asset.
      * @param value    criteria.
      * @return ArrayList.
      */
@@ -337,9 +333,7 @@ public class Search {
                 Date f3 = new Date(i.getDateAccess().getTime());
                 if (f3.after(f1) && f3.before(f2)) {
                     aux.add(i);
-
                 }
-
             } catch (Exception e) {
                 log.info("searchDateAccess: " + e.toString());
                 e.printStackTrace();
@@ -347,7 +341,6 @@ public class Search {
         }
         log.debug("searchDateAccess: content of date" + aux.size());
         return aux;
-
     }
 
     /**
@@ -368,9 +361,7 @@ public class Search {
                 Date f3 = new Date(i.getDateModi().getTime());
                 if (f3.after(f1) && f3.before(f2)) {
                     aux.add(i);
-
                 }
-
             } catch (Exception e) {
                 log.warn("searchDateMod: " + e.toString());
                 e.printStackTrace();
@@ -378,7 +369,6 @@ public class Search {
         }
         log.debug("searchDateMod: content of date " + aux.size());
         return aux;
-
     }
 
     /**
@@ -399,16 +389,13 @@ public class Search {
             log.debug("searchSze: " + value.getSignSize());
             value.setSize(value.getSize() * 1000000.0);
         }
-
         for (Asset i : fileList) {
             double n1 = value.getSize();
             double n2 = Double.parseDouble(String.valueOf(i.getSize()));
             n1 = Math.round(n1 * 1000) / 1000;
             n2 = Math.round(n2 * 1000) / 1000;
-            System.out.println(i.getFileName() + "  " + n1 + "  " + n2);
             if (value.getType().equals("=")) {
                 log.debug("searchSze: type " + value.getType());
-                System.out.println("igual");
                 if (n2 == n1) {
                     log.debug("searchSze: n2 = n1 " + (n2 == n1));
                     aux.add(i);
@@ -431,7 +418,6 @@ public class Search {
         }
         log.debug("searchSze: content of date " + aux.size());
         return aux;
-
     }
 
     /**
@@ -489,22 +475,9 @@ public class Search {
     public void getMultimediaData(AssetMultimed as) {
         log.info("getMultimediaData: get date of multimedia");
         try {
-
             log.debug("getMultimediaData: fill in date AssetMultimed");
-            stream = movie.probe(as.getPath()).getStreams().get(0);/*
-            System.out.println("duracion   : " + stream.duration);
-            System.out.println("codec      : " + stream.codec_name);
-            System.out.println("frame rate : " + stream.avg_frame_rate);
-            System.out.println("frame rate : " + stream);
-            System.out.println("resolucion : " + stream.width + " x " + stream.height);*/
-
             stream = movie.probe(as.getPath()).getStreams().get(0);
-            System.out.println("duracion   : " + stream.duration);
-            System.out.println("codec      : " + stream.codec_name);
-            //System.out.println("frame rate : "+stream.avg_frame_rate);
-            System.out.println("frame rate : " + stream);
-            System.out.println("resolucion : " + stream.width + " x " + stream.height);
-
+            stream = movie.probe(as.getPath()).getStreams().get(0);
             as.setDuracion(stream.duration);
             as.setCodec(stream.codec_name);
             as.setFrameRate(this.getFPS(stream.avg_frame_rate.toString()));
@@ -554,7 +527,6 @@ public class Search {
         for (Asset i : fileList) {
             AssetMultimed asm = (AssetMultimed) i;
             String frame = ((asm).getFrameRate());
-            System.out.println(frame + "        " + value.getFrameRate());
             frame = frame.substring(0, frame.indexOf("/"));
             if (frame != null && value.getFrameRate().equals(frame)) {
                 log.debug("checkFrame: frame rate " + value.getFrameRate());
@@ -656,7 +628,6 @@ public class Search {
             n1 = Math.round(n1 * 1000) / 1000;
             n2 = Math.round(n2 * 1000) / 1000;
             log.info("searcDuration: " + n1 + " " + n2);
-            System.out.println(i.getFileName() + "  " + n1 + "  " + n2);
             if (value.getOperator().equals("=")) {
                 log.debug("searcDuration: operator = is equals at " + value.getOperator());
                 if (n2 == n1) {
@@ -682,7 +653,6 @@ public class Search {
         }
         log.info("searcDuration: content of date " + aux.size());
         return aux;
-
     }
 
     /**
@@ -695,16 +665,26 @@ public class Search {
         return assetList;
     }
 
+    /**
+     * Method that creates a database with the parameters of criteria converting it into a JSON.
+     *
+     * @param criteria attributes of a file.
+     */
     public void gsonCriterio(Criteria criteria) {
-
+        log.info("gsonCriterio: ");
         Gson criteriaGson = new Gson();
         String criteriaString = criteriaGson.toJson(criteria);
-        System.out.println(criteriaString);
         SearchQuery searchQuery = new SearchQuery();
         searchQuery.insertCriteria(criteriaString);
 
     }
 
+    /**
+     * Method that retrieves the information from the database and converts it into a java object.
+     *
+     * @return a Map.
+     * @throws SQLException
+     */
     public Map<Integer, Criteria> getDataBaseInHashMap() throws SQLException {
         Map<Integer, Criteria> saveMap = new HashMap<Integer, Criteria>();
         SearchQuery searchQuery = new SearchQuery();
@@ -712,8 +692,6 @@ public class Search {
         Gson gson = new Gson();
         while (set.next()) {
             Criteria recoverCriteria = gson.fromJson(set.getString("CriteriaJSON"), Criteria.class);
-            System.out.println(recoverCriteria.getFileName());
-            System.out.println("====>>>"+recoverCriteria.getNameOwnwe());
             int id = set.getInt("ID");
             saveMap.put(id, recoverCriteria);
         }

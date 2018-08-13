@@ -41,6 +41,9 @@ import org.apache.log4j.Logger;
 public class Controller {
 
     final static Logger log = Logger.getLogger(Controller.class);
+    /**
+     * Atribut other class.
+     */
     private FrameSearch frameSearch;
     private Criteria criteria;
     private Search search;
@@ -56,7 +59,6 @@ public class Controller {
         this.criteria = new Criteria();
         search = new Search();
         getCriteriaSaved();
-
         frameSearch.getTpDataBase().getBtLoad().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 buttonEventClicked(evt);
@@ -64,32 +66,40 @@ public class Controller {
         });
     }
 
-    private void getCriteriaSaved(){
+    /**
+     * Method that fills the table in the database for the view through the key.
+     */
+    private void getCriteriaSaved() {
         try {
-            Map<Integer,Criteria> mapCriteria = search.getDataBaseInHashMap();
-            for (Integer key: mapCriteria.keySet()){
+            Map<Integer, Criteria> mapCriteria = search.getDataBaseInHashMap();
+            for (Integer key : mapCriteria.keySet()) {
                 Criteria cri = mapCriteria.get(key);
-                System.out.println(cri.getPath());
                 frameSearch.getTpDataBase().addRowTableDb(
-                        (key),mapCriteria.get(key).getNameOwnwe());
-           }
-            cm = new HashMap<Integer,Criteria>(mapCriteria);
+                        (key), mapCriteria.get(key).getNameOwnwe());
+            }
+            cm = new HashMap<Integer, Criteria>(mapCriteria);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    Map<Integer,Criteria> cm = new HashMap<>();
 
-    public void setExtencion (String listExtencion) {
+    Map<Integer, Criteria> cm = new HashMap<>();
+
+    /**
+     * Method that set all extencion of a file.
+     *
+     * @param listExtencion list of string extends.
+     */
+    public void setExtencion(String listExtencion) {
         String[] aux = listExtencion.split(";");
         if (aux.length > 0) {
             for (String i : aux) {
                 switch (i) {
-                    case "pdf":{
+                    case "pdf": {
                         frameSearch.getPnSearch().getChComplete().setSelected(true);
                         break;
                     }
-                    case "doc":{
+                    case "doc": {
                         frameSearch.getPnSearch().getChMYmi().setSelected(true);
                         break;
                     }
@@ -97,11 +107,11 @@ public class Controller {
                         frameSearch.getPnSearch().getChRegex().setSelected(true);
                         break;
                     }
-                    case "exe":{
+                    case "exe": {
                         frameSearch.getPnSearch().getChUTF().setSelected(true);
                         break;
                     }
-                    case "gif":{
+                    case "gif": {
                         frameSearch.getPnSearch().getChASCII().setSelected(true);
                         break;
                     }
@@ -109,7 +119,7 @@ public class Controller {
                         frameSearch.getPnSearch().getChNoExists().setSelected(true);
                         break;
                     }
-                    case "jpg":{
+                    case "jpg": {
                         frameSearch.getPnSearch().getChUnicode().setSelected(true);
 
                         break;
@@ -118,7 +128,7 @@ public class Controller {
                         frameSearch.getPnSearch().getChHexa().setSelected(true);
                         break;
                     }
-                    default : {
+                    default: {
                         frameSearch.getPnSearch().getTxSearchText().setText(i);
                         break;
                     }
@@ -128,15 +138,20 @@ public class Controller {
         }
     }
 
-    public void setExtencionMulti (ArrayList<String> listExtencion) {
+    /**
+     * Method that set all extencion of a multimedia.
+     *
+     * @param listExtencion Arraylist of a list of multimedia.
+     */
+    public void setExtencionMulti(ArrayList<String> listExtencion) {
         if (listExtencion.size() > 0) {
             for (String i : listExtencion) {
                 switch (i) {
-                    case "MPEG":{
+                    case "MPEG": {
                         frameSearch.getPnAdvanced().getChAtReading().setSelected(true);
                         break;
                     }
-                    case "WMV":{
+                    case "WMV": {
                         frameSearch.getPnAdvanced().getChAtSistema().setSelected(true);
                         break;
                     }
@@ -144,11 +159,11 @@ public class Controller {
                         frameSearch.getPnAdvanced().getChAtComprimido().setSelected(true);
                         break;
                     }
-                    case "MP4":{
+                    case "MP4": {
                         frameSearch.getPnAdvanced().getChAtVideo().setSelected(true);
                         break;
                     }
-                    case "ASF":{
+                    case "ASF": {
                         frameSearch.getPnAdvanced().getChAtModify().setSelected(true);
                         break;
                     }
@@ -156,7 +171,7 @@ public class Controller {
                         frameSearch.getPnAdvanced().getChAtHidden().setSelected(true);
                         break;
                     }
-                    case "DIVX":{
+                    case "DIVX": {
                         frameSearch.getPnAdvanced().getChAtFolder().setSelected(true);
 
                         break;
@@ -165,30 +180,42 @@ public class Controller {
                         frameSearch.getPnAdvanced().getChAtEncriptado().setSelected(true);
                         break;
                     }
-                    default : {
+                    default: {
                         break;
                     }
                 }
             }
         }
     }
-    /*public  void setDate (Timestamp a1,Timestamp a2, Timestamp b1, Timestamp b2, Timestamp c1, Timestamp c2) {
-        Calendar aux = frameSearch.getPnAdvanced().getDateModificationOne().getCalendar();
-        aux.setTimeInMillis(a1.getTime());
-        frameSearch.getPnAdvanced().getDateModificationOne().setCalendar(aux);
-    }*/
 
-    public int setSelectedValue(JComboBox comboBox, String value){
-        for (int i = 0; i < comboBox.getItemCount(); i++){
+    /**
+     * Method that set the values in the view of the Combo Box.
+     *
+     * @param comboBox content of the comboBox of tha view.
+     * @param value    to be set.
+     * @return Integer.
+     */
+    public int setSelectedValue(JComboBox comboBox, String value) {
+        for (int i = 0; i < comboBox.getItemCount(); i++) {
             String item = (String) comboBox.getItemAt(i);
-            if (item.equals(value)){
+            if (item.equals(value)) {
                 return i;
             }
         }
         return 0;
     }
 
-    public void setSelectedDates( Timestamp mod1, Timestamp mod2, Timestamp acc1, Timestamp acc2,Timestamp cre1, Timestamp cre2){
+    /**
+     * Method taht set the values in date of tha view.
+     *
+     * @param mod1 set to modification start.
+     * @param mod2 set to modification final.
+     * @param acc1 set to access start.
+     * @param acc2 set to access final.
+     * @param cre1 set to creation start.
+     * @param cre2 set to creation final.
+     */
+    public void setSelectedDates(Timestamp mod1, Timestamp mod2, Timestamp acc1, Timestamp acc2, Timestamp cre1, Timestamp cre2) {
         frameSearch.getPnAdvanced().getDateCreationOne().setDate(new Date(cre1.getTime()));
         frameSearch.getPnAdvanced().getDateCreationTwo().setDate(new Date(cre2.getTime()));
         frameSearch.getPnAdvanced().getDateModificationOne().setDate(new Date(mod1.getTime()));
@@ -197,13 +224,14 @@ public class Controller {
         frameSearch.getPnAdvanced().getDateAccessTwo().setDate(new Date(acc2.getTime()));
     }
 
-
-
-
-    private void buttonEventClicked (MouseEvent evt){
-        System.out.println("CLICK");
+    /**
+     * Method of the event Click for load button.
+     *
+     * @param evt of the mouse.
+     */
+    private void buttonEventClicked(MouseEvent evt) {
         if (!frameSearch.getTpDataBase().getTbBaseDate().getSelectionModel().isSelectionEmpty()) {
-            String aux = frameSearch.getTpDataBase().getTbBaseDate().getModel().getValueAt(frameSearch.getTpDataBase().getTbBaseDate().getSelectedRow(),0).toString();
+            String aux = frameSearch.getTpDataBase().getTbBaseDate().getModel().getValueAt(frameSearch.getTpDataBase().getTbBaseDate().getSelectedRow(), 0).toString();
             int aux2 = Integer.parseInt(aux);
             frameSearch.getPnSearch().getTxLocation().setText(cm.get(aux2).getPath());
             frameSearch.getPnSearch().getTxtOwner().setText(cm.get(aux2).getOwner());
@@ -220,26 +248,25 @@ public class Controller {
             frameSearch.getPnAdvanced().getChFechas().setSelected(cm.get(aux2).isCheckMod());
             frameSearch.getPnAdvanced().getChCreation().setSelected(cm.get(aux2).isCheckCre());
             frameSearch.getPnAdvanced().getChAccess().setSelected(cm.get(aux2).isChecAccess());
-            this.setSelectedDates(cm.get(aux2).getIniModFile(),cm.get(aux2).getFinModFile(),cm.get(aux2).getIniAccessFile(),cm.get(aux2).getFinAccessFile(),
-                    cm.get(aux2).getIniCreationFile(),cm.get(aux2).getFinCreationFile());
-            frameSearch.getPnAdvanced().getJcbSize().setSelectedIndex(this.setSelectedValue(frameSearch.getPnAdvanced().getJcbSize(),cm.get(aux2).getTypeSize()));
-            frameSearch.getPnAdvanced().getCbSize().setSelectedIndex(this.setSelectedValue(frameSearch.getPnAdvanced().getCbSize(),cm.get(aux2).getSignSize()));
+            this.setSelectedDates(cm.get(aux2).getIniModFile(), cm.get(aux2).getFinModFile(), cm.get(aux2).getIniAccessFile(), cm.get(aux2).getFinAccessFile(),
+                    cm.get(aux2).getIniCreationFile(), cm.get(aux2).getFinCreationFile());
+            frameSearch.getPnAdvanced().getJcbSize().setSelectedIndex(this.setSelectedValue(frameSearch.getPnAdvanced().getJcbSize(), cm.get(aux2).getTypeSize()));
+            frameSearch.getPnAdvanced().getCbSize().setSelectedIndex(this.setSelectedValue(frameSearch.getPnAdvanced().getCbSize(), cm.get(aux2).getSignSize()));
             frameSearch.getPnAdvanced().getTxSize().setText(String.valueOf(cm.get(aux2).getSize()));
             frameSearch.getPnAdvanced().getChsSize().setSelected(cm.get(aux2).isCheckSize());
             frameSearch.getPnAdvanced().getChAttributes().setSelected(cm.get(aux2).isCheckMulti());
             frameSearch.getPnAdvanced().getChTerm().setSelected(cm.get(aux2).isCheckDuration());
-            frameSearch.getPnAdvanced().getJcbSizeDuration().setSelectedIndex(this.setSelectedValue(frameSearch.getPnAdvanced().getJcbSizeDuration(),cm.get(aux2).getOperator()));
-            frameSearch.getPnAdvanced().getCbTerm().setSelectedIndex(this.setSelectedValue(frameSearch.getPnAdvanced().getCbTerm(),cm.get(aux2).getScale()));
+            frameSearch.getPnAdvanced().getJcbSizeDuration().setSelectedIndex(this.setSelectedValue(frameSearch.getPnAdvanced().getJcbSizeDuration(), cm.get(aux2).getOperator()));
+            frameSearch.getPnAdvanced().getCbTerm().setSelectedIndex(this.setSelectedValue(frameSearch.getPnAdvanced().getCbTerm(), cm.get(aux2).getScale()));
             frameSearch.getPnAdvanced().getTxTerm().setText(String.valueOf(cm.get(aux2).getCantMulti()));
             this.setExtencionMulti(cm.get(aux2).getFormatsMulti());
-            frameSearch.getPnAdvanced().getCbFrameRate().setSelectedIndex(this.setSelectedValue(frameSearch.getPnAdvanced().getCbFrameRate(),cm.get(aux2).getFrameRate()));
-            frameSearch.getPnAdvanced().getCbVideoCode().setSelectedIndex(this.setSelectedValue(frameSearch.getPnAdvanced().getCbVideoCode(),cm.get(aux2).getVideoCode()));
-            frameSearch.getPnAdvanced().getCbResolution().setSelectedIndex(this.setSelectedValue(frameSearch.getPnAdvanced().getCbResolution(),cm.get(aux2).getResolution()));
-
-
-
+            frameSearch.getPnAdvanced().getCbFrameRate().setSelectedIndex(this.setSelectedValue(frameSearch.getPnAdvanced().getCbFrameRate(), cm.get(aux2).getFrameRate()));
+            frameSearch.getPnAdvanced().getCbVideoCode().setSelectedIndex(this.setSelectedValue(frameSearch.getPnAdvanced().getCbVideoCode(), cm.get(aux2).getVideoCode()));
+            frameSearch.getPnAdvanced().getCbResolution().setSelectedIndex(this.setSelectedValue(frameSearch.getPnAdvanced().getCbResolution(), cm.get(aux2).getResolution()));
+            frameSearch.getTpDataBase().getTxBdata().setText(cm.get(aux2).getNameOwnwe());
         }
     }
+
     /**
      * Method that reads event from the search button.
      */
@@ -249,10 +276,13 @@ public class Controller {
         frameSearch.getPnSearch().getBtSearch().addActionListener(a -> getAtribut());
         frameSearch.getTpDataBase().getBtSave().addActionListener(a -> getAtributOne());
     }
-    public void getAtributOne(){
+
+    /**
+     * Method that set the camp criteria and get values.
+     */
+    public void getAtributOne() {
         log.info("getAtribut: get Attributes");
-        //frameSearch.cleanTable();
-       Search search = new Search();
+        Search search = new Search();
         criteria.clean();
 
         criteria.setFolderNew(new File(frameSearch.getPnSearch().getTxLocation().getText()));
@@ -284,7 +314,7 @@ public class Controller {
         ArrayList<Asset> fileList = new ArrayList<>();
         if (resul.size() > 0) {
             log.info("getAtribut: 0 <" + resul.size());
-           for (String file : resul) {
+            for (String file : resul) {
                 log.info("getAtribut: get extension " + criteria.getPath());
                 criteria.setExtension(file);
                 search.searchPath(criteria);
@@ -325,14 +355,14 @@ public class Controller {
                     log.debug("getAtribut: check date creation " + frameSearch.getPnAdvanced().getChCreation().isSelected());
                     criteria.setIniCreationFile(new Timestamp(frameSearch.getPnAdvanced().getDateCreationOne().getDate().getTime()));
                     criteria.setFinCreationFile(new Timestamp(frameSearch.getPnAdvanced().getDateCreationTwo().getDate().getTime()));
-                   aux = search.searchDateCreation(aux, criteria);
+                    aux = search.searchDateCreation(aux, criteria);
 
                 }
                 if (frameSearch.getPnAdvanced().getChAccess().isSelected()) {
                     log.debug("getAtribut: check date access " + frameSearch.getPnAdvanced().getChAccess().isSelected());
                     criteria.setIniAccessFile(new Timestamp(frameSearch.getPnAdvanced().getDateAccessOne().getDate().getTime()));
                     criteria.setFinAccessFile(new Timestamp(frameSearch.getPnAdvanced().getDateAccessTwo().getDate().getTime()));
-                   aux = search.searchDateAccess(aux, criteria);
+                    aux = search.searchDateAccess(aux, criteria);
 
                 }
                 if (frameSearch.getPnAdvanced().getChFechas().isSelected()) {
@@ -347,8 +377,7 @@ public class Controller {
             if (frameSearch.getPnAdvanced().getChAttributes().isSelected()) {
                 log.debug("getAtribut: check Attributes " + frameSearch.getPnAdvanced().getChAttributes().isSelected());
                 criteria.setCheckMulti(frameSearch.getPnAdvanced().getChAttributes().isSelected());
-               fileList = search.searchMultimedia(fileList, criteria);
-                //criteria.clean();
+                fileList = search.searchMultimedia(fileList, criteria);
                 if (frameSearch.getPnAdvanced().getChAtModify().isSelected()) {
                     criteria.addItem("ASF");
                 }
@@ -374,7 +403,7 @@ public class Controller {
                     criteria.addItem("MP4");
                 }
                 if (criteria.getFormatsMulti().size() > 0) {
-                  fileList = search.checkMulti(fileList, criteria);
+                    fileList = search.checkMulti(fileList, criteria);
                 }
                 if (!frameSearch.getPnAdvanced().selectFrame().equals("TODO")) {
                     criteria.setFrameRate(frameSearch.getPnAdvanced().selectFrame());
@@ -393,11 +422,11 @@ public class Controller {
                     criteria.setScale(frameSearch.getPnAdvanced().getScaleDuration());
                     criteria.setOperator(frameSearch.getPnAdvanced().getJcbSizeDuration().getSelectedItem().toString());
                     criteria.setCantMulti(Double.parseDouble(frameSearch.getPnAdvanced().getTxTerm().getText()));
-                   fileList = search.searcDuration(fileList, criteria);
+                    fileList = search.searcDuration(fileList, criteria);
                 }
             }
         }
-        criteria.setExtencionAux(String.join(";",resul));
+        criteria.setExtencionAux(String.join(";", resul));
         search.gsonCriterio(criteria);
         log.info("getAtribut: End");
     }
@@ -408,8 +437,6 @@ public class Controller {
     private void getAtribut() {
         log.info("getAtribut: get Attributes");
         frameSearch.cleanTable();
-        //Search search = new Search();
-        //criteria.clean();
         criteria.setFolderNew(new File(frameSearch.getPnSearch().getTxLocation().getText()));
         criteria.setFileName(frameSearch.getPnSearch().getTxSearch().getText());
         criteria.setPath(frameSearch.getPnSearch().getTxLocation().getText());
@@ -499,7 +526,6 @@ public class Controller {
                 log.debug("getAtribut: check Attributes " + frameSearch.getPnAdvanced().getChAttributes().isSelected());
                 criteria.setCheckMulti(frameSearch.getPnAdvanced().getChAttributes().isSelected());
                 fileList = search.searchMultimedia(fileList, criteria);
-                //criteria.clean();
                 if (frameSearch.getPnAdvanced().getChAtModify().isSelected()) {
                     criteria.addItem("ASF");
                 }
@@ -524,7 +550,7 @@ public class Controller {
                 if (frameSearch.getPnAdvanced().getChAtVideo().isSelected()) {
                     criteria.addItem("MP4");
                 }
-                criteria.setExtencionMulti(String.join(";",criteria.getFormatsMulti()));
+                criteria.setExtencionMulti(String.join(";", criteria.getFormatsMulti()));
                 if (criteria.getFormatsMulti().size() > 0) {
                     fileList = search.checkMulti(fileList, criteria);
 
@@ -550,7 +576,6 @@ public class Controller {
                 }
             }
         }
-
         for (Asset file : fileList) {
             log.info("getAttribut: " + file.getPath());
             search.searchSze(file.getPath());
@@ -558,11 +583,7 @@ public class Controller {
                     new ImageIcon(Constantes.getFileIcon()),
                     file
             );
-
         }
-
-        //if(){}
         log.info("getAtribut: End");
     }
-
 }

@@ -45,12 +45,13 @@ public class PanelDataBase extends JPanel {
     private JScrollPane scTableScroll;
 
     /**
-     * method of advanced of search constructs.
+     * Method of advanced of search constructs.
      */
     public PanelDataBase() {
         initComponents();
         settings();
     }
+
     /**
      * Method of the option position.
      */
@@ -62,7 +63,6 @@ public class PanelDataBase extends JPanel {
         lbImageJalaDb.setIcon(new ImageIcon(Constantes.getSearchImageJala()));
         this.add(lbImageJalaDb);
 
-        //lbDataBase.setHorizontalAlignment(SwingConstants.RIGHT);
         lbDataBase.setHorizontalAlignment(SwingConstants.CENTER);
         lbDataBase.setText("DATA BASE");
         lbDataBase.setFont(new Font("Serif", Font.PLAIN, 20));
@@ -70,7 +70,6 @@ public class PanelDataBase extends JPanel {
         lbDataBase.setForeground(Color.decode("#074692"));
         this.add(lbDataBase);
 
-        //lbName.setHorizontalAlignment(SwingConstants.RIGHT);
         lbName.setText("Name :");
         lbName.setBounds(210, 80, 100, 30);
         lbName.setFont(new Font("Serif", Font.PLAIN, 16));
@@ -82,12 +81,12 @@ public class PanelDataBase extends JPanel {
 
         btSave.setText("Save");
         btSave.setBounds(300, 120, 95, 40);
-        this.btSave.putClientProperty( SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        this.btSave.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         this.add(btSave);
 
         btLoad.setText("Load");
         btLoad.setBounds(410, 120, 95, 40);
-        this.btLoad.putClientProperty( SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        this.btLoad.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         this.add(btLoad);
 
         tmBaseD.addColumn("#");
@@ -96,25 +95,23 @@ public class PanelDataBase extends JPanel {
         scTableScroll.setViewportView(tbBaseDate);
         scTableScroll.setBounds(610, 25, 465, 150); //table
         this.add(scTableScroll);
-
-
-        /*btLoad.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                buttonEventClicked(evt);
-            }
-        });*/
     }
 
-    private void buttonEventClicked (MouseEvent evt) {
-        System.out.println("CLICK");
+    /**
+     * Method of the event Click of Data Base Button.
+     *
+     * @param evt mouse.
+     */
+    private void buttonEventClicked(MouseEvent evt) {
         if (!tbBaseDate.getSelectionModel().isSelectionEmpty()) {
-            String aux = tbBaseDate.getModel().getValueAt(tbBaseDate.getSelectedRow(),0).toString();
-            String aux1 = tbBaseDate.getModel().getValueAt(tbBaseDate.getSelectedRow(),1).toString();
-            System.out.println("CLICK==>>"+ aux);
-            System.out.println("CLICK==>>"+ aux1);
-
+            String aux = tbBaseDate.getModel().getValueAt(tbBaseDate.getSelectedRow(), 0).toString();
+            String aux1 = tbBaseDate.getModel().getValueAt(tbBaseDate.getSelectedRow(), 1).toString();
         }
     }
+
+    /**
+     * Method that initialize events of the view.
+     */
     public void initComponents() {
 
         lbDataBase = new JLabel();
@@ -128,6 +125,9 @@ public class PanelDataBase extends JPanel {
         lbImageJalaDb = new JLabel();
     }
 
+    /**
+     * Method that prepare the table for the database by the GUI.
+     */
     private void updateRowHeights() {
         try {
             for (int row = 0; row < tmBaseD.getRowCount(); row++) {
@@ -139,89 +139,92 @@ public class PanelDataBase extends JPanel {
                 tbBaseDate.setRowHeight(row, rowHeight);
             }
         } catch (ClassCastException e) {
-            System.out.println("Error de Altura de Fila");
         }
     }
 
-    public void addRowTableDb(Integer key,String nameO) {
+    /**
+     * Method for insert of the table of GUI.
+     *
+     * @param key   DB using Map.
+     * @param nameO String
+     */
+    public void addRowTableDb(Integer key, String nameO) {
         tmBaseD.addRow(
                 new Object[]{
-                    key,nameO
+                        key, nameO
                 });
         updateRowHeights();
     }
 
-    public JLabel getLbDataBase() {
-        return lbDataBase;
-    }
-
-    public void setLbDataBase(JLabel lbDataBase) {
-        this.lbDataBase = lbDataBase;
-    }
-
-    public JLabel getLbName() {
-        return lbName;
-    }
-
-    public void setLbName(JLabel lbName) {
-        this.lbName = lbName;
-    }
-
-    public JLabel getLbImageJalaDb() {
-        return lbImageJalaDb;
-    }
-
-    public void setLbImageJalaDb(JLabel lbImageJalaDb) {
-        this.lbImageJalaDb = lbImageJalaDb;
-    }
-
+    /**
+     * Method get Text of entry.
+     *
+     * @return Text string.
+     */
     public JTextField getTxBdata() {
         return txBdata;
     }
 
+    /**
+     * Method set Text Entry.
+     *
+     * @param txBdata String.
+     */
     public void setTxBdata(JTextField txBdata) {
         this.txBdata = txBdata;
     }
 
+    /**
+     * Method get Save Button.
+     *
+     * @return
+     */
     public JButton getBtSave() {
         return btSave;
     }
 
+    /**
+     * Method set Save Button.
+     *
+     * @param btSave event.
+     */
     public void setBtSave(JButton btSave) {
         this.btSave = btSave;
     }
 
+    /**
+     * Method get Load Button.
+     *
+     * @return
+     */
     public JButton getBtLoad() {
         return btLoad;
     }
 
+    /**
+     * Method set Load Button.
+     *
+     * @param btLoad event.
+     */
     public void setBtLoad(JButton btLoad) {
         this.btLoad = btLoad;
     }
 
+    /**
+     * Method get Table data base.
+     *
+     * @return table.
+     */
     public JTable getTbBaseDate() {
         return tbBaseDate;
     }
 
+    /**
+     * Method set Table of data base.
+     *
+     * @param tbBaseDate
+     */
     public void setTbBaseDate(JTable tbBaseDate) {
         this.tbBaseDate = tbBaseDate;
     }
-
-    public DefaultTableModel getTmBaseD() {
-        return tmBaseD;
-    }
-
-    public void setTmBaseD(DefaultTableModel tmBaseD) {
-        this.tmBaseD = tmBaseD;
-    }
-
-    public JScrollPane getScTableScroll() {
-        return scTableScroll;
-    }
-
-    public void setScTableScroll(JScrollPane scTableScroll) {
-        this.scTableScroll = scTableScroll;
-    }
-
-
 }

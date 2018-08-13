@@ -31,6 +31,10 @@ public class AssetMultimed extends Asset {
         super();
     }
 
+    /**
+     * Method Override of propertis Multimedia
+     * @return String.
+     */
     @Override
     public String toString() {
         return "AssetMultimed{" +

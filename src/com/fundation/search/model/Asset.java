@@ -26,6 +26,9 @@ import java.sql.Timestamp;
  */
 public class Asset {
 
+    /**
+     * Atributes of file.
+     */
     private String path;
     private String fileName;
     private long size;
@@ -146,6 +149,7 @@ public class Asset {
     }
 
     /**
+     * Method get of Hidden of file.
      *
      * @return hidden.
      */
@@ -154,6 +158,7 @@ public class Asset {
     }
 
     /**
+     * Method get of Owner of filr.
      *
      * @return owner.
      */
@@ -162,6 +167,7 @@ public class Asset {
     }
 
     /**
+     * Method set Owner of a file.
      *
      * @param owner input.
      */
@@ -170,6 +176,7 @@ public class Asset {
     }
 
     /**
+     * Method get Read Online of a file.
      *
      * @return readonly.
      */
@@ -178,6 +185,7 @@ public class Asset {
     }
 
     /**
+     * Method set Read Onli of a file.
      *
      * @param realOnline
      */
@@ -186,6 +194,7 @@ public class Asset {
     }
 
     /**
+     * Method get Date Creation of a file.
      *
      * @return datecreation.
      */
@@ -194,6 +203,7 @@ public class Asset {
     }
 
     /**
+     * Method set Data Creation of a file.
      *
      * @param dateCreacion input.
      */
@@ -202,6 +212,7 @@ public class Asset {
     }
 
     /**
+     * Method get Date Modification of a file.
      *
      * @return datemodifi.
      */
@@ -210,6 +221,7 @@ public class Asset {
     }
 
     /**
+     * Method set Date Modification of a file.
      *
      * @param dateModi input.
      */
@@ -218,6 +230,7 @@ public class Asset {
     }
 
     /**
+     * Method get Date Access of a file.
      *
      * @return dateAccess.
      */
@@ -226,6 +239,7 @@ public class Asset {
     }
 
     /**
+     * Method set Date Access of a file.
      *
      * @param dateAccess input.
      */
@@ -233,7 +247,11 @@ public class Asset {
         this.dateAccess = dateAccess;
     }
 
-
+    /**
+     * Method of override of the class.
+     *
+     * @return String.
+     */
     @Override
     public String toString() {
         return "Asset{" +
@@ -252,6 +270,7 @@ public class Asset {
     }
 
     /**
+     * Method get Multimedia of a file.
      *
      * @return Flag.
      */
@@ -260,6 +279,7 @@ public class Asset {
     }
 
     /**
+     * Method set Multimedia of a file.
      *
      * @param multimedia value of check.
      */

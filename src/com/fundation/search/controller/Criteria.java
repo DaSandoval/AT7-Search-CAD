@@ -146,7 +146,7 @@ public class Criteria {
     private String extencionMulti;
 
     /**
-     * Method for clean
+     * Method for clean.
      */
     public void clean() {
         log.info("Criteria - clean: Start");
@@ -191,23 +191,32 @@ public class Criteria {
         log.info("Criteria - clean: End");
     }
 
+    /**
+     * Method that insert elemnts to formatsMulti.
+     *
+     * @param value string of entry.
+     */
     public void addItem(String value) {
         log.info("Criteria - addItem: Start" + value);
         formatsMulti.add(value);
         log.info("Criteria - addItem: End" + value);
     }
 
+    /**
+     * Method that clear list of table.
+     */
     public void clearList() {
         log.info("Criteria - clearList: Start");
         formatsMulti.clear();
         log.info("Criteria - clearList: End/");
     }
 
+    /**
+     * Constructor of the class.
+     */
     public Criteria() {
         clean();
-
     }
-
 
     /**
      * method for the get extension
@@ -233,8 +242,6 @@ public class Criteria {
      * @return file
      */
     public File getFolderNew() {
-
-
         return folderNew;
     }
 
@@ -769,50 +776,110 @@ public class Criteria {
         this.nameOwnwe = nameOwnwe;
     }
 
+    /**
+     * Method get of CheckMod.
+     *
+     * @return boolean.
+     */
     public boolean isCheckMod() {
         return checkMod;
     }
 
+    /**
+     * Method set of checkMod.
+     *
+     * @param checkMod boolean.
+     */
     public void setCheckMod(boolean checkMod) {
         this.checkMod = checkMod;
     }
 
+    /**
+     * Method get of checkCreation.
+     *
+     * @return boolean.
+     */
     public boolean isCheckCre() {
         return checkCre;
     }
 
+    /**
+     * Method set of CheckCreation.
+     *
+     * @param checkCre boolean.
+     */
     public void setCheckCre(boolean checkCre) {
         this.checkCre = checkCre;
     }
 
+    /**
+     * Method get of Check Access.
+     *
+     * @return boolean.
+     */
     public boolean isChecAccess() {
         return checAccess;
     }
 
+    /**
+     * Method set of CheckAccess.
+     *
+     * @param checAccess boolean.
+     */
     public void setChecAccess(boolean checAccess) {
         this.checAccess = checAccess;
     }
 
+    /**
+     * Method get of ExtencionAux of support.
+     *
+     * @return String.
+     */
     public String getExtencionAux() {
         return extencionAux;
     }
 
+    /**
+     * Method set of ExtencionAux of support.
+     *
+     * @param extencionAux String.
+     */
     public void setExtencionAux(String extencionAux) {
         this.extencionAux = extencionAux;
     }
 
+    /**
+     * Method get of CheckDuration.
+     *
+     * @return boolean.
+     */
     public boolean isCheckDuration() {
         return checkDuration;
     }
 
+    /**
+     * Method set of CheckDuration.
+     *
+     * @param checkDuration boolean.
+     */
     public void setCheckDuration(boolean checkDuration) {
         this.checkDuration = checkDuration;
     }
 
+    /**
+     * Method get of ExtencionMultimedia.
+     *
+     * @return String.
+     */
     public String getExtencionMulti() {
         return extencionMulti;
     }
 
+    /**
+     * Method set of extencionMultimedia.
+     *
+     * @param extencionMulti String.
+     */
     public void setExtencionMulti(String extencionMulti) {
         this.extencionMulti = extencionMulti;
     }

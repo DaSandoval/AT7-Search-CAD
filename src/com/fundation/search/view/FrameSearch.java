@@ -58,8 +58,6 @@ public class FrameSearch extends JFrame {
     private PanelDataBase tpDataBase;
 
 
-
-
     public FrameSearch() {
         initComponents();
         settings();
@@ -118,7 +116,7 @@ public class FrameSearch extends JFrame {
         chAdvanced.setBounds(12, 235, 200, 23); //cambio de posion check que habilita
         chAdvanced.setFont(new Font("Serif", Font.PLAIN, 14));
         chAdvanced.setForeground(Color.decode("#010a0c"));
-        chAdvanced.addChangeListener(new ChangeListener(){
+        chAdvanced.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent evt) {
                 chAdvancedStateChanged(evt);
             }
@@ -158,14 +156,14 @@ public class FrameSearch extends JFrame {
     /**
      * Method of Table date.
      *
-     * @param img  value of the imagen.
+     * @param img   value of the imagen.
      * @param files class AssetFile.
      */
     public void addRowTable(ImageIcon img, Asset files) {
         tmLocation.addRow(
                 new Object[]{
                         img,
-                        files.getFileName(),files.getExtent(),
+                        files.getFileName(), files.getExtent(),
                         String.valueOf(files.getSize()),
                         files.getPath(),
                         files.getHidden(),
@@ -173,7 +171,7 @@ public class FrameSearch extends JFrame {
                         files.isRealOnline(),
                         files.getDateCreacion().toString(),
                         files.getDateAccess().toString(),
-                        files.getDateModi().toString(),files.isMultimedia()
+                        files.getDateModi().toString(), files.isMultimedia()
                 });
         updateRowHeights();
     }
@@ -192,7 +190,6 @@ public class FrameSearch extends JFrame {
                 tbLocation.setRowHeight(row, rowHeight);
             }
         } catch (ClassCastException e) {
-            System.out.println("Error de Altura de Fila");
         }
     }
 
@@ -217,7 +214,7 @@ public class FrameSearch extends JFrame {
      * @param evt data of the value.
      */
     private void chAdvancedStateChangedDataBase(ChangeEvent evt) {
-        if (this.isDataBaseEnabled != chDataBase.isSelected()){
+        if (this.isDataBaseEnabled != chDataBase.isSelected()) {
             this.isDataBaseEnabled = chDataBase.isSelected();
             tpPanel.setEnabledAt(2, chDataBase.isSelected());
             if (chDataBase.isSelected() == false) {
@@ -226,6 +223,9 @@ public class FrameSearch extends JFrame {
         }
     }
 
+    /**
+     * Method that clean Table main.
+     */
     public void cleanTable() {
         if (tmLocation.getRowCount() > 0) {
             for (int i = tmLocation.getRowCount() - 1; i > -1; i--) {
@@ -391,30 +391,65 @@ public class FrameSearch extends JFrame {
         this.tmLocation = tmLocation;
     }
 
+    /**
+     * Method get option advances enabled.
+     *
+     * @return boolean
+     */
     public boolean isAdvancedEnabled() {
         return isAdvancedEnabled;
     }
 
+    /**
+     * Method get option data base enabled.
+     *
+     * @return boolean.
+     */
     public boolean isDataBaseEnabled() {
         return isDataBaseEnabled;
     }
 
+    /**
+     * Method set option data base enabled.
+     *
+     * @param dataBaseEnabled boolean.
+     */
     public void setDataBaseEnabled(boolean dataBaseEnabled) {
         isDataBaseEnabled = dataBaseEnabled;
     }
 
+    /**
+     * Method get option check Data base.
+     *
+     * @return boolean.
+     */
     public JCheckBox getChDataBase() {
         return chDataBase;
     }
 
+    /**
+     * Method set option check Data base.
+     *
+     * @param chDataBase event.
+     */
     public void setChDataBase(JCheckBox chDataBase) {
         this.chDataBase = chDataBase;
     }
 
+    /**
+     * Method get table data base.
+     *
+     * @return table.
+     */
     public PanelDataBase getTpDataBase() {
         return tpDataBase;
     }
 
+    /**
+     * Method set table data base.
+     *
+     * @param tpDataBase table.
+     */
     public void setTpDataBase(PanelDataBase tpDataBase) {
         this.tpDataBase = tpDataBase;
     }
