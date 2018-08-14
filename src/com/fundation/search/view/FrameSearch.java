@@ -76,7 +76,7 @@ public class FrameSearch extends JFrame {
         tpPanel.addTab("Basic", pnSearch);
         pnAdvanced = new AdvancedPanelSearch();
         tpPanel.addTab("Advanced", pnAdvanced);
-        scLocation = new JScrollPane();
+        scLocation = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         tbLocation = new JTable();
         tpDataBase = new PanelDataBase();
         tpPanel.addTab("Data Base", tpDataBase);
@@ -143,8 +143,9 @@ public class FrameSearch extends JFrame {
         tmLocation.addColumn("Read Online");
         tmLocation.addColumn("Date Creation");
         tmLocation.addColumn("Date Access");
-        tmLocation.addColumn("Dare Modification ");
+        tmLocation.addColumn("Date Modification ");
         tmLocation.addColumn("Multimedia");
+        tbLocation.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tbLocation.setModel(tmLocation);
         scLocation.setViewportView(tbLocation);
         getContentPane().add(scLocation);

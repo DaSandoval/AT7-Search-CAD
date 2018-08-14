@@ -30,12 +30,13 @@ public abstract class Constantes{
 	private static final String FILE_ICON = "file.png";
 	private static final String SEARCH_IMAGEN = "searchImage.jpg";
 	private static final String SEARCH_BUTTON = "blue.png";
-	private static final String SEARCH_IMAGE_ADV = "multimedia.jpg";
-	private static final String SEARCH_IMAGE_TXT = "texto.png";
+	private static final String SEARCH_IMAGE_ADV = "multi.jpg";
+	private static final String SEARCH_IMAGE_TXT = "exten.png";
 	private static final String SEARCH_IMAGE_PDF = "pdf.png";
 	private static final String SEARCH_IMAGE_VIDEO = "video.png";
 	private static final String SEARCH_IMAGE_JALA = "jala.png";
-	private static final String HIDDEN_FOLDER_ICON = "hidden-folder.png";
+	private static final String SEARCH_DATE_BASE = "dataBase.png";
+	private static final String SEARCH_SEVEND = "bd.png";
 
 	public static String getFolderIcon(){
 		return new StringBuilder().append(RESOURCE_FOLDER).append(RESOURCE_FOLDER_IMG).append(FOLDER_ICON).toString();
@@ -67,5 +68,11 @@ public abstract class Constantes{
 	}
 	public static String getSearchImageJala(){
 		return new StringBuilder().append(RESOURCE_FOLDER).append(RESOURCE_FOLDER_IMG).append(SEARCH_IMAGE_JALA).toString();
+	}
+	public static String getSearchDateBase(){
+		return new StringBuilder().append(RESOURCE_FOLDER).append(RESOURCE_FOLDER_IMG).append(SEARCH_DATE_BASE).toString();
+	}
+	public static String getSearchSevend(){
+		return new StringBuilder().append(RESOURCE_FOLDER).append(RESOURCE_FOLDER_IMG).append(SEARCH_SEVEND).toString();
 	}
 }

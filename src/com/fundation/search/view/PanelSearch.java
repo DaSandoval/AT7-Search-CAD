@@ -21,6 +21,8 @@ import org.jvnet.substance.button.StandardButtonShaper;
 import org.jvnet.substance.utils.SubstanceConstants;
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -256,13 +258,9 @@ public class PanelSearch extends JPanel {
         chHexa.setBounds(880, 110, 60, 25);
         this.add(chHexa);
 
-        lbImageTxt.setBounds(1030, 120, 50, 60);
+        lbImageTxt.setBounds(870, 120, 200, 60);
         lbImageTxt.setIcon(new ImageIcon(Constantes.getSearchImageTxt()));
         this.add(lbImageTxt);
-
-        lbImagePdf.setBounds(970, 130, 40, 50);
-        lbImagePdf.setIcon(new ImageIcon(Constantes.getSearchImagePdf()));
-        this.add(lbImagePdf);
 
         chSearchText.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent evt) {
@@ -286,6 +284,18 @@ public class PanelSearch extends JPanel {
             }
         });
 
+        txSearchText.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+                if (!Character.isLetter(evt.getKeyChar())
+                        && !(evt.getKeyChar() == KeyEvent.VK_SPACE)
+                        && !(evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)) {
+                    evt.consume();
+                    JOptionPane.showMessageDialog(null, "Allows only letters");
+                } else {
+
+                }
+            }
+        });
     }
 
     /**

@@ -18,6 +18,7 @@ import com.fundation.search.controller.Controller;
 import com.fundation.search.view.util.Constantes;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JSpinnerDateEditor;
+import com.toedter.calendar.JTextFieldDateEditor;
 import javafx.scene.control.TextFormatter;
 
 
@@ -27,6 +28,8 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.Locale;
 
 
@@ -42,7 +45,7 @@ import java.util.Locale;
  */
 public class AdvancedPanelSearch extends JPanel {
     /**
-     * Declarationof Calendar.
+     * Declaration of Calendar.
      */
     private JCheckBox chFechas;
     private JDateChooser dateModificationOne;
@@ -107,6 +110,7 @@ public class AdvancedPanelSearch extends JPanel {
     private JLabel lbVideo;
     private JLabel lbImageJalaAdv;
 
+    private JTextFieldDateEditor editor;
     /**
      * method of advanced of search constructs.
      */
@@ -153,12 +157,16 @@ public class AdvancedPanelSearch extends JPanel {
         dateModificationOne.setEnabled(false);
         dateModificationOne.setLocale(new Locale("en"));
         dateModificationOne.setBounds(175, 60, 110, 25);
+        editor = (JTextFieldDateEditor)dateModificationOne.getDateEditor();
+        editor.setEditable(false);
         this.add(dateModificationOne);
 
         dateModificationTwo.getDate();
         dateModificationTwo.setEnabled(false);
         dateModificationTwo.setLocale(new Locale("en"));
         dateModificationTwo.setBounds(290, 60, 110, 25);
+        editor = (JTextFieldDateEditor)dateModificationTwo.getDateEditor();
+        editor.setEditable(false);
         this.add(dateModificationTwo);
 
         chAccess.setText("Access Date:");
@@ -171,12 +179,16 @@ public class AdvancedPanelSearch extends JPanel {
         dateAccessOne.setEnabled(false);
         dateAccessOne.setLocale(new Locale("en"));
         dateAccessOne.setBounds(175, 100, 110, 25);
+        editor = (JTextFieldDateEditor)dateAccessOne.getDateEditor();
+        editor.setEditable(false);
         this.add(dateAccessOne);
 
         dateAccessTwo.getDate();
         dateAccessTwo.setEnabled(false);
         dateAccessTwo.setLocale(new Locale("en"));
         dateAccessTwo.setBounds(290, 100, 110, 25);
+        editor = (JTextFieldDateEditor)dateAccessTwo.getDateEditor();
+        editor.setEditable(false);
         this.add(dateAccessTwo);
 
         chCreation.setText("Creation Date:");
@@ -189,73 +201,77 @@ public class AdvancedPanelSearch extends JPanel {
         dateCreationOne.setEnabled(false);
         dateCreationOne.setLocale(new Locale("en"));
         dateCreationOne.setBounds(175, 135, 110, 25);
+        editor = (JTextFieldDateEditor)dateCreationOne.getDateEditor();
+        editor.setEditable(false);
         this.add(dateCreationOne);
 
         dateCreationTwo.getDate();
         dateCreationTwo.setEnabled(false);
         dateCreationTwo.setLocale(new Locale("en"));
         dateCreationTwo.setBounds(290, 135, 110, 25);
+        editor = (JTextFieldDateEditor)dateCreationTwo.getDateEditor();
+        editor.setEditable(false);
         this.add(dateCreationTwo);
 
         chsSize.setText("Size:");
-        chsSize.setBounds(450, 10, 80, 25);
+        chsSize.setBounds(450, 15, 80, 25);
         chsSize.setFont(new Font("Serif", Font.PLAIN, 14));
         chsSize.setForeground(Color.decode("#010a0c"));
         this.add(chsSize);
 
         jcbSize.setEnabled(false);
-        jcbSize.setBounds(540, 10, 50, 25);
+        jcbSize.setBounds(540, 15, 50, 25);
         this.add(jcbSize);
         jcbSize.addItem("=");
         jcbSize.addItem(">");
         jcbSize.addItem("<");
 
         txSize.setEnabled(false);
-        txSize.setBounds(600, 10, 50, 25);
+        txSize.setBounds(600, 15, 50, 25);
         this.add(txSize);
 
         cbSize.setModel(new DefaultComboBoxModel<>(new String[]{"bytes", "Kbytes", "Mbytes"}));
         cbSize.setEnabled(false);
-        cbSize.setBounds(660, 10, 70, 25);
+        cbSize.setBounds(660, 15, 70, 25);
         this.add(cbSize);
 
         lbMultimedia.setText("Multimedia");
-        lbMultimedia.setBounds(460, 50, 100, 25);
+        lbMultimedia.setBounds(460, 80, 100, 25);
         lbMultimedia.setFont(new Font("Serif", Font.PLAIN, 16));
         lbMultimedia.setForeground(Color.decode("#010a0c"));
         this.add(lbMultimedia);
 
-        lbVideo.setBounds(590, 40, 150, 75);
+        lbVideo.setBounds(590, 60, 150, 75);
         lbVideo.setIcon(new ImageIcon(Constantes.getSearchImageVideo()));
         this.add(lbVideo);
 
         chAttributes.setText("Video && Music");
-        chAttributes.setBounds(450, 80, 150, 25);
+        chAttributes.setBounds(450, 120, 150, 25);
         chAttributes.setFont(new Font("Serif", Font.PLAIN, 14));
         chAttributes.setForeground(Color.decode("#010a0c"));
         this.add(chAttributes);
 
         chTerm.setText("Duration:");
         chTerm.setEnabled(false);
-        chTerm.setBounds(450, 120, 90, 25);
+        chTerm.setBounds(450, 150, 90, 25);
         chTerm.setFont(new Font("Serif", Font.PLAIN, 14));
         chTerm.setForeground(Color.decode("#010a0c"));
         this.add(chTerm);
 
         jcbSizeDuration.setEnabled(false);
-        jcbSizeDuration.setBounds(540, 120, 50, 25);
+        jcbSizeDuration.setBounds(540, 150, 50, 25);
         this.add(jcbSizeDuration);
         jcbSizeDuration.addItem("=");
         jcbSizeDuration.addItem(">");
         jcbSizeDuration.addItem("<");
 
         txTerm.setEnabled(false);
-        txTerm.setBounds(600, 120, 50, 25);
+        txTerm.setBounds(600, 150, 50, 25);
         this.add(txTerm);
 
         cbTerm.setModel(new DefaultComboBoxModel<>(new String[]{"Horas", "Minutes", "Second"}));
         cbTerm.setEnabled(false);
-        cbTerm.setBounds(660, 120, 70, 25);
+        cbTerm.setBounds(660, 150, 70, 25);
         this.add(cbTerm);
 
         chAtReading.setText("MPEG");
@@ -353,6 +369,35 @@ public class AdvancedPanelSearch extends JPanel {
                 chAtributosStateChanged(evt);
             }
         });
+
+        /**
+         * validate the field so that you only enter numbers
+         */
+        txSize.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {  //|| (c != '.' || txTerm.getText().contains("."))
+                    getToolkit().beep();
+                    e.consume();
+                    JOptionPane.showMessageDialog(null, "Allows only numbers");
+                }
+            }
+        });
+        /**
+         * validate the field so that you only enter numbers
+         */
+        txTerm.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {  //|| (c != '.' || txTerm.getText().contains("."))
+                    getToolkit().beep();
+                    e.consume();
+                    JOptionPane.showMessageDialog(null, "Allows only numbers");
+                }else{
+
+                }
+            }
+        });
         
     }
 
@@ -361,14 +406,14 @@ public class AdvancedPanelSearch extends JPanel {
      */
     public void initComponents() {
         chFechas = new JCheckBox();
-        dateModificationOne = new JDateChooser(null, null, null, new JSpinnerDateEditor());
-        dateModificationTwo = new JDateChooser(null, null, null, new JSpinnerDateEditor());
+        dateModificationOne = new JDateChooser(null, null, null);
+        dateModificationTwo = new JDateChooser(null, null, null);
         chAccess = new JCheckBox();
-        dateAccessOne = new JDateChooser(null, null, null, new JSpinnerDateEditor());
-        dateAccessTwo = new JDateChooser(null, null, null, new JSpinnerDateEditor());
+        dateAccessOne = new JDateChooser(null, null, null);
+        dateAccessTwo = new JDateChooser(null, null, null);
         chCreation = new JCheckBox();
-        dateCreationOne = new JDateChooser(null, null, null, new JSpinnerDateEditor());
-        dateCreationTwo = new JDateChooser(null, null, null, new JSpinnerDateEditor());
+        dateCreationOne = new JDateChooser(null, null, null);
+        dateCreationTwo = new JDateChooser(null, null, null);
         chTerm = new JCheckBox();
         txTerm = new JTextField();
         cbTerm = new JComboBox<>();
