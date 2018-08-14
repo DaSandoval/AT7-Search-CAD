@@ -110,10 +110,6 @@ public class AdvancedPanelSearch extends JPanel {
     private JLabel lbVideo;
     private JLabel lbImageJalaAdv;
 
-    /**
-     *
-     */
-
     private JTextFieldDateEditor editor;
     /**
      * method of advanced of search constructs.
