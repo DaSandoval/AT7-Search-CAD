@@ -14,9 +14,9 @@ public class Main {
     public static void main(String[] a) {
         LoggerWraper.getIntance().getLog().info("Main");
         FrameSearch viewFrame = new FrameSearch();
-        viewFrame.setDefaultLookAndFeelDecorated(true);
-        SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.OfficeSilver2007Skin");
-        SubstanceLookAndFeel.setCurrentWatermark(new SubstanceImageWatermark("image//folder.jpg"));
+       viewFrame.setDefaultLookAndFeelDecorated(true);
+       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.OfficeSilver2007Skin");
+       SubstanceLookAndFeel.setCurrentWatermark(new SubstanceImageWatermark("image//folder.jpg"));
         SubstanceLookAndFeel.setImageWatermarkOpacity(new Float(0.4));
         Controller control = new Controller(viewFrame);
         control.star();

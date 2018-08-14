@@ -1,16 +1,12 @@
 package com.fundation.search.view;
 
-import com.fundation.search.model.Asset;
 import com.fundation.search.view.util.Constantes;
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.button.StandardButtonShaper;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
@@ -43,6 +39,9 @@ public class PanelDataBase extends JPanel {
     private JTable tbBaseDate;
     private DefaultTableModel tmBaseD;
     private JScrollPane scTableScroll;
+    private JLabel lbImageDataBase;
+    private JLabel lbtableSevend;
+    private JLabel lbImageSevend;
 
     /**
      * Method of advanced of search constructs.
@@ -59,9 +58,13 @@ public class PanelDataBase extends JPanel {
         this.setBorder(BorderFactory.createEtchedBorder());
         this.setLayout(null);
 
-        lbImageJalaDb.setBounds(0, 0, 150, 45);
+        lbImageJalaDb.setBounds(2, 0, 150, 45);
         lbImageJalaDb.setIcon(new ImageIcon(Constantes.getSearchImageJala()));
         this.add(lbImageJalaDb);
+
+        lbImageDataBase.setBounds(5, 60, 250, 110);
+        lbImageDataBase.setIcon(new ImageIcon(Constantes.getSearchDateBase()));
+        this.add(lbImageDataBase);
 
         lbDataBase.setHorizontalAlignment(SwingConstants.CENTER);
         lbDataBase.setText("DATA BASE");
@@ -71,29 +74,41 @@ public class PanelDataBase extends JPanel {
         this.add(lbDataBase);
 
         lbName.setText("Name :");
-        lbName.setBounds(210, 80, 100, 30);
+        lbName.setBounds(210, 70, 50, 30);
         lbName.setFont(new Font("Serif", Font.PLAIN, 16));
         lbName.setForeground(Color.decode("#010a0c"));
         this.add(lbName);
 
-        txBdata.setBounds(300, 80, 210, 30);
+        txBdata.setBounds(270, 70, 240, 30);
         this.add(txBdata);
 
         btSave.setText("Save");
-        btSave.setBounds(300, 120, 95, 40);
+        btSave.setBounds(290, 120, 100, 25);
         this.btSave.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         this.add(btSave);
 
         btLoad.setText("Load");
-        btLoad.setBounds(410, 120, 95, 40);
+        btLoad.setBounds(400, 120, 100, 25);
         this.btLoad.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         this.add(btLoad);
+
+        lbImageSevend.setBounds(550, 50, 100, 130);
+        lbImageSevend.setIcon(new ImageIcon(Constantes.getSearchSevend()));
+        this.add(lbImageSevend);
+
+        lbtableSevend.setHorizontalAlignment(SwingConstants.CENTER);
+        lbtableSevend.setText("Favorite Search Saved");
+        lbtableSevend.setFont(new Font("Serif", Font.PLAIN, 14));
+        lbtableSevend.setBounds(660, 1, 300, 25);
+        lbtableSevend.setForeground(Color.decode("#0a2336"));
+        this.add(lbtableSevend);
 
         tmBaseD.addColumn("#");
         tmBaseD.addColumn("Name");
         tbBaseDate.setModel(tmBaseD);
+        //tbBaseDate.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         scTableScroll.setViewportView(tbBaseDate);
-        scTableScroll.setBounds(610, 25, 465, 150); //table
+        scTableScroll.setBounds(660, 25, 405, 150); //table
         this.add(scTableScroll);
     }
 
@@ -123,6 +138,9 @@ public class PanelDataBase extends JPanel {
         tmBaseD = new DefaultTableModel();
         scTableScroll = new JScrollPane();
         lbImageJalaDb = new JLabel();
+        lbImageDataBase = new JLabel();
+        lbtableSevend = new JLabel();
+        lbImageSevend = new JLabel();
     }
 
     /**
