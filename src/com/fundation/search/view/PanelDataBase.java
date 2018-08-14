@@ -156,6 +156,14 @@ public class PanelDataBase extends JPanel {
         updateRowHeights();
     }
 
+    public void cleanTable() {
+        if (tmBaseD.getRowCount() > 0) {
+            for (int i = tmBaseD.getRowCount() - 1; i > -1; i--) {
+                tmBaseD.removeRow(i);
+            }
+        }
+    }
+
     /**
      * Method get Text of entry.
      *

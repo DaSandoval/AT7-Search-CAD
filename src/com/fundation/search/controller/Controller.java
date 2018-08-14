@@ -237,7 +237,12 @@ public class Controller {
             frameSearch.getPnSearch().getTxtOwner().setText(cm.get(aux2).getOwner());
             frameSearch.getPnSearch().getTxSearch().setText(cm.get(aux2).getFileName());
             frameSearch.getPnSearch().getChFolder().setSelected(cm.get(aux2).isFolder());
-            frameSearch.getPnSearch().getChKeySensitive().setSelected(cm.get(aux2).isKeySensitive());
+            if (cm.get(aux2).isKeySensitive()) {
+                frameSearch.getPnSearch().getChKeySensitive().setSelected(false);
+            } else {
+                frameSearch.getPnSearch().getChKeySensitive().setSelected(true);
+            }
+
             frameSearch.getPnSearch().getChFileHidden().setSelected(cm.get(aux2).isHidden());
             frameSearch.getPnSearch().getChReadOnly().setSelected(cm.get(aux2).isReadOnly());
             frameSearch.getPnSearch().getChContent().setSelected(cm.get(aux2).isCheckContent());
@@ -285,7 +290,6 @@ public class Controller {
         Search search = new Search();
         criteria.clean();
 
-        criteria.setFolderNew(new File(frameSearch.getPnSearch().getTxLocation().getText()));
         criteria.setFileName(frameSearch.getPnSearch().getTxSearch().getText());
         criteria.setPath(frameSearch.getPnSearch().getTxLocation().getText());
         criteria.setHidden(frameSearch.getPnSearch().getChFileHidden().isSelected());
@@ -310,20 +314,15 @@ public class Controller {
         criteria.setChecAccess(frameSearch.getPnAdvanced().getChAccess().isSelected());
         criteria.setCheckSize(frameSearch.getPnAdvanced().getChsSize().isSelected());
         criteria.setSignSize((String) frameSearch.getPnAdvanced().getJcbSize().getSelectedItem());
-        ArrayList<String> resul = frameSearch.getPnSearch().getExtencion();
         ArrayList<Asset> fileList = new ArrayList<>();
-        if (resul.size() > 0) {
-            log.info("getAtribut: 0 <" + resul.size());
-            for (String file : resul) {
-                log.info("getAtribut: get extension " + criteria.getPath());
-                criteria.setExtension(file);
-                search.searchPath(criteria);
-                fileList.addAll(search.getResult());
-            }
-        } else {
-            log.debug("getAtribut: 0 > " + resul.size());
-            search.searchPath(criteria);
-            fileList = (ArrayList<Asset>) search.getResult();
+        search.searchPath(criteria);
+        fileList = (ArrayList<Asset>) search.getResult();
+        if (criteria.isExtensionEnable()) {
+            ArrayList<String> resul = frameSearch.getPnSearch().getExtencion();
+            System.out.println("CRIRIA"+resul.size());
+            criteria.setExtencionAux(String.join(";", resul));
+            System.out.println("CRIRIA"+criteria.getExtencionAux());
+            fileList = search.extencion(fileList,criteria);
         }
         if (criteria.isCheckOwner()) {
             log.debug("getAtribut: check Owner " + criteria.isCheckOwner());
@@ -426,8 +425,9 @@ public class Controller {
                 }
             }
         }
-        criteria.setExtencionAux(String.join(";", resul));
         search.gsonCriterio(criteria);
+        frameSearch.getTpDataBase().cleanTable();
+        this.getCriteriaSaved();
         log.info("getAtribut: End");
     }
 
@@ -437,12 +437,13 @@ public class Controller {
     private void getAtribut() {
         log.info("getAtribut: get Attributes");
         frameSearch.cleanTable();
-        criteria.setFolderNew(new File(frameSearch.getPnSearch().getTxLocation().getText()));
+        criteria.clean();
         criteria.setFileName(frameSearch.getPnSearch().getTxSearch().getText());
         criteria.setPath(frameSearch.getPnSearch().getTxLocation().getText());
         criteria.setHidden(frameSearch.getPnSearch().getChFileHidden().isSelected());
         criteria.setExtensionEnable(frameSearch.getPnSearch().getChSearchText().isSelected());
-        if (frameSearch.getPnSearch().getChKeySensitive().isSelected()) {
+        criteria.setKeySensitive(frameSearch.getPnSearch().getChKeySensitive().isSelected());
+        if (criteria.isKeySensitive()) {
             log.debug("getAtribut: keySensitive select " + frameSearch.getPnSearch().getChKeySensitive().isSelected());
             criteria.setKeySensitive(false);
         } else {
@@ -457,20 +458,15 @@ public class Controller {
         criteria.setContent(frameSearch.getPnSearch().getTxtContent().getText());
         criteria.setCheckContent(frameSearch.getPnSearch().getChContent().isSelected());
 
-        ArrayList<String> resul = frameSearch.getPnSearch().getExtencion();
         ArrayList<Asset> fileList = new ArrayList<>();
-        if (resul.size() > 0) {
-            log.info("getAtribut: 0 <" + resul.size());
-            for (String file : resul) {
-                log.info("getAtribut: get extension " + criteria.getPath());
-                criteria.setExtension(file);
-                search.searchPath(criteria);
-                fileList.addAll(search.getResult());
-            }
-        } else {
-            log.debug("getAtribut: 0 > " + resul.size());
-            search.searchPath(criteria);
-            fileList = (ArrayList<Asset>) search.getResult();
+        search.searchPath(criteria);
+        fileList = (ArrayList<Asset>) search.getResult();
+        if (criteria.isExtensionEnable()) {
+            ArrayList<String> resul = frameSearch.getPnSearch().getExtencion();
+            System.out.println("CRIRIA"+resul.size());
+            criteria.setExtencionAux(String.join(";", resul));
+            System.out.println("CRIRIA"+criteria.getExtencionAux());
+            fileList = search.extencion(fileList,criteria);
         }
         if (criteria.isCheckOwner()) {
             log.debug("getAtribut: check Owner " + criteria.isCheckOwner());
