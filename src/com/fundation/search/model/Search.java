@@ -135,7 +135,7 @@ public class Search {
                 }
                 log.debug("searchPath: set to current");
                 if (aListFolder.getName().contains(".")) {
-                    current.setExtent(aListFolder.getName().substring(aListFolder.getName().indexOf(".")));
+                    current.setExtent(aListFolder.getName().substring(aListFolder.getName().lastIndexOf(".")));
                 } else {
                     current.setExtent("");
                 }
@@ -180,6 +180,7 @@ public class Search {
             } else {
                 log.debug("searchPath: is file " + !aListFolder.isFile());
                 if (aListFolder.isDirectory()) {
+                    String auxp = new String(inputData.getPath());
                     inputData.setPath(aListFolder.getAbsolutePath());
 
                     if (inputData.getFileName().isEmpty() && !inputData.isKeySensitive() && !aListFolder.getName().contains(inputData.getFileName())) {
@@ -208,10 +209,32 @@ public class Search {
                     List<Asset> aux = new ArrayList<>(assetList);
                     searchPath(inputData);
                     assetList.addAll(aux);
+                    inputData.setPath(auxp);
                 }
             }
         }
         log.info("searchPath: End " + inputData);
+    }
+
+    public ArrayList<Asset> extencion(ArrayList<Asset> fileList, Criteria value) {
+        log.info("checkMulti: check option multimedia");
+        ArrayList<Asset> aux = new ArrayList<>();
+        for (String j : value.getExtencionAux().split(";")) {
+            ArrayList<Asset> aux1 = new ArrayList<>();
+            for (Asset i : fileList) {
+                log.debug("checkMulti: " + i.getPath());
+                String ext = i.getFileName().substring(i.getFileName().indexOf(".") + 1);
+                ext = ext.toLowerCase();
+                if (ext.equals(j)) {
+                    log.debug("checkMulti: " + ext);
+                    aux1.add(i);
+                }
+            }
+            System.out.println("///"+j+"****"+aux.size());
+            aux.addAll(aux1);
+        }
+        log.debug("checkMulti: conten of date " + aux.size());
+        return aux;
     }
 
     /**
@@ -381,16 +404,17 @@ public class Search {
     public ArrayList<Asset> searchSze(ArrayList<Asset> fileList, Criteria value) {
         log.info("searchSze: search for Size");
         ArrayList<Asset> aux = new ArrayList<>();
+        double aux2 = value.getSize();
         if (value.getSignSize().equals("Kbytes")) {
             log.debug("searchSze: " + value.getSignSize());
-            value.setSize(value.getSize() * 1000.0);
+            aux2 = aux2 * 1000.0;
         }
         if (value.getSignSize().equals("Mbytes")) {
             log.debug("searchSze: " + value.getSignSize());
-            value.setSize(value.getSize() * 1000000.0);
+            aux2 = aux2 *  1000000.0;
         }
         for (Asset i : fileList) {
-            double n1 = value.getSize();
+            double n1 = aux2;
             double n2 = Double.parseDouble(String.valueOf(i.getSize()));
             n1 = Math.round(n1 * 1000) / 1000;
             n2 = Math.round(n2 * 1000) / 1000;
@@ -613,17 +637,18 @@ public class Search {
     public ArrayList<Asset> searcDuration(ArrayList<Asset> fileList, Criteria value) {
         log.info("searcDuration: search of Duration");
         ArrayList<Asset> aux = new ArrayList<>();
+        double aux2 = value.getCantMulti();
         if (value.getScale().equals("H")) {
             log.debug("searcDuration: H == " + value.getScale());
-            value.setCantMulti(value.getCantMulti() * 3600.0);
+            aux2 = aux2 * 3600.0;
         }
         if (value.getScale().equals("M")) {
             log.debug("searcDuration: M == " + value.getScale());
-            value.setCantMulti(value.getCantMulti() * 60.0);
+            aux2 = aux2 * 60.0;
         }
         for (Asset i : fileList) {
             AssetMultimed asm = (AssetMultimed) i;
-            double n1 = value.getCantMulti();
+            double n1 = aux2;
             double n2 = asm.getDuracion();
             n1 = Math.round(n1 * 1000) / 1000;
             n2 = Math.round(n2 * 1000) / 1000;

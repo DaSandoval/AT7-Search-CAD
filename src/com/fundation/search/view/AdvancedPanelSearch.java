@@ -353,6 +353,7 @@ public class AdvancedPanelSearch extends JPanel {
                 chAtributosStateChanged(evt);
             }
         });
+        
     }
 
     /**

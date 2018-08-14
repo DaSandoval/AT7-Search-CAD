@@ -33,10 +33,6 @@ public class Criteria {
 
     final static Logger log = Logger.getLogger(Criteria.class);
     /**
-     * folderNew of criteria.
-     */
-    private File folderNew;
-    /**
      * path of criteria.
      */
     private String path;
@@ -150,7 +146,6 @@ public class Criteria {
      */
     public void clean() {
         log.info("Criteria - clean: Start");
-        this.folderNew = null;
         this.path = "";
         this.fileName = "";
         this.hidden = false;
@@ -234,24 +229,6 @@ public class Criteria {
      */
     public void setExtensionEnable(boolean extensionEnable) {
         isExtensionEnable = extensionEnable;
-    }
-
-    /**
-     * method for the get Folder New
-     *
-     * @return file
-     */
-    public File getFolderNew() {
-        return folderNew;
-    }
-
-    /**
-     * method for the set folder new.
-     *
-     * @param folderNew File.
-     */
-    public void setFolderNew(File folderNew) {
-        this.folderNew = folderNew;
     }
 
     /**
