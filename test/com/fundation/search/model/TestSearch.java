@@ -35,7 +35,6 @@ public class TestSearch {
 
     @Test
     public void testSearchPath() {
-        System.out.println(System.getProperty("user.dir"));
         String testPath = System.getProperty("user.dir")+"//resources//";
         assetFile.setPath(testPath);
         criteria.setPath(testPath);
@@ -46,7 +45,6 @@ public class TestSearch {
 
     @Test
     public void testSearchName() {
-        System.out.println(System.getProperty("user.dir"));
         String nameFile = "test3";
         String testPath = System.getProperty("user.dir") + "//resources//";
         criteria.setFileName(nameFile);
@@ -64,7 +62,6 @@ public class TestSearch {
 
     @Test
     public void testSearchFile() {
-        System.out.println(System.getProperty("user.dir"));
         boolean folder = true;
         String testPath = System.getProperty("user.dir") + "//resources//";
         criteria.setFolder(folder);
@@ -82,7 +79,6 @@ public class TestSearch {
 
     @Test
     public void testSearchFileHidden() {
-        System.out.println(System.getProperty("user.dir"));
         boolean folderHidden = true;
         String testPath = System.getProperty("user.dir") + "//resources//";
         criteria.setHidden(folderHidden);
@@ -100,7 +96,6 @@ public class TestSearch {
 
     @Test
     public void testSearchKeySensitive() {
-        System.out.println(System.getProperty("user.dir"));
         String nameFile = "test3";
         boolean checkKey = false;
         String testPath = System.getProperty("user.dir") + "//resources//";
@@ -113,7 +108,6 @@ public class TestSearch {
 
     @Test
     public void testSearchFileReadOnly() {
-        System.out.println(System.getProperty("user.dir"));
         boolean folderRead = true;
         String testPath = System.getProperty("user.dir") + "//resources//";
         criteria.setReadOnly(folderRead);
