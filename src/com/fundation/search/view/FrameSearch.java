@@ -185,10 +185,6 @@ public class FrameSearch extends JFrame {
                             aux.getFrameRate(),aux.getResolucion()
 
                     });
-            System.out.println("add"+aux.getCodec());
-            System.out.println("add"+aux.getDuracion());
-            System.out.println("add"+aux.getFrameRate());
-            System.out.println("add"+aux.getResolucion());
         }
 
         else {
