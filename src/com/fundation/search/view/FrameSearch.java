@@ -17,6 +17,7 @@ package com.fundation.search.view;
 import com.fundation.search.controller.Controller;
 import com.fundation.search.model.Asset;
 import com.fundation.search.model.AssetFile;
+import com.fundation.search.model.AssetMultimed;
 
 import java.awt.*;
 
@@ -145,6 +146,10 @@ public class FrameSearch extends JFrame {
         tmLocation.addColumn("Date Access");
         tmLocation.addColumn("Date Modification ");
         tmLocation.addColumn("Multimedia");
+        tmLocation.addColumn("Video Codec");
+        tmLocation.addColumn("Duration");
+        tmLocation.addColumn("Frame Rate");
+        tmLocation.addColumn("Resolution");
         tbLocation.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tbLocation.setModel(tmLocation);
         scLocation.setViewportView(tbLocation);
@@ -161,19 +166,42 @@ public class FrameSearch extends JFrame {
      * @param files class AssetFile.
      */
     public void addRowTable(ImageIcon img, Asset files) {
-        tmLocation.addRow(
-                new Object[]{
-                        img,
-                        files.getFileName(), files.getExtent(),
-                        String.valueOf(files.getSize()),
-                        files.getPath(),
-                        files.getHidden(),
-                        files.getOwner(),
-                        files.isRealOnline(),
-                        files.getDateCreacion().toString(),
-                        files.getDateAccess().toString(),
-                        files.getDateModi().toString(), files.isMultimedia()
-                });
+        System.out.println("add"+files.isMultimedia());
+        if (files.isMultimedia()) {
+            AssetMultimed aux = (AssetMultimed) files;
+
+            tmLocation.addRow(
+                    new Object[]{
+                            img,
+                            files.getFileName(), files.getExtent(),
+                            String.valueOf(files.getSize()),
+                            files.getPath(),
+                            files.isHidden(),
+                            files.getOwner(),
+                            files.isRealOnline(),
+                            files.getDateCreacion().toString(),
+                            files.getDateAccess().toString(),
+                            files.getDateModi().toString(), files.isMultimedia(),aux.getCodec(),aux.getDuracion(),
+                            aux.getFrameRate(),aux.getResolucion()
+
+                    });
+        }
+
+        else {
+            tmLocation.addRow(
+                    new Object[]{
+                            img,
+                            files.getFileName(), files.getExtent(),
+                            String.valueOf(files.getSize()),
+                            files.getPath(),
+                            files.isHidden(),
+                            files.getOwner(),
+                            files.isRealOnline(),
+                            files.getDateCreacion().toString(),
+                            files.getDateAccess().toString(),
+                            files.getDateModi().toString(), files.isMultimedia()
+                    });
+        }
         updateRowHeights();
     }
 
