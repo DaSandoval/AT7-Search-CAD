@@ -76,14 +76,6 @@ public class Asset {
         this.path = path;
     }
 
-    /**
-     * Get the value of Hidden.
-     *
-     * @return string.
-     */
-    public boolean getHidden() {
-        return hidden;
-    }
 
     /**
      * Modify the parameters.

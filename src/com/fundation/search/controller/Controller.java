@@ -15,6 +15,7 @@ package com.fundation.search.controller;
 
 import com.fundation.search.model.Asset;
 import com.fundation.search.model.AssetFile;
+import com.fundation.search.model.AssetMultimed;
 import com.fundation.search.model.Search;
 import com.fundation.search.view.FrameSearch;
 import com.fundation.search.view.util.Constantes;
