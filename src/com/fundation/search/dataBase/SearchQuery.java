@@ -1,4 +1,3 @@
-package com.fundation.search.dataBase;
 /*
  * @(#)Class SearchQuery.java
  *
@@ -12,6 +11,8 @@ package com.fundation.search.dataBase;
  * accordance with the terms of the license agreement you entered into
  * with Jala Foundation.
  */
+package com.fundation.search.dataBase;
+
 import com.fundation.search.controller.Criteria;
 import com.google.gson.Gson;
 
@@ -27,14 +28,24 @@ import java.sql.Statement;
  * @version 1.0.
  */
 public class SearchQuery {
+
+    /**
+     * attribute of connection.
+     */
     private Connection connection;
 
+    /**
+     * Constructor of the class.
+     */
     public SearchQuery(){
         connection= SearchConnection.getInstance().getConnection();
     }
 
+    /**
+     * Method that insert criteria in the database.
+     * @param valueCriteriaJSON criteria convert in Json.
+     */
     public void insertCriteria(String valueCriteriaJSON){
-        System.out.println(valueCriteriaJSON);
         String insert = "insert into criteria values(?, ?);";
         PreparedStatement pre = null;
         try {
@@ -46,18 +57,19 @@ public class SearchQuery {
             pre.setString(2, valueCriteriaJSON);
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
         }
         try {
             pre.execute();
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
         }
     }
 
+    /**
+     * Method that consult of the database.
+     * @return consult.
+     */
     public ResultSet getAllCriteria(){
-
         Statement state= null;
         try {
             state = connection.createStatement();
@@ -70,8 +82,6 @@ public class SearchQuery {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return set;
     }
-
 }
