@@ -1,4 +1,18 @@
+/*
+ * @(#)TestSearch.java
+ *
+ * Copyright (c) 2018 Jala Foundation.
+ * 2643 Av Melchor Perez de Olguin, Colquiri Sud, Cochabamba, Bolivia.
+ * All rights reserved.
+ *
+ * This software is the confidential and proprietary information of
+ * Jala Foundation, ("Confidential Information").  You shall not
+ * disclose such Confidential Information and shall use it only in
+ * accordance with the terms of the license agreement you entered into
+ * with Jala Foundation.
+ */
 package com.fundation.search.model;
+
 import com.fundation.search.controller.Criteria;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +37,9 @@ public class TestSearch {
     private Criteria criteria;
     private AssetFile assetFile;
 
+    /**
+     * Constructor of the class.
+     */
     public TestSearch() {
         searcha = new Search();
         criteria = new Criteria();
@@ -33,6 +50,9 @@ public class TestSearch {
     public void before () {
     }
 
+    /**
+     * Test that verify if it is an address path.
+     */
     @Test
     public void testSearchPath() {
         String testPath = System.getProperty("user.dir")+"//resources//";
@@ -43,6 +63,9 @@ public class TestSearch {
         assertTrue(searcha.getResult().size()>0);
     }
 
+    /**
+     * Test that verify if in a path there a file or directory with a nama insert for the txtfile.
+     */
     @Test
     public void testSearchName() {
         String nameFile = "test3";
@@ -60,6 +83,9 @@ public class TestSearch {
         assertTrue(aux);
     }
 
+    /**
+     * Test that verify if in the path there is folder or directory.
+     */
     @Test
     public void testSearchFile() {
         boolean folder = true;
@@ -77,6 +103,9 @@ public class TestSearch {
         assertTrue(aux);
     }
 
+    /**
+     * Test that verify if there is a file hidden.
+     */
     @Test
     public void testSearchFileHidden() {
         boolean folderHidden = true;
@@ -94,6 +123,9 @@ public class TestSearch {
         assertTrue(aux);
     }
 
+    /**
+     * Test that verify if dadaist a string lowercase or uppercase you can show files with that description.
+     */
     @Test
     public void testSearchKeySensitive() {
         String nameFile = "test3";
@@ -106,6 +138,9 @@ public class TestSearch {
         assertTrue(searcha.getResult().size()==1);
     }
 
+    /**
+     * Test that verify if dadaist a file of resd only you can show files of read only.
+     */
     @Test
     public void testSearchFileReadOnly() {
         boolean folderRead = true;
@@ -125,6 +160,9 @@ public class TestSearch {
         assertTrue(aux);
     }
 
+    /**
+     * Test that verify if dadaist a type of content you can show files with that content.
+     */
     @Test
     public void testSearchContent() {
         boolean checkContent = true;
@@ -148,7 +186,6 @@ public class TestSearch {
                         break;
                     }
                 }
-
             }
             catch (Exception ex) {
             }
@@ -160,6 +197,9 @@ public class TestSearch {
         assertTrue(aux);
     }
 
+    /**
+     * Test that verify if dadaist a type of owner  you can show files with that owner
+     */
     @Test
     public void testSearchOwner() {
         boolean checkOwner = true;
@@ -181,6 +221,9 @@ public class TestSearch {
         assertTrue(aux);
     }
 
+    /**
+     * Test that verify if dadaist a type of extencion  you can show files with that extencion.
+     */
     @Test
     public void testSearchExtencion() {
         boolean checkExtencion = true;
@@ -206,6 +249,10 @@ public class TestSearch {
         assertTrue(aux);
     }
 
+    /**
+     * Test that verify if dadaist a date of modification you can show files with that date.
+     * @throws ParseException
+     */
     @Test
     public void testSearchDateMod () throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -242,6 +289,10 @@ public class TestSearch {
         assertTrue(aux);
     }
 
+    /**
+     * Test that verify if dadaist a date of access you can show files with that date.
+     * @throws ParseException
+     */
     @Test
     public void testSearchDateAccess () throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -277,6 +328,10 @@ public class TestSearch {
         assertTrue(aux);
     }
 
+    /**
+     * Test that verify if dadaist a date of creation  you can show files with that date.
+     * @throws ParseException
+     */
     @Test
     public void testSearchDateCreation () throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -303,7 +358,6 @@ public class TestSearch {
                 Date f3 = new Date(i.getDateCreacion().getTime());
                 if (f3.after(f1) & f3.before(f2)) {
                     aux = false;
-
                 }
 
             } catch (Exception e) {
@@ -313,6 +367,10 @@ public class TestSearch {
         assertTrue(aux);
     }
 
+    /**
+     * Test for verify if the file multimidia the sizeis rcover in MB, KB and verify if the file.
+     * or group de file they are greater than, less that and equals than.
+     */
     @Test
     public void testSize () {
         boolean checkSize = true;
@@ -363,6 +421,9 @@ public class TestSearch {
         assertTrue(aux);
     }
 
+    /**
+     * Test that verify if the option multimidia is selected for enabled other options.
+     */
     @Test
     public void testSearchMultimedia() {
         boolean checkMulti = true;
@@ -383,6 +444,9 @@ public class TestSearch {
     }
 
 
+    /**
+     * Test that verify if a hours or time of duration a file multimidia.
+     */
     @Test
     public void testSearcDuration () {
         boolean checkSize = true;
@@ -435,6 +499,9 @@ public class TestSearch {
         assertTrue(aux);
     }
 
+    /**
+     * Test that verify the options multimidia and the options of select a extends a multimidia.
+     */
     @Test
     public void testCheckMulti () {
         ArrayList<String> extencionMulti = new ArrayList<>();
@@ -459,6 +526,9 @@ public class TestSearch {
         assertTrue(aux);
     }
 
+    /**
+     * Test that verify the option of multimidia and option of video codec.
+     */
     @Test
     public void testCheckVideoCode () {
         String videoCode = "H264";
@@ -482,6 +552,9 @@ public class TestSearch {
         assertTrue(aux);
     }
 
+    /**
+     * Test that verify the option of multimidia and option of resolution.
+     */
     @Test
     public void testCheckResolution () {
         String resolution = "1280x720";
@@ -504,7 +577,9 @@ public class TestSearch {
         assertTrue(aux);
     }
 
-
+    /**
+     * Test taht verify the option multimidia with a frame rate of 30.
+     */
     @Test
     public void testCheckFrame () {
         String frame1 = "30";
@@ -527,7 +602,4 @@ public class TestSearch {
         }
         assertTrue(aux);
     }
-
-
-
 }

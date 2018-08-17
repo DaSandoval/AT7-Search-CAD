@@ -1,4 +1,3 @@
-package com.fundation.search.dataBase;
 /*
  * @(#)Class SearchConnection.java
  *
@@ -12,6 +11,8 @@ package com.fundation.search.dataBase;
  * accordance with the terms of the license agreement you entered into
  * with Jala Foundation.
  */
+package com.fundation.search.dataBase;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -25,18 +26,34 @@ import org.sqlite.JDBC;
  */
 public class SearchConnection {
 
+    /**
+     * Attribut for the connection of the database.
+     */
     private static SearchConnection searchConnection;
     private static Connection connection;
 
+    /**
+     * Inicialice the constructor.
+     */
     public SearchConnection(){
         init();
     }
+
+    /**
+     * Method that search if exist a connection to the database.
+     *
+     * @return new conecction database or the database existent.
+     */
     public static SearchConnection getInstance(){
         if(searchConnection == null){
             searchConnection= new SearchConnection();
         }
         return searchConnection;
     }
+
+    /**
+     * Method taht initialice the database.
+     */
     public void init(){
         try {
             Class.forName("org.sqlite.JDBC");
@@ -56,12 +73,16 @@ public class SearchConnection {
         }
         try {
             state.execute("create table if not exists criteria(id INTEGER, criteriaJSON VARCHAR(500), primary key (id));");
-            // state.execute("create table if not exists criteria(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, criteriaJSON VARCHAR(500))");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
+
+    /**
+     * Method that does the connection.
+     *
+     * @return the connection to the database.
+     */
     public static Connection getConnection(){
         return connection;
     }
