@@ -1,4 +1,4 @@
-# AT7-Search-CAD  - PROJECT OF "FILE SEARCH"
+# AT7-Search-CAD  - PROJECT "FILE SEARCH - version BETA"
 This project consist in the file search ,  these might be file txt, pdf, ppt, etc. and multimedia mp4, avi, mov, etc 
 and  has a database in SQLite.
 To execute the project your needed import the librarys  in the different classes, because  it does not import them automatically and need 
